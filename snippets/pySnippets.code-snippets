@@ -1,0 +1,129 @@
+{
+	"Default Discord bot main.py file": {
+		"prefix": "dmain",
+		"body": [
+			"import discord",
+            "from discord.ext import commands",
+            "import json",
+            "",
+            "# Get configuration.json",
+            "with open(\"configuration.json\", \"r\") as config:", 
+            "\tdata = json.load(config)",
+            "\ttoken = data[\"token\"]",
+            "\tprefix = data[\"prefix\"]",
+            "",
+            "",
+            "class Greetings(commands.Cog):",
+            "\tdef __init__(self, bot):",
+            "\t\tself.bot = bot",
+            "\t\tself._last_member = None",
+            "",
+            "# Intents",
+            "intents = discord.Intents.default()",
+            "intents.members = True",
+            "",
+            "bot = commands.Bot(prefix, intents = intents)",
+            "",
+            "# Load cogs",
+            "initial_extensions = [",
+            "\t\"Cogs.help\",",
+            "\t\"Cogs.ping\"",
+            "]",
+            "",
+            "print(initial_extensions)",
+            "",
+            "if __name__ == '__main__':",
+            "\tfor extension in initial_extensions:",
+            "\t\ttry:",
+            "\t\t\tbot.load_extension(extension)",
+            "\t\texcept Exception as e:",
+            "\t\t\tprint(f\"Failed to load extension {extension}\")",
+            "",
+            "@bot.event",
+            "async def on_ready():",
+            "\tprint(f\"We have logged in as {bot.user}\")",
+            "\tawait bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f\"{bot.command_prefix}help\"))",
+            "\tprint(discord.__version__)",
+            "",
+            "bot.run(token)"
+		],
+        "description": "Create a basic Discord bot main.py file."
+    },
+
+    "Default Discord bot cog": {
+		"prefix": "dcog",
+		"body": [
+			"import discord",
+            "from discord.ext import commands",
+            "",
+            "",
+            "class TemplateCog(commands.Cog):",
+            "\tdef __init__(self, bot):",
+            "\t\tself.bot = bot",
+            "",    
+            "",        
+            "\t@commands.command(name = \"\",",
+            "\t\t\t\t\tusage=\"\",",
+            "\t\t\t\t\tdescription = \"\")",
+            "\t@commands.guild_only()",
+            "\t@commands.has_permissions()",
+            "\t@commands.cooldown(1, 2, commands.BucketType.member)",
+            "\tasync def ping(self, ctx):",
+            "\t\tawait ctx.send(\"template command\")",
+            "",        
+            "",
+            "def setup(bot):",
+            "\tbot.add_cog(TemplateCog(bot))",
+		],
+        "description": "Create a basic Discord cog."
+    },
+
+    "Default Discord bot command": {
+		"prefix": "dcmd",
+		"body": [       
+            "@commands.command(name = \"name\", aliases=[])",
+            "async def command(self, ctx):",
+            "\tawait ctx.send(\"template command\")",
+		],
+        "description": "Create a basic Discord command."
+    },
+
+    "Complex Discord bot command": {
+		"prefix": "dcmd+",
+		"body": [       
+            "@commands.command(name = \"name\",",
+            "\t\t\t\taliases=[]",
+            "\t\t\t\tusage=\"\",",
+            "\t\t\t\tdescription = \"\")",
+            "@commands.guild_only()",
+            "@commands.has_permissions()",
+            "@commands.cooldown(1, 2, commands.BucketType.member)",
+            "async def command(self, ctx):",
+            "\tawait ctx.send(\"template command\")",
+		],
+        "description": "Create a complex Discord command."
+    },
+
+    "Default Discord bot embed": {
+		"prefix": "dembed",
+		"body": [       
+            "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
+            "embed.add_field(name=\"field\", value=\"value\", inline=False)",
+            "await ctx.send(embed=embed)",
+		],
+        "description": "Create a basic Discord embed."
+    },
+
+    "Complex Discord bot embed": {
+		"prefix": "dembed+",
+		"body": [       
+            "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
+            "embed.set_author(name=\"\", url=\"url\", icon_url=\"icon\")",
+            "embed.set_thumbnail(url=\"thumbnail\")",
+            "embed.add_field(name=\"field\", value=\"value\", inline=False)",
+            "embed.set_footer(text=\"footer\")",
+            "await ctx.send(embed=embed)",
+		],
+        "description": "Create a complex Discord embed."
+    },
+}
