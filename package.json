@@ -5,6 +5,10 @@
     "icon": "./images/logo.png",
     "version": "1.0.0",
     "publisher": "Darkempire78",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/Darkempire78/Discord-Tools"
+	},
 	"engines": {
 		"vscode": "^1.52.0"
 	},
