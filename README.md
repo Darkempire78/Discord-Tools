@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/darkempire78/discord-tools/badge)](https://www.codefactor.io/repository/github/darkempire78/discord-tools)
+
 # Discord Tools
 
 Discord Tools is a Visual Studio Code extension to code Discord bots more easily.
