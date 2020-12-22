@@ -9,6 +9,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [x] Javascript (Discord.js)
 - [ ] Soon...
 
+
 ## Features
 
 ### Generate a template Discord bot : 
@@ -19,20 +20,6 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ### Generate code easily :
 
 ### Available Snippets
-
-#### Python (Discord.py) :
-
-- `dmain` : Create a basic Discord bot main.py file.
-- `dcog` : Create a basic Discord cog.
-- `dcmd` : Create a basic Discord command.
-- `dcmd+` : Create a complex Discord command.
-- `dembed` : Create a basic Discord embed.
-- `dembed+` : Create a complex Discord embed.
-- `donmessage` : CCreate a default Discord bot on_message.
-- `donmemberjoin` : Create a default Discord bot on_member_join.
-- `donmemberremove` : Create a default Discord bot on_member_remove.
-- `donguildjoin` : Create a default Discord bot on_guild_join.
-- `donguildremove` : Create a default Discord bot on_guild_remove.
 
 #### Javascript (Discord.js) :
 
@@ -49,8 +36,23 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 #### Javascript Preview :
 <img src="images/video2.gif" width="500"/>
 
+#### Python (Discord.py) :
+
+- `dmain` : Create a basic Discord bot main.py file.
+- `dcog` : Create a basic Discord cog.
+- `dcmd` : Create a basic Discord command.
+- `dcmd+` : Create a complex Discord command.
+- `dembed` : Create a basic Discord embed.
+- `dembed+` : Create a complex Discord embed.
+- `donmessage` : CCreate a default Discord bot on_message.
+- `donmemberjoin` : Create a default Discord bot on_member_join.
+- `donmemberremove` : Create a default Discord bot on_member_remove.
+- `donguildjoin` : Create a default Discord bot on_guild_join.
+- `donguildremove` : Create a default Discord bot on_guild_remove.
+
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
+
 
 ## Contributing
 
