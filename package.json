@@ -1,9 +1,9 @@
 {
 	"name": "discord-tools",
 	"displayName": "Discord Tools",
-    "description": "Enable you to generate and complete your Discord code more fast",
+    "description": "Enable you to generate and complete your Discord code faster.",
     "icon": "images/logo.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "Darkempire78",
     "repository": {
 		"type": "git",

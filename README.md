@@ -67,9 +67,10 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.0.0 (Lastest update)
-
-Initial release
+### 1.0.1 (Lastest update)
+- several corrections
+### 1.0.0
+- Initial release
 
 
 ## License
