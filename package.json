@@ -33,11 +33,11 @@
         "snippets": [
 			{
 				"language": "python",
-				"path": "./Snippets/pySnippets.code-snippets"
+				"path": "./snippets/pySnippets.code-snippets"
             },
             {
 				"language": "javascript",
-				"path": "./Snippets/jsSnippets.code-snippets"
+				"path": "./snippets/jsSnippets.code-snippets"
 			}
 		]
 	},

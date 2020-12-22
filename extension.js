@@ -3,8 +3,8 @@
 const vscode = require('vscode');
 
 // Others
-const pyTools = require('./Tools/pyTools.js');
-const jsTools = require('./Tools/jsTools.js');
+const pyTools = require('./tools/pyTools.js');
+const jsTools = require('./tools/jsTools.js');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
