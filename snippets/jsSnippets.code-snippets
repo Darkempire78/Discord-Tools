@@ -2,23 +2,101 @@
 	"Default Discord bot index.js file": {
 		"prefix": "dindex",
 		"body": [
-			
+			"const Discord = require('discord.js');",
+            "const config = require('./configuration.json');",
+            "const fs = require('fs');",
+            "",
+            "const client = new Discord.Client();",
+            "client.commands = new Discord.Collection();",
+            "",
+            "// Take commands",
+            "const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));",
+            "for (const file of commandFiles) {",
+            "\tconst command = require(`./commands/${file}`);",
+            "\tclient.commands.set(command.name, command);",
+            "}",
+            "",
+            "// Cooldowns",
+            "const cooldowns = new Discord.Collection();",
+            "",
+            "// On Ready",
+            "client.once('ready', () => {",
+            "\tconsole.log('Ready!');",
+            "});",
+            "",
+            "// On Message",
+            "client.on('message', message => {",
+            "\tif (!message.content.startsWith(config.prefix) || message.author.bot) return;",
+            "",
+            "\tconst args = message.content.slice(config.prefix.length).split(/ +/);",
+            "\tconst commandName = args.shift().toLowerCase();",
+            "",
+            "\tconst command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));",
+            "",
+            "\t// If command exist",
+            "\tif (!command) return;",
+            "",
+            "\t// Check if command can be executed in DM",
+            "\tif (command.guildOnly && message.channel.type !== 'text') {",
+            "\t\treturn message.reply('I can\\'t execute that command inside DMs!');",
+            "\t}",
+            "",
+            "\t// Check if args are required",
+            "\tif (command.args && !args.length) {",
+            "\t\tlet reply = `You didn't provide any arguments, ${message.author}!`;",
+            "",
+            "\t\tif (command.usage) {",
+            "\t\t\treply += `\\nThe proper usage would be: \\`${config.prefix}${command.name} ${command.usage}\\``;",
+            "\t\t}",
+            "",
+            "\t\treturn message.channel.send(reply);",
+            "\t}",
+            "",
+            "\t// Check if user is in cooldown",
+            "\tif (!cooldowns.has(command.name)) {",
+            "\t\tcooldowns.set(command.name, new Discord.Collection());",
+            "\t}",
+            "",
+            "\tconst now = Date.now();",
+            "\tconst timestamps = cooldowns.get(command.name);",
+            "\tconst cooldownAmount = (command.cooldown || 3) * 1000;",
+            "",
+            "\tif (timestamps.has(message.author.id)) {",
+            "\t\tconst expirationTime = timestamps.get(message.author.id) + cooldownAmount;",
+            "",
+            "\t\tif (now < expirationTime) {",
+            "\t\t\t// If user is in cooldown",
+            "\t\t\tconst timeLeft = (expirationTime - now) / 1000;",
+            "\t\t\treturn message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \\`${command.name}\\` command.`);",
+            "\t\t}",
+            "\t} else {",
+            "\t\ttimestamps.set(message.author.id, now);",
+            "\t\tsetTimeout(() => timestamps.delete(message.author.id), cooldownAmount);",
+            "\t\t// Execute command",
+            "\t\ttry {",
+            "\t\t\tcommand.execute(message, args);",
+            "\t\t} catch (error) {",
+            "\t\t\tconsole.error(error);",
+            "\t\t\tmessage.reply('there was an error trying to execute that command!');",
+            "\t\t}",
+            "\t}",
+            "});",
+            "",
+            "client.login(config.token);"
 		],
         "description": "Create a basic Discord bot index.js file."
-    },
-
-    "Default Discord bot cog": {
-		"prefix": "dcog",
-		"body": [
-			
-		],
-        "description": "Create a basic Discord cog."
     },
 
     "Default Discord bot command": {
 		"prefix": "dcmd",
 		"body": [       
-            
+            "module.exports = {",
+            "\tname: \"command\",",
+            "\taliases: [],",
+            "\texecute(message, args) {",
+            "\t\tmessage.reply(\"template command\")",
+            "\t},",
+            "};"
 		],
         "description": "Create a basic Discord command."
     },
@@ -26,7 +104,18 @@
     "Complex Discord bot command": {
 		"prefix": "dcmd+",
 		"body": [       
-            
+            "module.exports = {",
+            "\tname: \"command\",",
+            "\taliases: [],",
+            "\tdescription: \"description\",",
+            "\tguildOnly: true,",
+            "\tcooldown: 2,",
+            "\targs: args,",
+            "\tusage: \"\",",
+            "\texecute(message, args) {",
+            "\t\tmessage.reply(\"template command\")",
+            "\t},",
+            "};"
 		],
         "description": "Create a complex Discord command."
     },
@@ -34,7 +123,15 @@
     "Default Discord bot embed": {
 		"prefix": "dembed",
 		"body": [       
-            
+            "const embed = new Discord.MessageEmbed()",
+            "\t.setColor('#0099ff')",
+            "\t.setTitle('title')",
+            "\t.setDescription('description')",
+            "\t.addFields(",
+            "\t\t{ name: 'Rtitle', value: 'value', inline: false },",
+            "\t)",
+            "",
+            "\tchannel.send(embed);",
 		],
         "description": "Create a basic Discord embed."
     },
@@ -42,48 +139,105 @@
     "Complex Discord bot embed": {
 		"prefix": "dembed+",
 		"body": [       
-            
+            "const embed = new Discord.MessageEmbed()",
+            "\t.setColor('#0099ff')",
+            "\t.setTitle('title')",
+            "\t.setURL('https://discord.js.org/')",
+            "\t.setAuthor('name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')",
+            "\t.setDescription('description')",
+            "\t.setThumbnail('https://i.imgur.com/wSTFkRM.png')",
+            "\t.addFields(",
+            "\t\t{ name: 'Rtitle', value: 'value', inline: false },",
+            "\t)",
+            "\t.setImage('https://i.imgur.com/wSTFkRM.png')",
+            "\t.setTimestamp()",
+            "\t.setFooter('footer', 'https://i.imgur.com/wSTFkRM.png');",
+            "",
+            "\tchannel.send(embed);",
 		],
         "description": "Create a complex Discord embed."
     },
 
-    "Default Discord bot on_message": {
-		"prefix": "donmessage",
+    "Default Discord bot on": {
+		"prefix": "don",
 		"body": [       
-            
+            "client.on('message', message => {",
+            "\tif (!message.content.startsWith(config.prefix) || message.author.bot) return;",
+            "",
+            "\tconst args = message.content.slice(config.prefix.length).split(/ +/);",
+            "\tconst commandName = args.shift().toLowerCase();",
+            "",
+            "\tconst command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));",
+            "",
+            "\t// If command exist",
+            "\tif (!command) return;",
+            "",
+            "\t// Check if command can be executed in DM",
+            "\tif (command.guildOnly && message.channel.type !== 'text') {",
+            "\t\treturn message.reply('I can\\'t execute that command inside DMs!');",
+            "\t}",
+            "",
+            "\t// Check if args are required",
+            "\tif (command.args && !args.length) {",
+            "\t\tlet reply = `You didn't provide any arguments, ${message.author}!`;",
+            "",
+            "\t\tif (command.usage) {",
+            "\t\t\treply += `\\nThe proper usage would be: \\`${config.prefix}${command.name} ${command.usage}\\``;",
+            "\t\t}",
+            "",
+            "\t\treturn message.channel.send(reply);",
+            "\t}",
+            "",
+            "\t// Check if user is in cooldown",
+            "\tif (!cooldowns.has(command.name)) {",
+            "\t\tcooldowns.set(command.name, new Discord.Collection());",
+            "\t}",
+            "",
+            "\tconst now = Date.now();",
+            "\tconst timestamps = cooldowns.get(command.name);",
+            "\tconst cooldownAmount = (command.cooldown || 3) * 1000;",
+            "",
+            "\tif (timestamps.has(message.author.id)) {",
+            "\t\tconst expirationTime = timestamps.get(message.author.id) + cooldownAmount;",
+            "",
+            "\t\tif (now < expirationTime) {",
+            "\t\t\t// If user is in cooldown",
+            "\t\t\tconst timeLeft = (expirationTime - now) / 1000;",
+            "\t\t\treturn message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \\`${command.name}\\` command.`);",
+            "\t\t}",
+            "\t} else {",
+            "\t\ttimestamps.set(message.author.id, now);",
+            "\t\tsetTimeout(() => timestamps.delete(message.author.id), cooldownAmount);",
+            "\t\t// Execute command",
+            "\t\ttry {",
+            "\t\t\tcommand.execute(message, args);",
+            "\t\t} catch (error) {",
+            "\t\t\tconsole.error(error);",
+            "\t\t\tmessage.reply('there was an error trying to execute that command!');",
+            "\t\t}",
+            "\t}",
+            "});",
 		],
-        "description": "Create a default Discord bot on_message."
+        "description": "Create a default Discord bot on."
     },
 
-    "Default Discord bot on_member_join": {
-		"prefix": "donmemberjoin",
+    "Default Discord bot guildMemberAdd": {
+		"prefix": "dguildmemberadd",
 		"body": [       
-            
+            "client.on('guildMemberAdd', member => {",
+            "    member.guild.channels.get('channelID').send(\"Welcome\");",
+            "});"
 		],
-        "description": "Create a default Discord bot on_member_join."
+        "description": "Create a default Discord bot guildMemberAdd."
     },
 
-    "Default Discord bot on_member_remove": {
-		"prefix": "donmemberremove",
+    "Default Discord bot guildMemberRemove": {
+		"prefix": "dguildmemberremove",
 		"body": [       
-            
+            "client.on('guildMemberRemove', member => {",
+            "    member.guild.channels.get('channelID').send(\"Bye\");",
+            "});"
 		],
-        "description": "Create a default Discord bot on_member_remove."
-    },
-
-    "Default Discord bot on_guild_join": {
-		"prefix": "donguildjoin",
-		"body": [       
-            
-		],
-        "description": "Create a default Discord bot on_guild_join."
-    },
-
-    "Default Discord bot on_guild_remove": {
-		"prefix": "donguildremove",
-		"body": [       
-            
-		],
-        "description": "Create a default Discord bot on_guild_remove."
+        "description": "Create a default Discord bot guildMemberRemove."
     },
 }

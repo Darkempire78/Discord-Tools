@@ -18,16 +18,20 @@
             {
                 "command": "discord-completor.pyBotTemplate",
 				"title": "Generate a python template bot (Discord.py)"
+            },
+            {
+                "command": "discord-completor.jsBotTemplate",
+				"title": "Generate a javascript template bot (Discord.js)"
             }
         ],
         "snippets": [
 			{
 				"language": "python",
-				"path": "./snippets/pySnippets.code-snippets"
+				"path": "./Snippets/pySnippets.code-snippets"
             },
             {
 				"language": "javascript",
-				"path": "./snippets/jsSnippets.code-snippets"
+				"path": "./Snippets/jsSnippets.code-snippets"
 			}
 		]
 	},
