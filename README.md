@@ -3,28 +3,22 @@
 Discord Tools is a Visual Studio Code extension to code Discord bots more easily.
 
 
+## Supported Languages
+
+- [x] Python (Discord.py)
+- [x] Javascript (Discord.js)
+- [ ] Soon...
+
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Generate a template Discord bot : 
+- Open the command palette (Ctrl+Shift+P)and choose : `Generate a <language> template bot (Discord.<language>)`
 
-For example if there is an image subfolder under your extension project workspace:
+![](images.png)
 
-\!\[feature X\]\(images/feature-x.png\)
+### Generate code easily :
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
+![](images.png)
 
 ## Contributing
 
