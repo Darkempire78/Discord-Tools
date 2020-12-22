@@ -1,6 +1,6 @@
 {
-	"name": "discord-completor",
-	"displayName": "Discord Completor",
+	"name": "discord-tools",
+	"displayName": "Discord Tools",
 	"description": "Enable you to generate and complete your Discord code more fast",
 	"version": "0.0.1",
 	"engines": {
@@ -16,11 +16,11 @@
 	"contributes": {
 		"commands": [
             {
-                "command": "discord-completor.pyBotTemplate",
+                "command": "discord-tools.pyBotTemplate",
 				"title": "Generate a python template bot (Discord.py)"
             },
             {
-                "command": "discord-completor.jsBotTemplate",
+                "command": "discord-tools.jsBotTemplate",
 				"title": "Generate a javascript template bot (Discord.js)"
             }
         ],

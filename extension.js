@@ -16,20 +16,20 @@ function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "discord-completor" is now active!');
+	console.log('Congratulations, your extension "discord-tools" is now active!');
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     
     // Generate a python template bot (Discord.py)
-	let pyBotTemplate = vscode.commands.registerCommand('discord-completor.pyBotTemplate', function () {
+	let pyBotTemplate = vscode.commands.registerCommand('discord-tools.pyBotTemplate', function () {
         pyTools.pyCreateTemplateBot();
 	});
     context.subscriptions.push(pyBotTemplate);
     
     // Generate a javascript template bot (Discord.js)
-	let jsBotTemplate = vscode.commands.registerCommand('discord-completor.jsBotTemplate', function () {
+	let jsBotTemplate = vscode.commands.registerCommand('discord-tools.jsBotTemplate', function () {
         jsTools.jsCreateTemplateBot();
 	});
 	context.subscriptions.push(jsBotTemplate);
