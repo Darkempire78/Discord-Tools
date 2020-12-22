@@ -14,15 +14,15 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ### Generate a template Discord bot : 
 - Open the command palette (Ctrl+Shift+P)and choose : `Generate a <language> template bot (Discord.<language>)`
 
-![](.github/video1.gif)
+<img src=".github/video1.gif" width="500"/>
 
 ### Generate code easily :
 
 #### Javascript example :
-![](.github/video2.gif) 
+<img src=".github/video2.gif" width="500"/>
 
 #### Python example :
-![](.github/video3.gif)
+<img src=".github/video3.gif" width="500"/>
 
 ## Contributing
 
