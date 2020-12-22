@@ -126,4 +126,49 @@
 		],
         "description": "Create a complex Discord embed."
     },
+
+    "Default Discord bot on_message": {
+		"prefix": "donmessage",
+		"body": [       
+            "@commands.Cog.listener()",
+            "async def on_message(self, message):"
+		],
+        "description": "Create a default Discord bot on_message."
+    },
+
+    "Default Discord bot on_member_join": {
+		"prefix": "donmemberjoin",
+		"body": [       
+            "@commands.Cog.listener()",
+            "async def on_member_join(self, member):"
+		],
+        "description": "Create a default Discord bot on_member_join."
+    },
+
+    "Default Discord bot on_member_remove": {
+		"prefix": "donmemberremove",
+		"body": [       
+            "@commands.Cog.listener()",
+            "async def on_member_remove(self, member):"
+		],
+        "description": "Create a default Discord bot on_member_remove."
+    },
+
+    "Default Discord bot on_guild_join": {
+		"prefix": "donguildjoin",
+		"body": [       
+            "@commands.Cog.listener()",
+            "async def on_guild_join(self, guild):"
+		],
+        "description": "Create a default Discord bot on_guild_join."
+    },
+
+    "Default Discord bot on_guild_remove": {
+		"prefix": "donguildremove",
+		"body": [       
+            "@commands.Cog.listener()",
+            "async def on_guild_remove(self, guild):"
+		],
+        "description": "Create a default Discord bot on_guild_remove."
+    },
 }

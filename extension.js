@@ -3,7 +3,7 @@
 const vscode = require('vscode');
 
 // Others
-const tools = require('./tools.js');
+const pyTools = require('./pyTools.js');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -23,7 +23,7 @@ function activate(context) {
     
     // Generate a python template bot (Discord.py)
 	let pyBotTemplate = vscode.commands.registerCommand('discord-completor.pyBotTemplate', function () {
-        tools.pyCreateTemplateBot();
+        pyTools.pyCreateTemplateBot();
 	});
 	context.subscriptions.push(pyBotTemplate);
 }

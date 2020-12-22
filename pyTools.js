@@ -34,6 +34,7 @@ bot = commands.Bot(prefix, intents = intents)
 
 # Load cogs
 initial_extensions = [
+\t"Cogs.onCommandError",
 \t"Cogs.help",
 \t"Cogs.ping"
 ]
@@ -192,6 +193,49 @@ def setup(bot):
             vscode.window.showErrorMessage("Failed to create the ping.py file!");
         }
         vscode.window.showInformationMessage("Created ping.py file!");
+    });
+
+    // Create the on_command_error
+    const pyOnCommandError = `import discord
+from discord.ext import commands
+from discord.ext.commands import MissingPermissions, CheckFailure, CommandNotFound
+import time
+
+
+class OnCommandErrorCog(commands.Cog, name="on command error"):
+\tdef __init__(self, bot):
+\t\tself.bot = bot
+        
+\t@commands.Cog.listener()
+\tasync def on_command_error(self, ctx, error):
+\t\tif isinstance(error, commands.CommandOnCooldown):
+\t\t\tday = round(error.retry_after/86400)
+\t\t\thour = round(error.retry_after/3600)
+\t\t\tminute = round(error.retry_after/60)
+\t\t\tif day > 0:
+\t\t\t\tawait ctx.send('This command has a cooldown, be sure to wait for '+str(day)+ "day(s)")
+\t\t\telif hour > 0:
+\t\t\t\tawait ctx.send('This command has a cooldown, be sure to wait for '+str(hour)+ " hour(s)")
+\t\t\telif minute > 0:
+\t\t\t\tawait ctx.send('This command has a cooldown, be sure to wait for '+ str(minute)+" minute(s)")
+\t\t\telse:
+\t\t\t\tawait ctx.send(f'This command has a cooldown, be sure to wait for {error.retry_after:.2f} second(s)')
+\t\telif isinstance(error, CommandNotFound):
+\t\t\treturn
+\t\telif isinstance(error, MissingPermissions):
+ \t\t\tawait ctx.send(error.text)
+\t\telif isinstance(error, CheckFailure):
+\t\t\tawait ctx.send(error.original.text)
+\t\telse:
+\t\t\tprint(error) 
+
+def setup(bot):
+\tbot.add_cog(OnCommandErrorCog(bot))`;
+    fs.writeFile(path.join(currentFolderPath, "Cogs/onCommandError.py"), pyOnCommandError, err => {
+        if (err) {
+            vscode.window.showErrorMessage("Failed to create the onCommandError.py file!");
+        }
+        vscode.window.showInformationMessage("Created onCommandError.py file!");
     });
 };
 

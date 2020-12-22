@@ -24,6 +24,10 @@
 			{
 				"language": "python",
 				"path": "./snippets/pySnippets.code-snippets"
+            },
+            {
+				"language": "javascript",
+				"path": "./snippets/jsSnippets.code-snippets"
 			}
 		]
 	},

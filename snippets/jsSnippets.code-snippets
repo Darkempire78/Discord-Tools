@@ -1,0 +1,89 @@
+{
+	"Default Discord bot index.js file": {
+		"prefix": "dindex",
+		"body": [
+			
+		],
+        "description": "Create a basic Discord bot index.js file."
+    },
+
+    "Default Discord bot cog": {
+		"prefix": "dcog",
+		"body": [
+			
+		],
+        "description": "Create a basic Discord cog."
+    },
+
+    "Default Discord bot command": {
+		"prefix": "dcmd",
+		"body": [       
+            
+		],
+        "description": "Create a basic Discord command."
+    },
+
+    "Complex Discord bot command": {
+		"prefix": "dcmd+",
+		"body": [       
+            
+		],
+        "description": "Create a complex Discord command."
+    },
+
+    "Default Discord bot embed": {
+		"prefix": "dembed",
+		"body": [       
+            
+		],
+        "description": "Create a basic Discord embed."
+    },
+
+    "Complex Discord bot embed": {
+		"prefix": "dembed+",
+		"body": [       
+            
+		],
+        "description": "Create a complex Discord embed."
+    },
+
+    "Default Discord bot on_message": {
+		"prefix": "donmessage",
+		"body": [       
+            
+		],
+        "description": "Create a default Discord bot on_message."
+    },
+
+    "Default Discord bot on_member_join": {
+		"prefix": "donmemberjoin",
+		"body": [       
+            
+		],
+        "description": "Create a default Discord bot on_member_join."
+    },
+
+    "Default Discord bot on_member_remove": {
+		"prefix": "donmemberremove",
+		"body": [       
+            
+		],
+        "description": "Create a default Discord bot on_member_remove."
+    },
+
+    "Default Discord bot on_guild_join": {
+		"prefix": "donguildjoin",
+		"body": [       
+            
+		],
+        "description": "Create a default Discord bot on_guild_join."
+    },
+
+    "Default Discord bot on_guild_remove": {
+		"prefix": "donguildremove",
+		"body": [       
+            
+		],
+        "description": "Create a default Discord bot on_guild_remove."
+    },
+}
