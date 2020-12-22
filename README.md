@@ -18,7 +18,10 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ### Generate code easily :
 
+#### Javascript example :
 ![](.github/video2.gif) 
+
+#### Python example :
 ![](.github/video3.gif)
 
 ## Contributing
