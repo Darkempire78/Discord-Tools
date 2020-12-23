@@ -28,7 +28,7 @@
             "\t@Override",
             "\tpublic void performCommand(Member member, TextChannel channel, Message message) {",
             "",
-            "\t\tchannel.sendMessage(\"template command\"",
+            "\t\tchannel.sendMessage(\"template command\");",
             "",
             "\t}",
             "}"
