@@ -11,9 +11,17 @@
 	},
 	"engines": {
 		"vscode": "^1.52.0"
-	},
+    },
+    "keywords": [
+        "discord",
+        "discord bot",
+		"discord.py",
+        "discord.js",
+        "jda"
+	],
 	"categories": [
-		"Other"
+        "Other",
+        "Snippets"
 	],
 	"activationEvents": [
 		"*"
