@@ -11,6 +11,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 - [x] Javascript ([Discord.js](https://discord.js.org/#/))
 - [x] Python ([Discord.py](https://discordpy.readthedocs.io/en/latest/))
+- [x] Java ([JDA](https://github.com/DV8FromTheWorld/JDA))
 - [ ] Soon...
 
 
@@ -57,6 +58,16 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
 
+#### Java (JDA) :
+
+- `dmain` : Create a basic Discord bot main function.
+- `dcmd` : Create a basic Discord command.
+- `dembed` : Create a basic Discord embed.
+- `dembed+` : Create a complex Discord embed.
+- `donmessagereceived` : Create a default Discord bot on.
+
+#### Java Preview :
+<img src="images/video4.gif" width="500"/>
 
 ## Contributing
 
