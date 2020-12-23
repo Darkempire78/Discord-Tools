@@ -78,8 +78,10 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.0.1 (Lastest update)
-- several corrections
+### 1.1.0 (Lastest update)
+- New language supported : Java (JDA)
+### 1.0.1 
+- Several corrections
 ### 1.0.0
 - Initial release
 
