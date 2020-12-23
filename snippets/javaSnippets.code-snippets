@@ -42,7 +42,7 @@
             "EmbedBuilder embed = new EmbedBuilder();",
             "embed.setColor(new Color(255, 255, 255));",
             "embed.setTitle(\"Title\", null);",
-            "setDescription(\"Description\");",
+            "embed.setDescription(\"Description\");",
             "embed.addField(\"Title\", \"Value\", false);"
 		],
         "description": "Create a basic Discord embed."
@@ -54,7 +54,7 @@
             "EmbedBuilder embed = new EmbedBuilder();",
             "embed.setColor(new Color(255, 255, 255));",
             "embed.setTitle(\"Title\", null);",
-            "setDescription(\"Description\");",
+            "embed.setDescription(\"Description\");",
             "embed.addField(\"Title\", \"Value\", false);",
             "embed.setThumbnail(\"Icon Url\")",
             "embed.setAuthor(\"Author\", null, \"Icon Url\")",
