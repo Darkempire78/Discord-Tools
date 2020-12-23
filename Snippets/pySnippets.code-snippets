@@ -73,7 +73,7 @@
             "",        
             "",
             "def setup(bot):",
-            "\tbot.add_cog(TemplateCog(bot))",
+            "\tbot.add_cog(TemplateCog(bot))"
 		],
         "description": "Create a basic Discord cog."
     },
@@ -83,7 +83,7 @@
 		"body": [       
             "@commands.command(name = \"name\", aliases=[])",
             "async def command(self, ctx):",
-            "\tawait ctx.send(\"template command\")",
+            "\tawait ctx.send(\"template command\")"
 		],
         "description": "Create a basic Discord command."
     },
@@ -99,7 +99,7 @@
             "@commands.has_permissions()",
             "@commands.cooldown(1, 2, commands.BucketType.member)",
             "async def command(self, ctx):",
-            "\tawait ctx.send(\"template command\")",
+            "\tawait ctx.send(\"template command\")"
 		],
         "description": "Create a complex Discord command."
     },
@@ -109,7 +109,7 @@
 		"body": [       
             "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
             "embed.add_field(name=\"field\", value=\"value\", inline=False)",
-            "await ctx.send(embed=embed)",
+            "await ctx.send(embed=embed)"
 		],
         "description": "Create a basic Discord embed."
     },
@@ -122,7 +122,7 @@
             "embed.set_thumbnail(url=\"thumbnail\")",
             "embed.add_field(name=\"field\", value=\"value\", inline=False)",
             "embed.set_footer(text=\"footer\")",
-            "await ctx.send(embed=embed)",
+            "await ctx.send(embed=embed)"
 		],
         "description": "Create a complex Discord embed."
     },
@@ -170,5 +170,5 @@
             "async def on_guild_remove(self, guild):"
 		],
         "description": "Create a default Discord bot on_guild_remove."
-    },
+    }
 }

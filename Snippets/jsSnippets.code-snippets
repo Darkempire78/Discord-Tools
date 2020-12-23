@@ -131,7 +131,7 @@
             "\t\t{ name: 'Rtitle', value: 'value', inline: false },",
             "\t)",
             "",
-            "\tchannel.send(embed);",
+            "\tchannel.send(embed);"
 		],
         "description": "Create a basic Discord embed."
     },
@@ -153,7 +153,7 @@
             "\t.setTimestamp()",
             "\t.setFooter('footer', 'https://i.imgur.com/wSTFkRM.png');",
             "",
-            "\tchannel.send(embed);",
+            "\tchannel.send(embed);"
 		],
         "description": "Create a complex Discord embed."
     },
@@ -216,7 +216,7 @@
             "\t\t\tmessage.reply('there was an error trying to execute that command!');",
             "\t\t}",
             "\t}",
-            "});",
+            "});"
 		],
         "description": "Create a default Discord bot on."
     },
@@ -239,5 +239,5 @@
             "});"
 		],
         "description": "Create a default Discord bot guildMemberRemove."
-    },
+    }
 }

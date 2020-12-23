@@ -38,8 +38,12 @@
             {
 				"language": "javascript",
 				"path": "./snippets/jsSnippets.code-snippets"
+            },
+            {
+				"language": "java",
+				"path": "./snippets/javaSnippets.code-snippets"
 			}
-		]
+        ]
 	},
 	"scripts": {
 		"lint": "eslint .",

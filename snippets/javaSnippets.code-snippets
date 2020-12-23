@@ -1,0 +1,83 @@
+{
+	"Default Discord bot main function": {
+		"prefix": "dmain",
+		"body": [
+			"public static void main(String[] args) {",
+            "JDABuilder builder = JDABuilder.createDefault(args[0]);",
+            "",
+            "\t// Disable parts of the cache",
+            "\tbuilder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);",
+            "\t// Enable the bulk delete event",
+            "\tbuilder.setBulkDeleteSplittingEnabled(false);",
+            "\t// Disable compression (not recommended)",
+            "\tbuilder.setCompression(Compression.NONE);",
+            "\t// Set activity (like \"playing Something\")",
+            "\tbuilder.setActivity(Activity.watching(\"TV\"));",
+            "",
+            "\tbuilder.build();",
+            "}"
+		],
+        "description": "Create a basic Discord bot main function."
+    },
+
+    "Default Discord bot command": {
+		"prefix": "dcmd",
+		"body": [       
+            "public class CommandName implements ServerCommand {",
+            "",
+            "\t@Override",
+            "\tpublic void performCommand(Member member, TextChannel channel, Message message) {",
+            "",
+            "\t\tchannel.sendMessage(\"template command\"",
+            "",
+            "\t}",
+            "}"
+		],
+        "description": "Create a basic Discord command."
+    },
+
+    "Default Discord bot embed": {
+		"prefix": "dembed",
+		"body": [       
+            "EmbedBuilder embed = new EmbedBuilder();",
+            "embed.setColor(new Color(255, 255, 255));",
+            "embed.setTitle(\"Title\", null);",
+            "setDescription(\"Description\");",
+            "embed.addField(\"Title\", \"Value\", false);"
+		],
+        "description": "Create a basic Discord embed."
+    },
+
+    "Complex Discord bot embed": {
+		"prefix": "dembed+",
+		"body": [       
+            "EmbedBuilder embed = new EmbedBuilder();",
+            "embed.setColor(new Color(255, 255, 255));",
+            "embed.setTitle(\"Title\", null);",
+            "setDescription(\"Description\");",
+            "embed.addField(\"Title\", \"Value\", false);",
+            "embed.setThumbnail(\"Icon Url\")",
+            "embed.setAuthor(\"Author\", null, \"Icon Url\")",
+            "embed.setTimestamp(OffsetDateTime.now())",
+            "embed.setFooter(\"Footer\", \"Url\")"
+		],
+        "description": "Create a complex Discord embed."
+    },
+
+    "Default Discord bot onMessageReceived": {
+		"prefix": "donmessagereceived",
+		"body": [       
+            "@Override",
+            "public void onMessageReceived(MessageReceivedEvent event)",
+            "{",
+            "\tMessage msg = event.getMessage();",
+            "\tif (msg.getContentRaw().equals(\"!ping\"))",
+            "\t{",
+            "\t\tMessageChannel channel = event.getChannel();",
+            "\t\tchannel.sendMessage(\"Pong!\");",
+            "\t}",
+            "}",
+		],
+        "description": "Create a default Discord bot onMessageReceived."
+    },
+}
