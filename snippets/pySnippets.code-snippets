@@ -1,6 +1,6 @@
 {
 	"Default Discord bot main.py file": {
-		"prefix": "dmain",
+		"prefix": "dpy.main",
 		"body": [
 			"import discord",
             "from discord.ext import commands",
@@ -51,7 +51,7 @@
     },
 
     "Default Discord bot cog": {
-		"prefix": "dcog",
+		"prefix": "dpy.cog",
 		"body": [
 			"import discord",
             "from discord.ext import commands",
@@ -79,7 +79,7 @@
     },
 
     "Default Discord bot command": {
-		"prefix": "dcmd",
+		"prefix": "dpy.cmd",
 		"body": [       
             "@commands.command(name = \"name\", aliases=[])",
             "async def command(self, ctx):",
@@ -89,7 +89,7 @@
     },
 
     "Complex Discord bot command": {
-		"prefix": "dcmd+",
+		"prefix": "dpy.cmd+",
 		"body": [       
             "@commands.command(name = \"name\",",
             "\t\t\t\taliases=[]",
@@ -105,7 +105,7 @@
     },
 
     "Default Discord bot embed": {
-		"prefix": "dembed",
+		"prefix": "dpy.embed",
 		"body": [       
             "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
             "embed.add_field(name=\"field\", value=\"value\", inline=False)",
@@ -115,7 +115,7 @@
     },
 
     "Complex Discord bot embed": {
-		"prefix": "dembed+",
+		"prefix": "dpy.embed+",
 		"body": [       
             "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
             "embed.set_author(name=\"\", url=\"url\", icon_url=\"icon\")",
@@ -128,7 +128,7 @@
     },
 
     "Default Discord bot on_message": {
-		"prefix": "donmessage",
+		"prefix": "dpy.onmessage",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_message(self, message):"
@@ -137,7 +137,7 @@
     },
 
     "Default Discord bot on_member_join": {
-		"prefix": "donmemberjoin",
+		"prefix": "dpy.onmemberjoin",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_join(self, member):"
@@ -146,7 +146,7 @@
     },
 
     "Default Discord bot on_member_remove": {
-		"prefix": "donmemberremove",
+		"prefix": "dpy.onmemberremove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_remove(self, member):"
@@ -155,7 +155,7 @@
     },
 
     "Default Discord bot on_guild_join": {
-		"prefix": "donguildjoin",
+		"prefix": "dpy.onguildjoin",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_join(self, guild):"
@@ -164,7 +164,7 @@
     },
 
     "Default Discord bot on_guild_remove": {
-		"prefix": "donguildremove",
+		"prefix": "dpy.onguildremove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_remove(self, guild):"

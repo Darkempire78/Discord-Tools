@@ -26,45 +26,45 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ### Available Snippets
 
-#### Javascript (Discord.js) :
+#### Javascript ([Discord.js](https://discord.js.org/#/)) :
 
-- `dindex` : Create a basic Discord bot index.js file.
-- `dcog` : Create a basic Discord cog.
-- `dcmd` : Create a basic Discord command.
-- `dcmd+` : Create a complex Discord command.
-- `dembed` : Create a basic Discord embed.
-- `dembed+` : Create a complex Discord embed.
-- `don` : Create a default Discord bot on.
-- `dguildmemberadd` : Create a default Discord bot guildMemberAdd.
-- `dguildmemberremove` : Create a default Discord bot guildMemberRemove.
+- `djs.index` : Create a basic Discord bot index.js file.
+- `djs.cog` : Create a basic Discord cog.
+- `djs.cmd` : Create a basic Discord command.
+- `djs.cmd+` : Create a complex Discord command.
+- `djs.embed` : Create a basic Discord embed.
+- `djs.embed+` : Create a complex Discord embed.
+- `djs.on` : Create a default Discord bot on.
+- `djs.guildmemberadd` : Create a default Discord bot guildMemberAdd.
+- `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove.
 
 #### Javascript Preview :
 <img src="images/video2.gif" width="500"/>
 
-#### Python (Discord.py) :
+#### Python ([Discord.py](https://discordpy.readthedocs.io/en/latest/)) :
 
-- `dmain` : Create a basic Discord bot main.py file.
-- `dcog` : Create a basic Discord cog.
-- `dcmd` : Create a basic Discord command.
-- `dcmd+` : Create a complex Discord command.
-- `dembed` : Create a basic Discord embed.
-- `dembed+` : Create a complex Discord embed.
-- `donmessage` : CCreate a default Discord bot on_message.
-- `donmemberjoin` : Create a default Discord bot on_member_join.
-- `donmemberremove` : Create a default Discord bot on_member_remove.
-- `donguildjoin` : Create a default Discord bot on_guild_join.
-- `donguildremove` : Create a default Discord bot on_guild_remove.
+- `dpy.main` : Create a basic Discord bot main.py file.
+- `dpy.cog` : Create a basic Discord cog.
+- `dpy.cmd` : Create a basic Discord command.
+- `dpy.cmd+` : Create a complex Discord command.
+- `dpy.embed` : Create a basic Discord embed.
+- `dpy.embed+` : Create a complex Discord embed.
+- `dpy.onmessage` : CCreate a default Discord bot on_message.
+- `dpy.onmemberjoin` : Create a default Discord bot on_member_join.
+- `dpy.onmemberremove` : Create a default Discord bot on_member_remove.
+- `dpy.onguildjoin` : Create a default Discord bot on_guild_join.
+- `dpy.onguildremove` : Create a default Discord bot on_guild_remove.
 
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
 
-#### Java (JDA) :
+#### Java ([JDA](https://github.com/DV8FromTheWorld/JDA)) :
 
-- `dmain` : Create a basic Discord bot main function.
-- `dcmd` : Create a basic Discord command.
-- `dembed` : Create a basic Discord embed.
-- `dembed+` : Create a complex Discord embed.
-- `donmessagereceived` : Create a default Discord bot on.
+- `jda.main` : Create a basic Discord bot main function.
+- `jda.cmd` : Create a basic Discord command.
+- `jda.embed` : Create a basic Discord embed.
+- `jda.embed+` : Create a complex Discord embed.
+- `jda.onmessagereceived` : Create a default Discord bot on.
 
 #### Java Preview :
 <img src="images/video4.gif" width="500"/>
@@ -78,9 +78,11 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.0 (Lastest update)
+### 1.1.1 (Lastest update)
+- change of snippet prefixes to `dpy` (Discord.py), `djs` (Discord.js) and `jda` (JDA)
+### 1.1.0
 - New language supported : Java (JDA)
-### 1.0.1 
+### 1.0.1
 - Several corrections
 ### 1.0.0
 - Initial release

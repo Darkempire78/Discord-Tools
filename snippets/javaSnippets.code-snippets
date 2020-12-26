@@ -1,6 +1,6 @@
 {
 	"Default Discord bot main function": {
-		"prefix": "dmain",
+		"prefix": "jda.main",
 		"body": [
 			"public static void main(String[] args) {",
             "JDABuilder builder = JDABuilder.createDefault(args[0]);",
@@ -21,7 +21,7 @@
     },
 
     "Default Discord bot command": {
-		"prefix": "dcmd",
+		"prefix": "jda.cmd",
 		"body": [       
             "public class CommandName implements ServerCommand {",
             "",
@@ -37,7 +37,7 @@
     },
 
     "Default Discord bot embed": {
-		"prefix": "dembed",
+		"prefix": "jda.embed",
 		"body": [       
             "EmbedBuilder embed = new EmbedBuilder();",
             "embed.setColor(new Color(255, 255, 255));",
@@ -49,7 +49,7 @@
     },
 
     "Complex Discord bot embed": {
-		"prefix": "dembed+",
+		"prefix": "jda.embed+",
 		"body": [       
             "EmbedBuilder embed = new EmbedBuilder();",
             "embed.setColor(new Color(255, 255, 255));",
@@ -65,7 +65,7 @@
     },
 
     "Default Discord bot onMessageReceived": {
-		"prefix": "donmessagereceived",
+		"prefix": "jda.onmessagereceived",
 		"body": [       
             "@Override",
             "public void onMessageReceived(MessageReceivedEvent event)",
