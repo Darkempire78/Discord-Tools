@@ -53,7 +53,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `dpy.onmemberremove` : Create a default Discord bot on_member_remove.
 - `dpy.onguildjoin` : Create a default Discord bot on_guild_join.
 - `dpy.onguildremove` : Create a default Discord bot on_guild_remove.
-- and 59 other events...
+- **and 59 other events...**
 
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
