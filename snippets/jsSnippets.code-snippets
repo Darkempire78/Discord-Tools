@@ -108,6 +108,7 @@
             "\tname: \"command\",",
             "\taliases: [],",
             "\tdescription: \"description\",",
+            "\tcategory: \"tcategory\"",
             "\tguildOnly: true,",
             "\tcooldown: 2,",
             "\targs: args,",
