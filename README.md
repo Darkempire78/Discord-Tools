@@ -29,7 +29,6 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 #### Javascript ([Discord.js](https://discord.js.org/#/)) :
 
 - `djs.index` : Create a basic Discord bot index.js file.
-- `djs.cog` : Create a basic Discord cog.
 - `djs.cmd` : Create a basic Discord command.
 - `djs.cmd+` : Create a complex Discord command.
 - `djs.embed` : Create a basic Discord embed.
@@ -54,6 +53,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `dpy.onmemberremove` : Create a default Discord bot on_member_remove.
 - `dpy.onguildjoin` : Create a default Discord bot on_guild_join.
 - `dpy.onguildremove` : Create a default Discord bot on_guild_remove.
+- and 59 other events...
 
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
@@ -80,6 +80,7 @@ Please make sure to update tests as appropriate.
 
 ### 1.1.1 (Lastest update)
 - change of snippet prefixes to `dpy` (Discord.py), `djs` (Discord.js) and `jda` (JDA)
+- 59 new Discord.py events added
 ### 1.1.0
 - New language supported : Java (JDA)
 ### 1.0.1
