@@ -1,4 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/darkempire78/discord-tools/badge)](https://www.codefactor.io/repository/github/darkempire78/discord-tools)
+<img src="https://img.shields.io/visual-studio-marketplace/i/Darkempire78.discord-tools?color=red&label=Install&logo=visual-studio-code">
 
 # Discord Tools
 
