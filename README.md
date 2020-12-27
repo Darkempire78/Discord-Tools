@@ -83,7 +83,12 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.2 (Lastest update)
+### 1.1.3 (Lastest update)
+- new Discord.js bot template
+- new bot template generator system
+- new auto package downloader
+- few small updates
+### 1.1.2
 - 48 new Discord.js events added
 - addition of capital letters to Discord.py events
 - few small updates
