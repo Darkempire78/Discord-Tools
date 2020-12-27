@@ -29,8 +29,46 @@ function activate(context) {
     context.subscriptions.push(pyBotTemplate);
     
     // Generate a javascript template bot (Discord.js)
-	let jsBotTemplate = vscode.commands.registerCommand('discord-tools.jsBotTemplate', function () {
-        jsTools.jsCreateTemplateBot();
+	let jsBotTemplate = vscode.commands.registerCommand('discord-tools.jsBotTemplate', async () =>  {
+
+        const legend = {
+
+			"Do not install packages": {
+                "packages": false
+			},
+
+			"Install packages": {
+                "packages": true,
+				"package_manager": { "npm": "npm install ", "yarn": "yarn install" }
+			}
+		};
+
+
+		let library = await vscode.window.showQuickPick(Object.keys(legend), { "placeHolder": "Select" });
+		if (library) {
+
+            library = legend[library]
+            
+            if (library["packages"] == true) {
+                
+                let packageManager = await vscode.window.showQuickPick(Object.keys(library.package_manager), { "placeHolder": 'Select a package manager' });
+                
+                if (packageManager) {
+                    // Create the bot template
+                    jsTools.jsCreateTemplateBot();
+                    
+                    // Download packages
+                    let terminal = vscode.window.createTerminal({ "hideFromUser": false, "name": "Install packages"});
+                    terminal.show();
+                    terminal.sendText(library.package_manager[packageManager]);
+                    
+                    vscode.window.showInformationMessage("Packages downloaded!");
+                }
+            } else {
+                // Create the bot template
+                jsTools.jsCreateTemplateBot();
+            }  
+        };
 	});
 	context.subscriptions.push(jsBotTemplate);
 }
