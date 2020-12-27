@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.1.2]
+- 48 new Discord.js events added
+- addition of capital letters to Discord.py events
+- few small updates
+
 ## [1.1.1]
 - change of snippet prefixes to `dpy` (Discord.py), `djs` (Discord.js) and `jda` (JDA)
 - 59 new Discord.py events added

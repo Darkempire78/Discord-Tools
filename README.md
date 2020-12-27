@@ -35,9 +35,12 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `djs.cmd+` : Create a complex Discord command.
 - `djs.embed` : Create a basic Discord embed.
 - `djs.embed+` : Create a complex Discord embed.
-- `djs.on` : Create a default Discord bot on.
-- `djs.guildmemberadd` : Create a default Discord bot guildMemberAdd.
-- `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove.
+- `djs.message` : Create a default Discord bot message event.
+- `djs.guildmemberadd` : Create a default Discord bot guildMemberAdd event.
+- `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove event.
+- `dpy.guildCreate` : Create a default Discord bot guildCreate event.
+- `dpy.guildDelete` : Create a default Discord bot guildCreate event.
+- **and 47 other events...**
 
 #### Javascript Preview :
 <img src="images/video2.gif" width="500"/>
@@ -50,11 +53,11 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `dpy.cmd+` : Create a complex Discord command.
 - `dpy.embed` : Create a basic Discord embed.
 - `dpy.embed+` : Create a complex Discord embed.
-- `dpy.onmessage` : CCreate a default Discord bot on_message.
-- `dpy.onmemberjoin` : Create a default Discord bot on_member_join.
-- `dpy.onmemberremove` : Create a default Discord bot on_member_remove.
-- `dpy.onguildjoin` : Create a default Discord bot on_guild_join.
-- `dpy.onguildremove` : Create a default Discord bot on_guild_remove.
+- `dpy.onmessage` : CCreate a default Discord bot on_message event.
+- `dpy.onmemberjoin` : Create a default Discord bot on_member_join event.
+- `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
+- `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
+- `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
 - **and 59 other events...**
 
 #### Python Preview :
@@ -80,7 +83,11 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.1 (Lastest update)
+### 1.1.2 (Lastest update)
+- 48 new Discord.js events added
+- addition of capital letters to Discord.py events
+- few small updates
+### 1.1.1 
 - change of snippet prefixes to `dpy` (Discord.py), `djs` (Discord.js) and `jda` (JDA)
 - 59 new Discord.py events added
 ### 1.1.0
