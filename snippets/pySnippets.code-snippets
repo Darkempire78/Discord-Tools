@@ -57,23 +57,23 @@
             "from discord.ext import commands",
             "",
             "",
-            "class TemplateCog(commands.Cog):",
+            "class ${1:TemplateCog}(commands.Cog):",
             "\tdef __init__(self, bot):",
             "\t\tself.bot = bot",
             "",    
             "",        
-            "\t@commands.command(name = \"\",",
-            "\t\t\t\t\tusage=\"\",",
-            "\t\t\t\t\tdescription = \"\")",
+            "\t@commands.command(name = \"${2:commandName}\",",
+            "\t\t\t\t\tusage=\"${3:<usage>}\",",
+            "\t\t\t\t\tdescription = \"${4:description}\")",
             "\t@commands.guild_only()",
             "\t@commands.has_permissions()",
-            "\t@commands.cooldown(1, 2, commands.BucketType.member)",
+            "\t@commands.cooldown(1, ${5:2}, commands.BucketType.member)",
             "\tasync def ping(self, ctx):",
-            "\t\tawait ctx.send(\"template command\")",
+            "\t\t${6:await ctx.send(\"template command\")}",
             "",        
             "",
             "def setup(bot):",
-            "\tbot.add_cog(TemplateCog(bot))"
+            "\tbot.add_cog(${7:TemplateCog}(bot))"
 		],
         "description": "Create a basic Discord cog."
     },
@@ -81,9 +81,9 @@
     "Default Discord bot command": {
 		"prefix": "dpy.cmd",
 		"body": [       
-            "@commands.command(name = \"name\", aliases=[])",
+            "@commands.command(name = \"${1:commandName}\", aliases=[\"${2:aliase}\"])",
             "async def command(self, ctx):",
-            "\tawait ctx.send(\"template command\")"
+            "\t${3:await ctx.send(\"template command\")}"
 		],
         "description": "Create a basic Discord command."
     },
@@ -91,15 +91,15 @@
     "Complex Discord bot command": {
 		"prefix": "dpy.cmd+",
 		"body": [       
-            "@commands.command(name = \"name\",",
-            "\t\t\t\taliases=[]",
-            "\t\t\t\tusage=\"\",",
-            "\t\t\t\tdescription = \"\")",
+            "@commands.command(name = \"${1:commandName}\",",
+            "\t\t\t\taliases=[\"${2:aliase}\"]]",
+            "\t\t\t\tusage=\"${3:<usage>}\",",
+            "\t\t\t\tdescription = \"${4:description}\")",
             "@commands.guild_only()",
             "@commands.has_permissions()",
-            "@commands.cooldown(1, 2, commands.BucketType.member)",
+            "@commands.cooldown(1, ${5:2}, commands.BucketType.member)",
             "async def command(self, ctx):",
-            "\tawait ctx.send(\"template command\")"
+            "\t${6:await ctx.send(\"template command\")}"
 		],
         "description": "Create a complex Discord command."
     },
@@ -128,7 +128,7 @@
     },
 
     "Default Discord bot on_connect": {
-		"prefix": "dpy.onconnect",
+		"prefix": "dpy.onConnect",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_connect(self):"
@@ -137,7 +137,7 @@
     },
 
     "Default Discord bot on_disconnect": {
-		"prefix": "dpy.ondisconnect",
+		"prefix": "dpy.onDisconnect",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_disconnect(self):"
@@ -146,7 +146,7 @@
     },
 
     "Default Discord bot on_shard_connect": {
-		"prefix": "dpy.onshardconnect",
+		"prefix": "dpy.onShardConnect",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_shard_connect(self, shard_id):"
@@ -155,7 +155,7 @@
     },
 
     "Default Discord bot on_shard_disconnect": {
-		"prefix": "dpy.onsharddisconnect",
+		"prefix": "dpy.onShardDisconnect",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_shard_disconnect(self, shard_id):"
@@ -164,7 +164,7 @@
     },
 
     "Default Discord bot on_ready": {
-		"prefix": "dpy.onready",
+		"prefix": "dpy.onReady",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_ready(self, message):"
@@ -173,7 +173,7 @@
     },
 
     "Default Discord bot on_shard_ready": {
-		"prefix": "dpy.onshardready",
+		"prefix": "dpy.onShardReady",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_shard_ready(self, shard_id):"
@@ -182,7 +182,7 @@
     },
 
     "Default Discord bot on_resumed": {
-		"prefix": "dpy.onresumed",
+		"prefix": "dpy.onResumed",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_resumed(self, member):"
@@ -191,7 +191,7 @@
     },
 
     "Default Discord bot on_shard_resumed": {
-		"prefix": "dpy.onshardresumed",
+		"prefix": "dpy.onShardResumed",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_shard_resumed(self, shard_id):"
@@ -200,7 +200,7 @@
     },
 
     "Default Discord bot on_error": {
-		"prefix": "dpy.onerror",
+		"prefix": "dpy.onError",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_error(self, event, *args, **kwargs):"
@@ -209,7 +209,7 @@
     },
 
     "Default Discord bot on_socket_raw_receive": {
-		"prefix": "dpy.onsocketrawreceive",
+		"prefix": "dpy.onSocketRawReceive",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_socket_raw_receive(self, msg):"
@@ -218,7 +218,7 @@
     },
 
     "Default Discord bot on_socket_raw_send": {
-		"prefix": "dpy.onsocketrawsend",
+		"prefix": "dpy.onSocketRawSend",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_socket_raw_send(self, payload):"
@@ -227,7 +227,7 @@
     },
 
     "Default Discord bot on_typing": {
-		"prefix": "dpy.ontyping",
+		"prefix": "dpy.onTyping",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_typing(self, channel, user, when):"
@@ -236,7 +236,7 @@
     },
 
     "Default Discord bot on_message": {
-		"prefix": "dpy.onmessage",
+		"prefix": "dpy.onMessage",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_message(self, message):"
@@ -245,7 +245,7 @@
     },
 
     "Default Discord bot on_message_delete": {
-		"prefix": "dpy.onmessagedelete",
+		"prefix": "dpy.onMessageDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_message_delete(self, message):"
@@ -254,7 +254,7 @@
     },
 
     "Default Discord bot on_bulk_message_delete": {
-		"prefix": "dpy.onbulkmessagedelete",
+		"prefix": "dpy.onBulkMessageDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_bulk_message_delete(self, messages):"
@@ -263,7 +263,7 @@
     },
 
     "Default Discord bot on_raw_bulk_message_delete": {
-		"prefix": "dpy.onrawbulkmessagedelete",
+		"prefix": "dpy.onRawBulkMessageDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_bulk_message_delete(self, payload):"
@@ -272,7 +272,7 @@
     },
 
     "Default Discord bot on_raw_message_delete": {
-		"prefix": "dpy.onrawmessagedelete",
+		"prefix": "dpy.onRawMessageDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_message_delete(self, payload):"
@@ -281,7 +281,7 @@
     },
 
     "Default Discord bot on_message_edit": {
-		"prefix": "dpy.onmessageedit",
+		"prefix": "dpy.onMessageEdit",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_message_edit(self, before, after):"
@@ -290,7 +290,7 @@
     },
 
     "Default Discord bot on_raw_message_edit": {
-		"prefix": "dpy.onrawmessageedit",
+		"prefix": "dpy.onRawMessageEdit",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_message_edit(self, payload):"
@@ -299,7 +299,7 @@
     },
 
     "Default Discord bot on_reaction_add": {
-		"prefix": "dpy.onreactionadd",
+		"prefix": "dpy.onReactionAdd",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_reaction_add(self, reaction, user):"
@@ -308,7 +308,7 @@
     },
 
     "Default Discord bot on_raw_reaction_add": {
-		"prefix": "dpy.onrawreactionadd",
+		"prefix": "dpy.onRawReactionAdd",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_reaction_add(self, payload):"
@@ -317,7 +317,7 @@
     },
 
     "Default Discord bot on_reaction_remove": {
-		"prefix": "dpy.onreactionremove",
+		"prefix": "dpy.onReactionRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_reaction_remove(self, reaction, user):"
@@ -326,7 +326,7 @@
     },
 
     "Default Discord bot on_raw_reaction_remove": {
-		"prefix": "dpy.onrawreactionremove",
+		"prefix": "dpy.onRawReactionRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_reaction_remove(self, payload):"
@@ -335,7 +335,7 @@
     },
 
     "Default Discord bot on_reaction_clear": {
-		"prefix": "dpy.onreactionclear",
+		"prefix": "dpy.onReactionClear",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_reaction_clear(self, message, reactions):"
@@ -344,7 +344,7 @@
     },
 
     "Default Discord bot on_raw_reaction_clear": {
-		"prefix": "dpy.onrawreactionclear",
+		"prefix": "dpy.onRawReactionClear",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_reaction_clear(self, payload):"
@@ -353,7 +353,7 @@
     },
 
     "Default Discord bot on_reaction_clear_emoji": {
-		"prefix": "dpy.onreactionclearemoji",
+		"prefix": "dpy.onReactionClearEmoji",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_reaction_clear_emoji(self, reaction):"
@@ -362,7 +362,7 @@
     },
 
     "Default Discord bot on_raw_reaction_clear_emoji": {
-		"prefix": "dpy.onrawreactionclearemoji",
+		"prefix": "dpy.onRawReactionClearEmoji",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_raw_reaction_clear_emoji(self, payload):"
@@ -371,7 +371,7 @@
     },
 
     "Default Discord bot on_private_channel_delete": {
-		"prefix": "dpy.onprivatechanneldelete",
+		"prefix": "dpy.onPrivateChannelDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_private_channel_delete(self, channel):"
@@ -380,7 +380,7 @@
     },
 
     "Default Discord bot on_private_channel_create": {
-		"prefix": "dpy.onprivatechannelcreate",
+		"prefix": "dpy.onPrivateChannelCreate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_private_channel_create(self, channel):"
@@ -389,7 +389,7 @@
     },
 
     "Default Discord bot on_private_channel_update": {
-		"prefix": "dpy.onprivatechannelupdate",
+		"prefix": "dpy.onPrivateChannelUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_private_channel_update(self, before, after):"
@@ -398,7 +398,7 @@
     },
 
     "Default Discord bot on_private_channel_pins_update": {
-		"prefix": "dpy.onprivatechannelpinsupdate",
+		"prefix": "dpy.onPrivateChannelPinsUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_private_channel_pins_update(self, channel, last_pin):"
@@ -407,7 +407,7 @@
     },
 
     "Default Discord bot on_guild_channel_delete": {
-		"prefix": "dpy.onguildchanneldelete",
+		"prefix": "dpy.onGuildChannelDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_channel_delete(self, channel):"
@@ -416,7 +416,7 @@
     },
 
     "Default Discord bot on_guild_channel_create": {
-		"prefix": "dpy.onguildchannelcreate",
+		"prefix": "dpy.onGuildChannelCreate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_channel_create(self, channel):"
@@ -425,7 +425,7 @@
     },
 
     "Default Discord bot on_guild_channel_update": {
-		"prefix": "dpy.onguildchannelupdate",
+		"prefix": "dpy.onGuildChannelUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_channel_update(self, before, after):"
@@ -434,7 +434,7 @@
     },
 
     "Default Discord bot on_guild_channel_pins_update": {
-		"prefix": "dpy.onguildchannelpinsupdate",
+		"prefix": "dpy.onGuildChannelPinsUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_channel_pins_update(self, channel, last_pin):"
@@ -443,7 +443,7 @@
     },
 
     "Default Discord bot on_guild_integrations_update": {
-		"prefix": "dpy.onguildintegrationsupdate",
+		"prefix": "dpy.onGuildIntegrationsUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_integrations_update(self, guild):"
@@ -452,7 +452,7 @@
     },
 
     "Default Discord bot on_webhooks_update": {
-		"prefix": "dpy.onwebhooksupdate",
+		"prefix": "dpy.onWebhooksUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_webhooks_update(self, channel):"
@@ -461,7 +461,7 @@
     },
 
     "Default Discord bot on_member_join": {
-		"prefix": "dpy.onmemberjoin",
+		"prefix": "dpy.onMemberJoin",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_join(self, member):"
@@ -470,7 +470,7 @@
     },
 
     "Default Discord bot on_member_remove": {
-		"prefix": "dpy.onmemberremove",
+		"prefix": "dpy.onMemberRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_remove(self, member):"
@@ -479,7 +479,7 @@
     },
 
     "Default Discord bot on_member_update": {
-		"prefix": "dpy.onmemberupdate",
+		"prefix": "dpy.onMemberUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_update(self, before, after):"
@@ -488,7 +488,7 @@
     },
 
     "Default Discord bot on_user_update": {
-		"prefix": "dpy.onuserupdate",
+		"prefix": "dpy.onUserUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_user_update(self, before, after):"
@@ -497,7 +497,7 @@
     },
 
     "Default Discord bot on_guild_join": {
-		"prefix": "dpy.onguildjoin",
+		"prefix": "dpy.onGuildJoin",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_join(self, guild):"
@@ -506,7 +506,7 @@
     },
 
     "Default Discord bot on_guild_remove": {
-		"prefix": "dpy.onguildremove",
+		"prefix": "dpy.onGuildRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_remove(self, guild):"
@@ -515,7 +515,7 @@
     },
 
     "Default Discord bot on_guild_update": {
-		"prefix": "dpy.onguildupdate",
+		"prefix": "dpy.onGuildUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_update(self, before, after):"
@@ -524,7 +524,7 @@
     },
 
     "Default Discord bot on_guild_role_create": {
-		"prefix": "dpy.onguildrolecreate",
+		"prefix": "dpy.onGuildRoleCreate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_role_create(self, role):"
@@ -533,7 +533,7 @@
     },
 
     "Default Discord bot on_guild_role_delete": {
-		"prefix": "dpy.onguildroledelete",
+		"prefix": "dpy.onGuildRoleDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_role_delete(self, role):"
@@ -542,7 +542,7 @@
     },
 
     "Default Discord bot on_guild_role_update": {
-		"prefix": "dpy.onguildroleupdate",
+		"prefix": "dpy.onGuildRoleUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_role_update(self, before, after):"
@@ -551,7 +551,7 @@
     },
 
     "Default Discord bot on_guild_emojis_update": {
-		"prefix": "dpy.onguildemojisupdate",
+		"prefix": "dpy.onGuildEmojisUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_emojis_update(self, guild, before, after):"
@@ -560,7 +560,7 @@
     },
 
     "Default Discord bot on_guild_available": {
-		"prefix": "dpy.onguildavailable",
+		"prefix": "dpy.onGuildAvailable",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_available(self, guild):"
@@ -569,7 +569,7 @@
     },
 
     "Default Discord bot on_guild_unavailable": {
-		"prefix": "dpy.onguildunavailable",
+		"prefix": "dpy.onGuildUnavailable",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_guild_unavailable(self, guild):"
@@ -578,7 +578,7 @@
     },
 
     "Default Discord bot on_voice_state_update": {
-		"prefix": "dpy.onvoicestate_update",
+		"prefix": "dpy.onVoiceStateUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_voice_state_update(self, member, before, after):"
@@ -587,7 +587,7 @@
     },
 
     "Default Discord bot on_member_ban": {
-		"prefix": "dpy.onmemberban",
+		"prefix": "dpy.onMemberBan",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_ban(self, guild, user):"
@@ -596,7 +596,7 @@
     },
 
     "Default Discord bot on_member_unban": {
-		"prefix": "dpy.onmemberunban",
+		"prefix": "dpy.onMemberUnban",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_member_unban(self, guild, user):"
@@ -605,7 +605,7 @@
     },
 
     "Default Discord bot on_invite_create": {
-		"prefix": "dpy.oninvitecreate",
+		"prefix": "dpy.onInviteCreate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_invite_create(self, invite):"
@@ -614,7 +614,7 @@
     },
 
     "Default Discord bot on_invite_delete": {
-		"prefix": "dpy.oninvitedelete",
+		"prefix": "dpy.onInviteDelete",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_invite_delete(self, invite):"
@@ -623,7 +623,7 @@
     },
 
     "Default Discord bot on_group_join": {
-		"prefix": "dpy.ongroupjoin",
+		"prefix": "dpy.onGroupJoin",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_group_join(self, channel, user):"
@@ -632,7 +632,7 @@
     },
     
     "Default Discord bot on_group_remove": {
-		"prefix": "dpy.ongroupremove",
+		"prefix": "dpy.onGroupRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_group_remove(self, channel, user):"
@@ -641,7 +641,7 @@
     },
 
     "Default Discord bot on_relationship_add": {
-		"prefix": "dpy.onrelationshipadd",
+		"prefix": "dpy.onRelationshipAdd",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_relationship_add(self, relationship):"
@@ -650,7 +650,7 @@
     },
 
     "Default Discord bot on_relationship_remove": {
-		"prefix": "dpy.onrelationshipremove",
+		"prefix": "dpy.onRelationshipRemove",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_relationship_remove(self, relationship):"
@@ -659,7 +659,7 @@
     },
 
     "Default Discord bot on_relationship_update": {
-		"prefix": "dpy.onrelationshipupdate",
+		"prefix": "dpy.onRelationshipUpdate",
 		"body": [       
             "@commands.Cog.listener()",
             "async def on_relationship_update(self, before, after):"
