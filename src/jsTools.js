@@ -1,9 +1,7 @@
 const vscode = require('vscode');
 
 // Others
-const fs = require("fs");
 const fse = require('fs-extra');
-const path = require("path");
 
 
 const jsCreateTemplateBot = () => {
