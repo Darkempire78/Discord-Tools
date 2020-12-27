@@ -226,7 +226,7 @@
 		"prefix": "djs.channelCreate",
 		"body": [       
             "${1:client}.on('channelCreate', (channel) => {",
-            "    ${2:console.log(channel);}",
+            "\t${2:console.log(channel);}",
             "});"
 		],
         "description": "Create a default Discord bot channelCreate."
@@ -236,7 +236,7 @@
 		"prefix": "djs.channelDelete",
 		"body": [       
             "${1:client}.on('channelDelete', (channel) => {",
-            "    ${2:console.log(channel);}",
+            "\t${2:console.log(channel);}",
             "});"
 		],
         "description": "Create a default Discord bot channelDelete."
@@ -246,7 +246,7 @@
 		"prefix": "djs.channelPinsUpdate",
 		"body": [       
             "${1:client}.on('channelPinsUpdate', (channel, time) => {",
-            "    ${2:console.log(channel, time);}",
+            "\t${2:console.log(channel, time);}",
             "});"
 		],
         "description": "Create a default Discord bot channelPinsUpdate."
@@ -256,7 +256,7 @@
 		"prefix": "djs.channelUpdate",
 		"body": [       
             "${1:client}.on('channelUpdate', (oldChannel, newChannel) => {",
-            "    ${2:console.log(oldChannel, newChannel);}",
+            "\t${2:console.log(oldChannel, newChannel);}",
             "});"
 		],
         "description": "Create a default Discord bot channelUpdate."
@@ -266,7 +266,7 @@
 		"prefix": "djs.clientUserGuildSettingsUpdate",
 		"body": [       
             "${1:client}.on('clientUserGuildSettingsUpdate', (clientUserGuildSettings) => {",
-            "    ${2:console.log(clientUserGuildSettings);}",
+            "\t${2:console.log(clientUserGuildSettings);}",
             "});"
 		],
         "description": "Create a default Discord bot clientUserGuildSettingsUpdate."
@@ -276,7 +276,7 @@
 		"prefix": "djs.clientUserSettingsUpdate",
 		"body": [       
             "${1:client}.on('clientUserSettingsUpdate', (clientUserSettings) => {",
-            "    ${2:console.log(clientUserSettings);}",
+            "\t${2:console.log(clientUserSettings);}",
             "});"
 		],
         "description": "Create a default Discord bot clientUserSettingsUpdate."
@@ -286,7 +286,7 @@
 		"prefix": "djs.debug",
 		"body": [       
             "${1:client}.on('debug', (info) => {",
-            "    ${2:console.log(info);}",
+            "\t${2:console.log(info);}",
             "});"
 		],
         "description": "Create a default Discord bot debug."
@@ -296,7 +296,7 @@
 		"prefix": "djs.disconnect",
 		"body": [       
             "${1:client}.on('disconnect', (event) => {",
-            "    ${2:console.log(event);}",
+            "\t${2:console.log(event);}",
             "});"
 		],
         "description": "Create a default Discord bot disconnect."
@@ -306,7 +306,7 @@
 		"prefix": "djs.emojiCreate",
 		"body": [       
             "${1:client}.on('emojiCreate', (emoji) => {",
-            "    ${2:console.log(emoji);}",
+            "\t${2:console.log(emoji);}",
             "});"
 		],
         "description": "Create a default Discord bot emojiCreate."
@@ -316,7 +316,7 @@
 		"prefix": "djs.emojiDelete",
 		"body": [       
             "${1:client}.on('emojiDelete', (emoji) => {",
-            "    ${2:console.log(emoji);}",
+            "\t${2:console.log(emoji);}",
             "});"
 		],
         "description": "Create a default Discord bot emojiDelete."
@@ -326,7 +326,7 @@
 		"prefix": "djs.emojiUpdate",
 		"body": [       
             "${1:client}.on('emojiUpdate', (oldEmoji, newEmoji) => {",
-            "    ${2:console.log(oldEmoji, newEmoji);}",
+            "\t${2:console.log(oldEmoji, newEmoji);}",
             "});"
 		],
         "description": "Create a default Discord bot emojiUpdate."
@@ -336,7 +336,7 @@
 		"prefix": "djs.error",
 		"body": [       
             "${1:client}.on('error', (error) => {",
-            "    ${2:console.log(error);}",
+            "\t${2:console.log(error);}",
             "});"
 		],
         "description": "Create a default Discord bot error."
@@ -346,7 +346,7 @@
 		"prefix": "djs.guildBanAdd",
 		"body": [       
             "${1:client}.on('guildBanAdd', (guild, user) => {",
-            "    ${2:console.log(guild, user);}",
+            "\t${2:console.log(guild, user);}",
             "});"
 		],
         "description": "Create a default Discord bot guildBanAdd."
@@ -356,7 +356,7 @@
 		"prefix": "djs.guildBanRemove",
 		"body": [       
             "${1:client}.on('guildBanRemove', (guild, user) => {",
-            "    ${2:console.log(guild, user);}",
+            "\t${2:console.log(guild, user);}",
             "});"
 		],
         "description": "Create a default Discord bot guildBanRemove."
@@ -366,7 +366,7 @@
 		"prefix": "djs.guildCreate",
 		"body": [       
             "${1:client}.on('guildCreate', (guild) => {",
-            "    ${2:console.log(guild);}",
+            "\t${2:console.log(guild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildCreate."
@@ -376,7 +376,7 @@
 		"prefix": "djs.guildDelete",
 		"body": [       
             "${1:client}.on('guildDelete', (guild) => {",
-            "    ${2:console.log(guild);}",
+            "\t${2:console.log(guild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildDelete."
@@ -386,7 +386,7 @@
 		"prefix": "djs.guildIntegrationsUpdate",
 		"body": [       
             "${1:client}.on('guildIntegrationsUpdate', (guild) => {",
-            "    ${2:console.log(guild);}",
+            "\t${2:console.log(guild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildIntegrationsUpdate."
@@ -396,7 +396,7 @@
 		"prefix": "djs.guildMemberAdd",
 		"body": [       
             "${1:client}.on('guildMemberAdd', (member) => {",
-            "    ${2:console.log(member);}",
+            "\t${2:console.log(member);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberAdd."
@@ -406,7 +406,7 @@
 		"prefix": "djs.guildMemberRemove",
 		"body": [       
             "${1:client}.on('guildMemberRemove', (member) => {",
-            "    ${2:console.log(member);}",
+            "\t${2:console.log(member);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberRemove."
@@ -416,7 +416,7 @@
 		"prefix": "djs.guildMemberAvailable",
 		"body": [       
             "${1:client}.on('guildMemberAvailable', (member) => {",
-            "    ${2:console.log(member);}",
+            "\t${2:console.log(member);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberAvailable."
@@ -426,7 +426,7 @@
 		"prefix": "djs.guildMemberSpeaking",
 		"body": [       
             "${1:client}.on('guildMemberSpeaking', (member, speaking) => {",
-            "    ${2:console.log(member, speaking);}",
+            "\t${2:console.log(member, speaking);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberSpeaking."
@@ -436,7 +436,7 @@
 		"prefix": "djs.guildMemberUpdate",
 		"body": [       
             "${1:client}.on('guildMemberUpdate', (oldMember, newMember) => {",
-            "    ${2:console.log(oldMember, newMember);}",
+            "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberUpdate."
@@ -446,7 +446,7 @@
 		"prefix": "djs.guildMembersChunk",
 		"body": [       
             "${1:client}.on('guildMembersChunk', (members, guild) => {",
-            "    ${2:console.log(members, guild);}",
+            "\t${2:console.log(members, guild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMembersChunk."
@@ -456,7 +456,7 @@
 		"prefix": "djs.guildUnavailable",
 		"body": [       
             "${1:client}.on('guildUnavailable', (guild) => {",
-            "    ${2:console.log(guild);}",
+            "\t${2:console.log(guild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildUnavailable."
@@ -466,7 +466,7 @@
 		"prefix": "djs.guildUpdate",
 		"body": [       
             "${1:client}.on('guildUpdate', (oldGuild, newGuild) => {",
-            "    ${2:console.log(oldGuild, newGuild);}",
+            "\t${2:console.log(oldGuild, newGuild);}",
             "});"
 		],
         "description": "Create a default Discord bot guildUpdate."
@@ -476,7 +476,7 @@
 		"prefix": "djs.messageDelete",
 		"body": [       
             "${1:client}.on('messageDelete', (message) => {",
-            "    ${2:console.log(message);}",
+            "\t${2:console.log(message);}",
             "});"
 		],
         "description": "Create a default Discord bot messageDelete."
@@ -486,7 +486,7 @@
 		"prefix": "djs.messageDeleteBulk",
 		"body": [       
             "${1:client}.on('messageDeleteBulk', (messages) => {",
-            "    ${2:console.log(messages);}",
+            "\t${2:console.log(messages);}",
             "});"
 		],
         "description": "Create a default Discord bot messageDeleteBulk."
@@ -496,7 +496,7 @@
 		"prefix": "djs.messageReactionAdd",
 		"body": [       
             "${1:client}.on('messageReactionAdd', (messageReaction, user) => {",
-            "    ${2:console.log(messageReaction, user);}",
+            "\t${2:console.log(messageReaction, user);}",
             "});"
 		],
         "description": "Create a default Discord bot messageReactionAdd."
@@ -506,7 +506,7 @@
 		"prefix": "djs.messageReactionRemove",
 		"body": [       
             "${1:client}.on('messageReactionRemove', (messageReaction, user) => {",
-            "    ${2:console.log(messageReaction, user);}",
+            "\t${2:console.log(messageReaction, user);}",
             "});"
 		],
         "description": "Create a default Discord bot messageReactionRemove."
@@ -516,7 +516,7 @@
 		"prefix": "djs.messageUpdate",
 		"body": [       
             "${1:client}.on('messageUpdate', (oldMessage, newMessage) => {",
-            "    ${2:console.log(oldMessage, newMessage);}",
+            "\t${2:console.log(oldMessage, newMessage);}",
             "});"
 		],
         "description": "Create a default Discord bot messageUpdate."
@@ -526,7 +526,7 @@
 		"prefix": "djs.presenceUpdate",
 		"body": [       
             "${1:client}.on('presenceUpdate', (oldMember, newMember) => {",
-            "    ${2:console.log(oldMember, newMember);}",
+            "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
         "description": "Create a default Discord bot presenceUpdate."
@@ -536,7 +536,7 @@
 		"prefix": "djs.rateLimit",
 		"body": [       
             "${1:client}.on('rateLimit', (rateLimitInfo, rateLimitInfo.limit, rateLimitInfo.timeDifference, rateLimitInfo.path, rateLimitInfo.method) => {",
-            "    ${2:console.log(rateLimitInfo, rateLimitInfo.limit, rateLimitInfo.timeDifference, rateLimitInfo.path, rateLimitInfo.method);}",
+            "\t${2:console.log(rateLimitInfo, rateLimitInfo.limit, rateLimitInfo.timeDifference, rateLimitInfo.path, rateLimitInfo.method);}",
             "});"
 		],
         "description": "Create a default Discord bot rateLimit."
@@ -546,7 +546,7 @@
 		"prefix": "djs.ready",
 		"body": [       
             "${1:client}.on('ready', () => {",
-            "    ${2:console.log(null);}",
+            "\t${2:console.log(null);}",
             "});"
 		],
         "description": "Create a default Discord bot ready."
@@ -556,7 +556,7 @@
 		"prefix": "djs.reconnecting",
 		"body": [       
             "${1:client}.on('reconnecting', () => {",
-            "    ${2:console.log(null);}",
+            "\t${2:console.log(null);}",
             "});"
 		],
         "description": "Create a default Discord bot reconnecting."
@@ -566,7 +566,7 @@
 		"prefix": "djs.resume",
 		"body": [       
             "${1:client}.on('resume', (replayed) => {",
-            "    ${2:console.log(replayed);}",
+            "\t${2:console.log(replayed);}",
             "});"
 		],
         "description": "Create a default Discord bot resume."
@@ -576,7 +576,7 @@
 		"prefix": "djs.roleCreate",
 		"body": [       
             "${1:client}.on('roleCreate', (role) => {",
-            "    ${2:console.log(role);}",
+            "\t${2:console.log(role);}",
             "});"
 		],
         "description": "Create a default Discord bot roleCreate."
@@ -586,7 +586,7 @@
 		"prefix": "djs.roleDelete",
 		"body": [       
             "${1:client}.on('roleDelete', (role) => {",
-            "    ${2:console.log(role);}",
+            "\t${2:console.log(role);}",
             "});"
 		],
         "description": "Create a default Discord bot roleDelete."
@@ -596,7 +596,7 @@
 		"prefix": "djs.roleUpdate",
 		"body": [       
             "${1:client}.on('roleUpdate', (oldRole, newRole) => {",
-            "    ${2:console.log(oldRole, newRole);}",
+            "\t${2:console.log(oldRole, newRole);}",
             "});"
 		],
         "description": "Create a default Discord bot roleUpdate."
@@ -606,7 +606,7 @@
 		"prefix": "djs.typingStart",
 		"body": [       
             "${1:client}.on('typingStart', (channel, user) => {",
-            "    ${2:console.log(channel, user);}",
+            "\t${2:console.log(channel, user);}",
             "});"
 		],
         "description": "Create a default Discord bot typingStart."
@@ -616,7 +616,7 @@
 		"prefix": "djs.typingStop",
 		"body": [       
             "${1:client}.on('typingStop', (channel, user) => {",
-            "    ${2:console.log(channel, user);}",
+            "\t${2:console.log(channel, user);}",
             "});"
 		],
         "description": "Create a default Discord bot typingStop."
@@ -626,7 +626,7 @@
 		"prefix": "djs.userNoteUpdate",
 		"body": [       
             "${1:client}.on('userNoteUpdate', (user, oldNote, newNote) => {",
-            "    ${2:console.log(user, oldNote, newNote);}",
+            "\t${2:console.log(user, oldNote, newNote);}",
             "});"
 		],
         "description": "Create a default Discord bot userNoteUpdate."
@@ -636,7 +636,7 @@
 		"prefix": "djs.userUpdate",
 		"body": [       
             "${1:client}.on('userUpdate', (oldUser, newUser) => {",
-            "    ${2:console.log(oldUser, newUser);}",
+            "\t${2:console.log(oldUser, newUser);}",
             "});"
 		],
         "description": "Create a default Discord bot userUpdate."
@@ -646,7 +646,7 @@
 		"prefix": "djs.voiceStateUpdate",
 		"body": [       
             "${1:client}.on('voiceStateUpdate', (oldMember, newMember) => {",
-            "    ${2:console.log(oldMember, newMember);}",
+            "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
         "description": "Create a default Discord bot voiceStateUpdate."
@@ -656,7 +656,7 @@
 		"prefix": "djs.warn",
 		"body": [       
             "${1:client}.on('warn', (info) => {",
-            "    ${2:console.log(info);}",
+            "\t${2:console.log(info);}",
             "});"
 		],
         "description": "Create a default Discord bot warn."
@@ -666,7 +666,7 @@
 		"prefix": "djs.webhookUpdate",
 		"body": [       
             "${1:client}.on('webhookUpdate', (channel) => {",
-            "    ${2:console.log(channel);}",
+            "\t${2:console.log(channel);}",
             "});"
 		],
         "description": "Create a default Discord bot webhookUpdate."
