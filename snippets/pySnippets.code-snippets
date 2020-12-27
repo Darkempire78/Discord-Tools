@@ -57,7 +57,7 @@
             "from discord.ext import commands",
             "",
             "",
-            "class ${1:TemplateCog}(commands.Cog):",
+            "class ${1:CogName}(commands.Cog):",
             "\tdef __init__(self, bot):",
             "\t\tself.bot = bot",
             "",    
@@ -73,7 +73,7 @@
             "",        
             "",
             "def setup(bot):",
-            "\tbot.add_cog(${7:TemplateCog}(bot))"
+            "\tbot.add_cog(${1:CogName}(bot))"
 		],
         "description": "Create a basic Discord cog."
     },
@@ -82,8 +82,8 @@
 		"prefix": "dpy.cmd",
 		"body": [       
             "@commands.command(name = \"${1:commandName}\", aliases=[\"${2:aliase}\"])",
-            "async def command(self, ctx):",
-            "\t${3:await ctx.send(\"template command\")}"
+            "async def  ${3:commandName}(self, ctx):",
+            "\t${4:await ctx.send(\"template command\")}"
 		],
         "description": "Create a basic Discord command."
     },
@@ -95,11 +95,12 @@
             "\t\t\t\taliases=[\"${2:aliase}\"]]",
             "\t\t\t\tusage=\"${3:<usage>}\",",
             "\t\t\t\tdescription = \"${4:description}\")",
-            "@commands.guild_only()",
-            "@commands.has_permissions()",
-            "@commands.cooldown(1, ${5:2}, commands.BucketType.member)",
-            "async def command(self, ctx):",
-            "\t${6:await ctx.send(\"template command\")}"
+            "@commands.guild_only($5)",
+            "@commands.has_permissions($6)",
+            "@commands.bot_has_permissions($7)",
+            "@commands.cooldown(1, ${8:2}, commands.BucketType.member)",
+            "async def ${9:commandName}(self, ctx):",
+            "\t${10:await ctx.send(\"template command\")}"
 		],
         "description": "Create a complex Discord command."
     },
@@ -107,8 +108,8 @@
     "Default Discord bot embed": {
 		"prefix": "dpy.embed",
 		"body": [       
-            "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
-            "embed.add_field(name=\"field\", value=\"value\", inline=False)",
+            "embed=discord.Embed(title=\"${1:title}\", description=\"${2:description}\", color=${3:0xff0000})",
+            "embed.add_field(name=\"${4:field}\", value=\"${5:value}\", inline=${6:False})",
             "await ctx.send(embed=embed)"
 		],
         "description": "Create a basic Discord embed."
@@ -117,11 +118,11 @@
     "Complex Discord bot embed": {
 		"prefix": "dpy.embed+",
 		"body": [       
-            "embed=discord.Embed(title=\"title\", description=\"description\", color=0xff0000)",
-            "embed.set_author(name=\"\", url=\"url\", icon_url=\"icon\")",
-            "embed.set_thumbnail(url=\"thumbnail\")",
-            "embed.add_field(name=\"field\", value=\"value\", inline=False)",
-            "embed.set_footer(text=\"footer\")",
+            "embed=discord.Embed(title=\"${1:title}\", description=\"${2:description}\", color=${3:0xff0000})",
+            "embed.set_author(name=\"${4:name}\", url=\"${5:url}\", icon_url=\"${6:icon}\")",
+            "embed.set_thumbnail(url=\"${7:thumbnail}\")",
+            "embed.add_field(name=\"${8:field}\", value=\"${9:value}\", inline=${10:False})",
+            "embed.set_footer(text=\"${11:footer}\")",
             "await ctx.send(embed=embed)"
 		],
         "description": "Create a complex Discord embed."
