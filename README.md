@@ -106,3 +106,8 @@ Please make sure to update tests as appropriate.
 ## License
 
 This project is under [GPLv3](https://github.com/Darkempire78/Raid-Protect-Discord-Bot/blob/master/LICENSE).
+
+
+## Contributors
+
+<a href="https://github.com/Tomato6966"><img src="https://avatars1.githubusercontent.com/u/68145571?s=400&u=b33e441401add2985e209bbe9d4b52f9416fa6e9&v=4" width="50"></a>
