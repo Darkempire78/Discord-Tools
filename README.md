@@ -83,7 +83,7 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.3 (Lastest update)
+### 1.1.3 (Latest update)
 - new Discord.js bot template
 - new bot template generator system
 - new auto package downloader
