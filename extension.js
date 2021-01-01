@@ -70,7 +70,52 @@ function activate(context) {
             }  
         };
 	});
-	context.subscriptions.push(jsBotTemplate);
+    context.subscriptions.push(jsBotTemplate);
+    
+    // Open the Discord.js Documention
+	let openDiscordDoc = vscode.commands.registerCommand('discord-tools.openDiscordDoc', function () {    
+
+        // Get the active editor
+        const editor = vscode.window.activeTextEditor;
+        if (editor) {
+            const document = editor.document;
+
+            // Get the good documentation
+            const language = document.languageId;
+
+            const languages = {
+                "javascript": {
+                    "classic": "https://discord.js.org/#/docs/main/stable/general/welcome",
+                    "search": "https://discord.js.org/#/docs/main/stable/search?q="
+                },
+                "python": {
+                    "classic": "https://discordpy.readthedocs.io/en/latest/api.html",
+                    "search": "https://discordpy.readthedocs.io/en/latest/search.html?q="
+                },
+                "java": {
+                    "classic": "https://ci.dv8tion.net/job/JDA/javadoc/index.html",
+                    "search": null
+                }
+            };
+
+            const selection = editor.selection;
+            // Get the word within the selection
+            const textSelection = document.getText(selection);
+            if (textSelection){
+                // Get the good url
+                const url = languages[language]["search"]
+                if (url) {
+                    // Open an url
+                    return vscode.env.openExternal(vscode.Uri.parse(url + textSelection));
+                } 
+            }
+            // Get the good url
+            const url = languages[language]["classic"]
+            // Open an url
+            vscode.env.openExternal(vscode.Uri.parse(url));
+        } 
+	});
+    context.subscriptions.push(openDiscordDoc);
 }
 exports.activate = activate;
 
