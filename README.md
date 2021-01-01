@@ -24,6 +24,14 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 <img src="images/video1.gif" width="500"/>
 
+
+### Open the Discord bot Documentation with/without a research :
+- Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
+- Shortcut : `Ctrl+Alt+D`
+- Works with Discord.py, Discord.js, JDA (JDA documention does not allow to make a research)
+
+<img src="images/video5.gif" width="500"/>
+
 ### Generate code easily :
 
 ### Available Snippets
@@ -83,7 +91,9 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.3 (Latest update)
+### 1.1.4 (Latest update)
+- new command : open the Discord bot Documentation with/without a research (works with Discord.py, Discord.js, JDA)
+### 1.1.3 
 - new Discord.js bot template
 - new bot template generator system
 - new auto package downloader

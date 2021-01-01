@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.1.4]
+- new command : open the Discord bot Documentation with/without a research (works with Discord.py, Discord.js, JDA)
+
 ## [1.1.3]
 - new Discord.js bot template
 - new bot template generator system

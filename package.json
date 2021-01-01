@@ -41,7 +41,14 @@
 				"command": "discord-tools.openDiscordDoc",
 				"title": "Open the Discord bot Documention"
 			}
-		],
+        ],
+        "keybindings": [
+            {
+                "command": "discord-tools.openDiscordDoc",
+                "key": "ctrl+alt+d",
+                "mac": "shift+cmd+d"
+            }
+        ],
 		"snippets": [
 			{
 				"language": "python",

@@ -72,7 +72,7 @@ function activate(context) {
 	});
     context.subscriptions.push(jsBotTemplate);
     
-    // Open the Discord.js Documention
+    // Open the Discord bot Documention
 	let openDiscordDoc = vscode.commands.registerCommand('discord-tools.openDiscordDoc', function () {    
 
         // Get the active editor
