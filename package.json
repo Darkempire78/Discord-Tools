@@ -3,7 +3,7 @@
 	"displayName": "Discord Tools",
 	"description": "Enable you to generate and complete your Discord code faster.",
 	"icon": "images/logo.png",
-	"version": "1.1.4",
+	"version": "1.1.5",
 	"publisher": "Darkempire78",
 	"repository": {
 		"type": "git",
