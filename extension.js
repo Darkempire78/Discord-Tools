@@ -117,6 +117,7 @@ function activate(context) {
 	});
     context.subscriptions.push(openDiscordDoc);
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated

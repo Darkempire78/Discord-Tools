@@ -27,7 +27,7 @@ client.on("message", async message => {
     if (message.author.bot) return;// if the message  author is a bot, return aka ignore the inputs
     if (!message.guild) return; //if the message is not in a guild (aka in dms), return aka ignore the inputs
 
-    if(!message.content.startsWith(prefix)&& message.content.startsWith(client.user.id)) return message.reply(`My Prefix is: **\`${prefix}\`**, tpye \`${prefix}help\` for more information!`); //if the messages is not a command and someone tags the bot, then send an info msg
+    if(!message.content.startsWith(prefix)&& message.content.startsWith(client.user.id)) return message.reply(`My Prefix is: **\`${prefix}\`**, type \`${prefix}help\` for more information!`); //if the messages is not a command and someone tags the bot, then send an info msg
     if (!message.content.startsWith(prefix)) return; //if the message does not starts with the prefix, return, so only commands are fired!
     
     const args = message.content.slice(prefix.length).trim().split(/ +/g); //creating the argumest (each space == 1 arg)

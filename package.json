@@ -36,19 +36,19 @@
 			{
 				"command": "discord-tools.jsBotTemplate",
 				"title": "Generate a javascript template bot (Discord.js)"
-            },
-            {
+			},
+			{
 				"command": "discord-tools.openDiscordDoc",
 				"title": "Open the Discord bot Documention"
 			}
-        ],
-        "keybindings": [
-            {
-                "command": "discord-tools.openDiscordDoc",
-                "key": "ctrl+alt+d",
-                "mac": "shift+cmd+d"
-            }
-        ],
+		],
+		"keybindings": [
+			{
+				"command": "discord-tools.openDiscordDoc",
+				"key": "ctrl+alt+d",
+				"mac": "shift+cmd+d"
+			}
+		],
 		"snippets": [
 			{
 				"language": "python",
