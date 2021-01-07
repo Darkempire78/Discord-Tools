@@ -1,6 +1,6 @@
 {
 	"Default Discord bot index.js file": {
-		"prefix": "djs.index",
+		"prefix": ["djs.index", "djs.main", "djs.bot", "djs.client"],
 		"body": [
 			"const Discord = require('discord.js');",
             "const config = require('./configuration.json');",
@@ -88,13 +88,13 @@
     },
 
     "Default Discord bot command": {
-		"prefix": "djs.cmd",
+		"prefix": ["djs.cmd", "djs.command"],
 		"body": [       
             "module.exports = {",
             "\tname: \"${1:commandName}\",",
             "\taliases: [\"${2:aliase}\"],",
-            "\texecute(message, args) {",
-            "\t\t${3:message.reply(\"template command}\")",
+            "\t${3|execute(message, args) {,\trun: async (client, message, args) => {|}",
+            "\t\t${4:message.reply(\"template command}\")",
             "\t},",
             "};"
 		],
@@ -102,13 +102,13 @@
     },
 
     "Complex Discord bot command": {
-		"prefix": "djs.cmd+",
+		"prefix": ["djs.cmd+", "djs.command+"],
 		"body": [       
             "module.exports = {",
             "\tname: \"${1:commandName}\",",
             "\taliases: [\"${2:aliase}\"],",
             "\tdescription: \"${3:description}\",",
-            "\tcategory: \"${4:category}\"",
+            "\tcategory: \"${4:category}\",",
             "\tguildOnly: ${5:true},",
             "\tcooldown: ${6:2},",
             "\targs: ${7:args},",
