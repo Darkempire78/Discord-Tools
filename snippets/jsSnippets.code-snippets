@@ -93,7 +93,7 @@
             "module.exports = {",
             "\tname: \"${1:commandName}\",",
             "\taliases: [\"${2:aliase}\"],",
-            "\t${3|execute(message, args) {,\trun: async (client, message, args) => {|}",
+            "\t${3|execute(message\\, args) {,run: async (client\\, message\\, args) => {|}",
             "\t\t${4:message.reply(\"template command}\")",
             "\t},",
             "};"
@@ -113,8 +113,8 @@
             "\tcooldown: ${6:2},",
             "\targs: ${7:args},",
             "\tusage: \"${8:<usage>}\",",
-            "\texecute(message, args) {",
-            "\t\t${9:message.reply(\"template command}\")",
+            "\t${9|execute(message\\, args) {,run: async (client\\, message\\, args) => {|}",
+            "\t\t${10:message.reply(\"template command}\")",
             "\t},",
             "};"
 		],
