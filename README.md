@@ -1,5 +1,5 @@
-[![CodeFactor](https://img.shields.io/codefactor/grade/github/Darkempire78/Discord-Tools?style=for-the-badge)
-[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/Darkempire78.discord-tools?style=for-the-badge)
+![CodeFactor](https://img.shields.io/codefactor/grade/github/Darkempire78/Discord-Tools?style=for-the-badge)
+![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/Darkempire78.discord-tools?style=for-the-badge)
 <a href="https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools"><img src="https://img.shields.io/visual-studio-marketplace/i/Darkempire78.discord-tools?style=for-the-badge"></a>
 
 # Discord Tools
