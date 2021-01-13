@@ -92,7 +92,7 @@ Please make sure to update tests as appropriate.
 ## Release Notes
 
 ### 1.1.6 (Latest update)
-- Several python snippets corrections
+- Several python snippet corrections
 - correction of the python template 
 ### 1.1.5 
 - New snippet aliases
