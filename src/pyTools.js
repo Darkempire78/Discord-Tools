@@ -28,7 +28,6 @@ class Greetings(commands.Cog):
 
 # Intents
 intents = discord.Intents.default()
-intents.members = True
 
 bot = commands.Bot(prefix, intents = intents)
 
