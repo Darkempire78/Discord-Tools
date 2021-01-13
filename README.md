@@ -91,7 +91,10 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.1.5 (Latest update)
+### 1.1.6 (Latest update)
+- Several python snippets corrections
+- correction of the python template 
+### 1.1.5 
 - New snippet aliases
 - New snippet choices
 - Several corrections

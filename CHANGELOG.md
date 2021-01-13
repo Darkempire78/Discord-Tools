@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.6]
+- Several python snippets corrections
+- correction of the python template 
+
 ## [1.1.5]
 - New snippet aliases
 - New snippet choices
