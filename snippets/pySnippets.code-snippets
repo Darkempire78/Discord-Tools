@@ -92,7 +92,7 @@
 		"prefix": ["dpy.cmd+", "dpy.command+"],
 		"body": [       
             "@commands.command(name = \"${1:commandName}\",",
-            "\t\t\t\taliases=[\"${2:aliase}\"]]",
+            "\t\t\t\taliases=[\"${2:aliase}\"],",
             "\t\t\t\tusage=\"${3:<usage>}\",",
             "\t\t\t\tdescription = \"${4:description}\")",
             "@commands.guild_only($5)",
