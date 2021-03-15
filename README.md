@@ -50,6 +50,14 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `dpy.guildDelete` : Create a default Discord bot guildCreate event.
 - **and 47 other events...**
 
+#### Javascript ([Eris](https://abal.moe/Eris/)) :
+- `eris.index` : Create a basic Discord bot index.js file.
+- `eris.cmd` : Create a basic Discord command.
+- `eris.cmd+` : Create a complex Discord command.
+- `eris.embed` : Create a basic Discord embed.
+- `eris.embed+` : Create a complex Discord embed.
+- `eris.message` : Create a default Discord bot message event.
+
 #### Javascript Preview :
 <img src="images/video2.gif" width="500"/>
 
@@ -90,10 +98,11 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.1.7 (Comming soon)
-- definition of parameters
+### 1.2.0 (Latest update)
+- add Eris support
+- add the definition of python parameters
 - fix small python snippets
-### 1.1.6 (Latest update)
+### 1.1.6 
 - Several python snippet corrections
 - correction of the python template 
 ### 1.1.5 
