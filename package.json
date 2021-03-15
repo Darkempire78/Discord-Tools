@@ -3,7 +3,7 @@
 	"displayName": "Discord Tools",
 	"description": "Enable you to generate and complete your Discord code faster.",
 	"icon": "images/logo.png",
-	"version": "1.1.6",
+	"version": "1.2.0",
 	"publisher": "Darkempire78",
 	"repository": {
 		"type": "git",
@@ -17,7 +17,8 @@
 		"discord bot",
 		"discord.py",
 		"discord.js",
-		"jda"
+		"jda",
+        "eris"
 	],
 	"categories": [
 		"Other",
@@ -58,6 +59,10 @@
 				"language": "javascript",
 				"path": "./snippets/jsSnippets.code-snippets"
 			},
+            {
+                "language": "javascript",
+				"path": "./snippets/erisSnippets.code-snippets"
+            },
 			{
 				"language": "java",
 				"path": "./snippets/javaSnippets.code-snippets"
