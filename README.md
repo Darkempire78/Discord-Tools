@@ -20,7 +20,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Features
 
 ### Generate a template Discord bot : 
-- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)`
+- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for Java)
 
 <img src="images/video1.gif" width="500"/>
 
@@ -90,7 +90,9 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-
+### 1.1.7 (Comming soon)
+- definition of parameters
+- fix small python snippets
 ### 1.1.6 (Latest update)
 - Several python snippet corrections
 - correction of the python template 
@@ -123,8 +125,3 @@ Please make sure to update tests as appropriate.
 ## License
 
 This project is under [GPLv3](https://github.com/Darkempire78/Raid-Protect-Discord-Bot/blob/master/LICENSE).
-
-
-## Contributors
-
-<a href="https://github.com/Tomato6966"><img src="https://avatars1.githubusercontent.com/u/68145571?s=400&u=b33e441401add2985e209bbe9d4b52f9416fa6e9&v=4" width="50"></a>

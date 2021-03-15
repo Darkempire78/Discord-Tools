@@ -103,7 +103,7 @@ from discord.ext import commands
 from random import randint
 
 class HelpCog(commands.Cog, name="help command"):
-\tdef __init__(self, bot):
+\tdef __init__(self, bot:commands.Bot):
 \t\tself.bot = bot
   
 
@@ -111,7 +111,7 @@ class HelpCog(commands.Cog, name="help command"):
 \t\t\t\t\tusage="(commandName)",
 \t\t\t\t\tdescription = "Display the help message.")
 \t@commands.cooldown(1, 2, commands.BucketType.member)
-\tasync def help (self, ctx, commandName=None):
+\tasync def help (self, ctx, commandName:str=None):
 
 \t\tcommandName2 = None
 \t\tstop = False
@@ -155,7 +155,7 @@ class HelpCog(commands.Cog, name="help command"):
 \t\t\tembed.add_field(name=f"__COMMANDS :__", value=f"**{self.bot.command_prefix}command <parameters>** : Command description.", inline=False)
 \t\t\tawait ctx.channel.send(embed=embed)
 
-def setup(bot):
+def setup(bot:commands.Bot):
 \tbot.remove_command("help")
 \tbot.add_cog(HelpCog(bot))`;
     fs.writeFile(path.join(currentFolderPath, "Cogs/help.py"), pyHelpCommand, err => {
@@ -172,7 +172,7 @@ import time
 
 
 class PingCog(commands.Cog, name="ping command"):
-\tdef __init__(self, bot):
+\tdef __init__(self, bot:commands.bot):
 \t\tself.bot = bot
         
 \t@commands.command(name = "ping",
@@ -185,7 +185,7 @@ class PingCog(commands.Cog, name="ping command"):
 \t\tping = (time.monotonic() - before) * 1000
 \t\tawait message.edit(content=f"🏓 Pong !  \`{int(ping)} ms\`")
 
-def setup(bot):
+def setup(bot:commands.Bot):
 \tbot.add_cog(PingCog(bot))`;
     fs.writeFile(path.join(currentFolderPath, "Cogs/ping.py"), pyPingCommand, err => {
         if (err) {
@@ -202,11 +202,11 @@ import time
 
 
 class OnCommandErrorCog(commands.Cog, name="on command error"):
-\tdef __init__(self, bot):
+\tdef __init__(self, bot:commands.Bot):
 \t\tself.bot = bot
         
 \t@commands.Cog.listener()
-\tasync def on_command_error(self, ctx, error):
+\tasync def on_command_error(self, ctx:commands.Contex, error:commands.CommandError):
 \t\tif isinstance(error, commands.CommandOnCooldown):
 \t\t\tday = round(error.retry_after/86400)
 \t\t\thour = round(error.retry_after/3600)
