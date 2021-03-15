@@ -90,7 +90,9 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-
+### 1.1.7 (Comming soon)
+- definition of parameters
+- fix small python snippet
 ### 1.1.6 (Latest update)
 - Several python snippet corrections
 - correction of the python template 
