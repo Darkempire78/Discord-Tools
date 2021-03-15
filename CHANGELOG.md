@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.2.0]
+- add Eris support
+- add the definition of python parameters
+- fix small python snippets
+
 ## [1.1.6]
 - Several python snippets corrections
 - correction of the python template 
