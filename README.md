@@ -20,7 +20,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Features
 
 ### Generate a template Discord bot : 
-- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for Java)
+- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA and Eris)
 
 <img src="images/video1.gif" width="500"/>
 
