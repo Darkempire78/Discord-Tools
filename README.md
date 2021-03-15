@@ -28,7 +28,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ### Open the Discord bot Documentation with/without a research :
 - Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
 - Shortcut : `Ctrl+Alt+D`
-- Works with Discord.py, Discord.js and JDA (JDA documention does not allow to make a research)
+- Works with Discord.py, Discord.js and JDA (JDA and Eris documentions do not allow to make a research)
 
 <img src="images/video5.gif" width="500"/>
 
