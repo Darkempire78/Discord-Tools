@@ -16,6 +16,19 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [x] Java ([**JDA**](https://github.com/DV8FromTheWorld/JDA))
 - [ ] Soon...
 
+## Index
+- [**Generate a template Discord bot**](#generate-a-template-discord-bot-)
+- [**Open the Discord bot Documentation with/without a research**](#open-the-discord-bot-documentation-withwithout-a-research-)
+- [**Javascript snippets**](#available-snippets)
+  - [Discord.js](#javascript-discordjs-)
+  - [Eris](#javascript-eris-)
+-  [**Python snippets**](#python-discordpy-)
+    - [Discord.py](#python-discordpy-)
+-  [**Java snippets**](#java-jda-)
+    - [JDA](#java-jda-)
+- [**Contributing**](#contributing)
+- [**Release notes**](#release-notes)
+- [**License**](#license)
 
 ## Features
 
@@ -28,7 +41,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ### Open the Discord bot Documentation with/without a research :
 - Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
 - Shortcut : `Ctrl+Alt+D`
-- Works with Discord.py, Discord.js and JDA (JDA documention does not allow to make a research)
+- Works with Discord.py, Discord.js and JDA (JDA and Eris documentions do not allow to make a research)
 
 <img src="images/video5.gif" width="500"/>
 
@@ -46,8 +59,8 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `djs.message` : Create a default Discord bot message event.
 - `djs.guildmemberadd` : Create a default Discord bot guildMemberAdd event.
 - `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove event.
-- `dpy.guildCreate` : Create a default Discord bot guildCreate event.
-- `dpy.guildDelete` : Create a default Discord bot guildCreate event.
+- `djs.guildcreate` : Create a default Discord bot guildCreate event.
+- `djs.guilddelete` : Create a default Discord bot guildCreate event.
 - **and 47 other events...**
 
 #### Javascript ([Eris](https://abal.moe/Eris/)) :
@@ -99,12 +112,12 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 ### 1.2.0 (Latest update)
-- add Eris support
-- add the definition of python parameters
-- fix small python snippets
+- Add Eris support
+- Add the definition of python parameters
+- Fix small python snippets
 ### 1.1.6 
 - Several python snippet corrections
-- correction of the python template 
+- Correction of the python template 
 ### 1.1.5 
 - New snippet aliases
 - New snippet choices
