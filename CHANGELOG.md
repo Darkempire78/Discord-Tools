@@ -1,13 +1,17 @@
 # Change Log
 
+## [1.2.1]
+- Fix workspace error
+- Small corrections
+
 ## [1.2.0]
-- add Eris support
-- add the definition of python parameters
-- fix small python snippets
+- Add Eris support
+- Add the definition of python parameters
+- Fix small python snippets
 
 ## [1.1.6]
 - Several python snippets corrections
-- correction of the python template 
+- Correction of the python template 
 
 ## [1.1.5]
 - New snippet aliases

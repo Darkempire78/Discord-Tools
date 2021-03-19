@@ -111,7 +111,10 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.2.0 (Latest update)
+### 1.2.1 (Latest update)
+- Fix workspace error
+- Small corrections
+### 1.2.0 
 - Add Eris support
 - Add the definition of python parameters
 - Fix small python snippets
