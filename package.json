@@ -3,7 +3,7 @@
 	"displayName": "Discord Tools",
 	"description": "Enable you to generate and complete your Discord code faster.",
 	"icon": "images/logo.png",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"publisher": "Darkempire78",
 	"repository": {
 		"type": "git",
@@ -50,6 +50,22 @@
 				"mac": "shift+cmd+d"
 			}
 		],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "discord-tools.pyBotTemplate",
+                    "when": "workspaceFolderCount > 0"
+                },
+                {
+                    "command": "discord-tools.jsBotTemplate",
+                    "when": "workspaceFolderCount > 0"
+                },
+                {
+                    "command": "discord-tools.openDiscordDoc",
+                    "when": "workspaceFolderCount > 0"
+                }
+            ]
+        },
 		"snippets": [
 			{
 				"language": "python",
