@@ -60,7 +60,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `djs.guildmemberadd` : Create a default Discord bot guildMemberAdd event.
 - `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove event.
 - `djs.guildcreate` : Create a default Discord bot guildCreate event.
-- `djs.guilddelete` : Create a default Discord bot guildCreate event.
+- `djs.guilddelete` : Create a default Discord bot guildDelete event.
 - **and 47 other events...**
 
 #### Javascript ([Eris](https://abal.moe/Eris/)) :
