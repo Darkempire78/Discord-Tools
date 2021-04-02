@@ -206,7 +206,7 @@ class OnCommandErrorCog(commands.Cog, name="on command error"):
 \t\tself.bot = bot
         
 \t@commands.Cog.listener()
-\tasync def on_command_error(self, ctx:commands.Contex, error:commands.CommandError):
+\tasync def on_command_error(self, ctx:commands.Context, error:commands.CommandError):
 \t\tif isinstance(error, commands.CommandOnCooldown):
 \t\t\tday = round(error.retry_after/86400)
 \t\t\thour = round(error.retry_after/3600)

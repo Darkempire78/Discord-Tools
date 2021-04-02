@@ -111,7 +111,9 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.2.1 (Latest update)
+### 1.2.2 (Latest update)
+- Fix the python template
+### 1.2.1
 - Fix workspace error
 - Small corrections
 ### 1.2.0 

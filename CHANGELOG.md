@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.2.2]
+- Fix the python template
+
 ## [1.2.1]
 - Fix workspace error
 - Small corrections
