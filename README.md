@@ -12,7 +12,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Supported Languages
 
 - [x] Javascript ([**Discord.js**](https://discord.js.org/#/), [**Eris**](https://abal.moe/Eris/))
-- [x] Typescript ([Harmony](https://harmony.mod.land/))
+- [x] Typescript ([**Harmony**](https://harmony.mod.land/))
 - [x] Python ([**Discord.py**](https://discordpy.readthedocs.io/en/latest/))
 - [x] Java ([**JDA**](https://github.com/DV8FromTheWorld/JDA))
 - [ ] Soon...
@@ -113,6 +113,16 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 #### Java Preview :
 <img src="images/video4.gif" width="500"/>
+
+## Functionality table
+
+|            | Template | Doc | Doc searcher | Snippets |
+|------------|:--------:|:---:|:------------:|:--------:|
+| Discord.js |     ✅    |  ✅  |       ✅      |     ✅    |
+| Eris       |     ❌    |  ❌  |       ❌      |     ✅    |
+| Harmony    |     ❌    |  ✅  |       ❌      |     ✅    |
+| Discord.py |     ✅    |  ✅  |       ✅      |     ✅    |
+| JDA        |     ❌    |  ✅  |       ❌      |     ✅    |
 
 ## Contributing
 
