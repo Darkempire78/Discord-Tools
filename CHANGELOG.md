@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.3.0]
+- Add the Harmony support
+
 ## [1.2.2]
 - Fix the python template
 
@@ -8,7 +11,7 @@
 - Small corrections
 
 ## [1.2.0]
-- Add Eris support
+- Add the Eris support
 - Add the definition of python parameters
 - Fix small python snippets
 

@@ -92,6 +92,10 @@ function activate(context) {
                     "classic": "https://discordpy.readthedocs.io/en/latest/api.html",
                     "search": "https://discordpy.readthedocs.io/en/latest/search.html?q="
                 },
+                "typescript": {
+                    "classic": "https://doc.deno.land/https/raw.githubusercontent.com/harmonyland/harmony/main/mod.ts",
+                    "search": null
+                },
                 "java": {
                     "classic": "https://ci.dv8tion.net/job/JDA/javadoc/index.html",
                     "search": null

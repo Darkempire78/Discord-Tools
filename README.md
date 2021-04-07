@@ -12,6 +12,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Supported Languages
 
 - [x] Javascript ([**Discord.js**](https://discord.js.org/#/), [**Eris**](https://abal.moe/Eris/))
+- [x] Typescript ([Harmony](https://harmony.mod.land/))
 - [x] Python ([**Discord.py**](https://discordpy.readthedocs.io/en/latest/))
 - [x] Java ([**JDA**](https://github.com/DV8FromTheWorld/JDA))
 - [ ] Soon...
@@ -22,6 +23,8 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [**Javascript snippets**](#available-snippets)
   - [Discord.js](#javascript-discordjs-)
   - [Eris](#javascript-eris-)
+- [**Typescript snippets**](#typescript-harmony-)
+  - [Harmony](#typescript-harmony-)
 -  [**Python snippets**](#python-discordpy-)
     - [Discord.py](#python-discordpy-)
 -  [**Java snippets**](#java-jda-)
@@ -33,7 +36,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Features
 
 ### Generate a template Discord bot : 
-- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA and Eris)
+- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA, Harmony and Eris)
 
 <img src="images/video1.gif" width="500"/>
 
@@ -41,7 +44,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ### Open the Discord bot Documentation with/without a research :
 - Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
 - Shortcut : `Ctrl+Alt+D`
-- Works with Discord.py, Discord.js and JDA (JDA and Eris documentions do not allow to make a research)
+- Works with Discord.py, Discord.js and JDA (JDA, Harmony and Eris documentions do not allow to make a research)
 
 <img src="images/video5.gif" width="500"/>
 
@@ -73,6 +76,14 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 #### Javascript Preview :
 <img src="images/video2.gif" width="500"/>
+
+#### Typescript ([Harmony](https://harmony.mod.land/)) :
+- `hy.index` : Create a basic Discord bot index.ts file.
+- `hy.cmd` : Create a basic Discord command.
+- `hy.cmd+` : Create a complex Discord command.
+- `hy.embed` : Create a basic Discord embed.
+- `hy.embed+` : Create a complex Discord embed.
+- `hy.message` : Create a default Discord bot message event.
 
 #### Python ([Discord.py](https://discordpy.readthedocs.io/en/latest/)) :
 
@@ -111,13 +122,15 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.2.2 (Latest update)
+### 1.3.0 (Latest update)
+- Add the Harmony support
+### 1.2.2
 - Fix the python template
 ### 1.2.1
 - Fix workspace error
 - Small corrections
 ### 1.2.0 
-- Add Eris support
+- Add the Eris support
 - Add the definition of python parameters
 - Fix small python snippets
 ### 1.1.6 
