@@ -1,0 +1,561 @@
+{
+	"Default Discord bot index.js file": {
+		"prefix": ["hy.index", "hy.main", "hy.bot", "hy.client"],
+		"body": [
+			"import {",
+            "\tClient,",
+            "\tMessage,",
+            "\tGatewayIntents",
+            "} from 'https://deno.land/x/harmony/mod.ts'",
+            "",
+            "const client = new Client()",
+            "",  
+            "// Listen for event when client is ready (Identified through gateway / Resumed)",
+            "client.on('ready', () => {",
+            "\tconsole.log(`Ready! User: ${client.user?.tag}`)",
+            "})",
+            "",  
+            "// Listen for event whenever a Message is sent",
+            "client.on('messageCreate', (msg: Message): void => {",
+            "\tif (msg.content === '!ping') {",
+            "\t\tmsg.channel.send(`Pong! WS Ping: ${client.ping}`)",
+            "\t}",
+            "})",
+            "", 
+            "// Connect to gateway",
+            "client.connect('${1:token}', [",
+            "\tGatewayIntents.DIRECT_MESSAGES,",
+            "\tGatewayIntents.GUILDS,",
+            "\tGatewayIntents.GUILD_MESSAGES",
+            "])"
+		],
+        "description": "Create a basic Discord bot index.ts file."
+    },
+
+    "Default Discord bot command": {
+		"prefix": ["hy.cmd", "hy.command"],
+		"body": [       
+            "class ${1:nameCommand} extends Command {",
+            "\tname = '{2:name}',",
+            "\taliases = ['{3:aliases}']",
+            "\t",
+            "\texecute(ctx: CommandContext) {",
+            "\t\tctx.message.reply(`pong! Ping: ${ctx.client.ping}ms`)",
+            "\t}",
+            "}"
+		],
+        "description": "Create a basic Discord command."
+    },
+
+    "Complex Discord bot command": {
+		"prefix": ["hy.cmd+", "hy.command+"],
+		"body": [       
+            "class ${1:nameCommand} extends Command {",
+            "\tname = '{2:name}',",
+            "\tdescription = '{3:description}',",
+            "\tcategory = '{4:category}',",
+            "\taliases = ['{5:aliases}'],",
+            "\tusage = '{6:usage}',",
+            "\texamples = '{7:examples}',",
+            "\targs = {8:false},",
+            "\tguildOnly = {9:false},",
+            "\townerOnly = {10:false}",
+            "\t",
+            "\texecute(ctx: CommandContext) {",
+            "\t\tctx.message.reply(`pong! Ping: ${ctx.client.ping}ms`)",
+            "\t}",
+            "}" 
+		],
+        "description": "Create a complex Discord command."
+    },
+
+    "Default Discord bot embed": {
+		"prefix": "hy.embed",
+		"body": [
+            "new Embed()",
+            "\t.setTitle(${1:title})",
+            "\t.addField('${2:field}')",
+            "\t.setDescription('${3:description}')",
+            "\t.setColor(${4:0xff0000}),",
+		],
+        "description": "Create a basic Discord embed."
+    },
+
+    "Complex Discord bot embed": {
+		"prefix": "hy.embed+",
+		"body": [       
+            "new Embed()",
+            "\t.setAuthor({ name: ${1:ctx.author} })",
+            "\t.setTitle(${2:title})",
+            "\t.setURL(${3:url})",
+            "\t.setThumbnail({ url: ${4:thumbnail} })",
+            "\t.addField('${5:field}')",
+            "\t.setDescription('${6:description}')",
+            "\t.setColor(${7:0xff0000}),",
+            "\t.setFooter('${8:footer}')"
+		],
+        "description": "Create a complex Discord embed."
+    },
+
+    "Default Discord bot message": {
+		"prefix": "hy.message",
+		"body": [       
+            "client.on('messageCreate', (msg: Message): void => {",
+            "\tif (msg.content === '!ping') {",
+            "\t\tmsg.channel.send(`Pong! WS Ping: ${client.ping}`)",
+            "\t}",
+            "})",
+		],
+        "description": "Create a default Discord bot message handler."
+    }
+
+    // "Default Discord bot channelCreate": {
+	// 	"prefix": "djs.channelCreate",
+	// 	"body": [       
+    //         "${1:client}.on('channelCreate', (channel) => {",
+    //         "\t${2:console.log(channel);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot channelCreate."
+    // },
+
+    // "Default Discord bot channelDelete": {
+	// 	"prefix": "djs.channelDelete",
+	// 	"body": [       
+    //         "${1:client}.on('channelDelete', (channel) => {",
+    //         "\t${2:console.log(channel);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot channelDelete."
+    // },
+
+    // "Default Discord bot channelPinsUpdate": {
+	// 	"prefix": "djs.channelPinsUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('channelPinsUpdate', (channel, time) => {",
+    //         "\t${2:console.log(channel, time);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot channelPinsUpdate."
+    // },
+
+    // "Default Discord bot channelUpdate": {
+	// 	"prefix": "djs.channelUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('channelUpdate', (oldChannel, newChannel) => {",
+    //         "\t${2:console.log(oldChannel, newChannel);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot channelUpdate."
+    // },
+
+    // "Default Discord bot clientUserGuildSettingsUpdate": {
+	// 	"prefix": "djs.clientUserGuildSettingsUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('clientUserGuildSettingsUpdate', (clientUserGuildSettings) => {",
+    //         "\t${2:console.log(clientUserGuildSettings);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot clientUserGuildSettingsUpdate."
+    // },
+
+    // "Default Discord bot clientUserSettingsUpdate": {
+	// 	"prefix": "djs.clientUserSettingsUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('clientUserSettingsUpdate', (clientUserSettings) => {",
+    //         "\t${2:console.log(clientUserSettings);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot clientUserSettingsUpdate."
+    // },
+
+    // "Default Discord bot debug": {
+	// 	"prefix": "djs.debug",
+	// 	"body": [       
+    //         "${1:client}.on('debug', (info) => {",
+    //         "\t${2:console.log(info);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot debug."
+    // },
+
+    // "Default Discord bot disconnect": {
+	// 	"prefix": "djs.disconnect",
+	// 	"body": [       
+    //         "${1:client}.on('disconnect', (event) => {",
+    //         "\t${2:console.log(event);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot disconnect."
+    // },
+
+    // "Default Discord bot emojiCreate": {
+	// 	"prefix": "djs.emojiCreate",
+	// 	"body": [       
+    //         "${1:client}.on('emojiCreate', (emoji) => {",
+    //         "\t${2:console.log(emoji);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot emojiCreate."
+    // },
+
+    // "Default Discord bot emojiDelete": {
+	// 	"prefix": "djs.emojiDelete",
+	// 	"body": [       
+    //         "${1:client}.on('emojiDelete', (emoji) => {",
+    //         "\t${2:console.log(emoji);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot emojiDelete."
+    // },
+
+    // "Default Discord bot emojiUpdate": {
+	// 	"prefix": "djs.emojiUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('emojiUpdate', (oldEmoji, newEmoji) => {",
+    //         "\t${2:console.log(oldEmoji, newEmoji);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot emojiUpdate."
+    // },
+
+    // "Default Discord bot error": {
+	// 	"prefix": "djs.error",
+	// 	"body": [       
+    //         "${1:client}.on('error', (error) => {",
+    //         "\t${2:console.log(error);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot error."
+    // },
+
+    // "Default Discord bot guildBanAdd": {
+	// 	"prefix": "djs.guildBanAdd",
+	// 	"body": [       
+    //         "${1:client}.on('guildBanAdd', (guild, user) => {",
+    //         "\t${2:console.log(guild, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildBanAdd."
+    // },
+
+    // "Default Discord bot guildBanRemove": {
+	// 	"prefix": "djs.guildBanRemove",
+	// 	"body": [       
+    //         "${1:client}.on('guildBanRemove', (guild, user) => {",
+    //         "\t${2:console.log(guild, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildBanRemove."
+    // },
+
+    // "Default Discord bot guildCreate": {
+	// 	"prefix": "djs.guildCreate",
+	// 	"body": [       
+    //         "${1:client}.on('guildCreate', (guild) => {",
+    //         "\t${2:console.log(guild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildCreate."
+    // },
+
+    // "Default Discord bot guildDelete": {
+	// 	"prefix": "djs.guildDelete",
+	// 	"body": [       
+    //         "${1:client}.on('guildDelete', (guild) => {",
+    //         "\t${2:console.log(guild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildDelete."
+    // },
+
+    // "Default Discord bot guildIntegrationsUpdate": {
+	// 	"prefix": "djs.guildIntegrationsUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('guildIntegrationsUpdate', (guild) => {",
+    //         "\t${2:console.log(guild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildIntegrationsUpdate."
+    // },
+
+    // "Default Discord bot guildMemberAdd": {
+	// 	"prefix": "djs.guildMemberAdd",
+	// 	"body": [       
+    //         "${1:client}.on('guildMemberAdd', (member) => {",
+    //         "\t${2:console.log(member);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMemberAdd."
+    // },
+
+    // "Default Discord bot guildMemberRemove": {
+	// 	"prefix": "djs.guildMemberRemove",
+	// 	"body": [       
+    //         "${1:client}.on('guildMemberRemove', (member) => {",
+    //         "\t${2:console.log(member);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMemberRemove."
+    // },
+
+    // "Default Discord bot guildMemberAvailable": {
+	// 	"prefix": "djs.guildMemberAvailable",
+	// 	"body": [       
+    //         "${1:client}.on('guildMemberAvailable', (member) => {",
+    //         "\t${2:console.log(member);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMemberAvailable."
+    // },
+
+    // "Default Discord bot guildMemberSpeaking": {
+	// 	"prefix": "djs.guildMemberSpeaking",
+	// 	"body": [       
+    //         "${1:client}.on('guildMemberSpeaking', (member, speaking) => {",
+    //         "\t${2:console.log(member, speaking);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMemberSpeaking."
+    // },
+
+    // "Default Discord bot guildMemberUpdate": {
+	// 	"prefix": "djs.guildMemberUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('guildMemberUpdate', (oldMember, newMember) => {",
+    //         "\t${2:console.log(oldMember, newMember);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMemberUpdate."
+    // },
+
+    // "Default Discord bot guildMembersChunk": {
+	// 	"prefix": "djs.guildMembersChunk",
+	// 	"body": [       
+    //         "${1:client}.on('guildMembersChunk', (members, guild) => {",
+    //         "\t${2:console.log(members, guild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildMembersChunk."
+    // },
+
+    // "Default Discord bot guildUnavailable": {
+	// 	"prefix": "djs.guildUnavailable",
+	// 	"body": [       
+    //         "${1:client}.on('guildUnavailable', (guild) => {",
+    //         "\t${2:console.log(guild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildUnavailable."
+    // },
+
+    // "Default Discord bot guildUpdate": {
+	// 	"prefix": "djs.guildUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('guildUpdate', (oldGuild, newGuild) => {",
+    //         "\t${2:console.log(oldGuild, newGuild);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot guildUpdate."
+    // },
+
+    // "Default Discord bot messageDelete": {
+	// 	"prefix": "djs.messageDelete",
+	// 	"body": [       
+    //         "${1:client}.on('messageDelete', (message) => {",
+    //         "\t${2:console.log(message);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot messageDelete."
+    // },
+
+    // "Default Discord bot messageDeleteBulk": {
+	// 	"prefix": "djs.messageDeleteBulk",
+	// 	"body": [       
+    //         "${1:client}.on('messageDeleteBulk', (messages) => {",
+    //         "\t${2:console.log(messages);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot messageDeleteBulk."
+    // },
+
+    // "Default Discord bot messageReactionAdd": {
+	// 	"prefix": "djs.messageReactionAdd",
+	// 	"body": [       
+    //         "${1:client}.on('messageReactionAdd', (messageReaction, user) => {",
+    //         "\t${2:console.log(messageReaction, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot messageReactionAdd."
+    // },
+
+    // "Default Discord bot messageReactionRemove": {
+	// 	"prefix": "djs.messageReactionRemove",
+	// 	"body": [       
+    //         "${1:client}.on('messageReactionRemove', (messageReaction, user) => {",
+    //         "\t${2:console.log(messageReaction, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot messageReactionRemove."
+    // },
+
+    // "Default Discord bot messageUpdate": {
+	// 	"prefix": "djs.messageUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('messageUpdate', (oldMessage, newMessage) => {",
+    //         "\t${2:console.log(oldMessage, newMessage);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot messageUpdate."
+    // },
+
+    // "Default Discord bot presenceUpdate": {
+	// 	"prefix": "djs.presenceUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('presenceUpdate', (oldMember, newMember) => {",
+    //         "\t${2:console.log(oldMember, newMember);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot presenceUpdate."
+    // },
+
+    // "Default Discord bot rateLimit": {
+	// 	"prefix": "djs.rateLimit",
+	// 	"body": [       
+    //         "${1:client}.on('rateLimit', (rateLimitInfo, rateLimitInfo.limit, rateLimitInfo.timeDifference, rateLimitInfo.path, rateLimitInfo.method) => {",
+    //         "\t${2:console.log(rateLimitInfo, rateLimitInfo.limit, rateLimitInfo.timeDifference, rateLimitInfo.path, rateLimitInfo.method);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot rateLimit."
+    // },
+
+    // "Default Discord bot ready": {
+	// 	"prefix": "djs.ready",
+	// 	"body": [       
+    //         "${1:client}.on('ready', () => {",
+    //         "\t${2:console.log(null);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot ready."
+    // },
+
+    // "Default Discord bot reconnecting": {
+	// 	"prefix": "djs.reconnecting",
+	// 	"body": [       
+    //         "${1:client}.on('reconnecting', () => {",
+    //         "\t${2:console.log(null);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot reconnecting."
+    // },
+
+    // "Default Discord bot resume": {
+	// 	"prefix": "djs.resume",
+	// 	"body": [       
+    //         "${1:client}.on('resume', (replayed) => {",
+    //         "\t${2:console.log(replayed);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot resume."
+    // },
+
+    // "Default Discord bot roleCreate": {
+	// 	"prefix": "djs.roleCreate",
+	// 	"body": [       
+    //         "${1:client}.on('roleCreate', (role) => {",
+    //         "\t${2:console.log(role);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot roleCreate."
+    // },
+
+    // "Default Discord bot roleDelete": {
+	// 	"prefix": "djs.roleDelete",
+	// 	"body": [       
+    //         "${1:client}.on('roleDelete', (role) => {",
+    //         "\t${2:console.log(role);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot roleDelete."
+    // },
+
+    // "Default Discord bot roleUpdate": {
+	// 	"prefix": "djs.roleUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('roleUpdate', (oldRole, newRole) => {",
+    //         "\t${2:console.log(oldRole, newRole);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot roleUpdate."
+    // },
+
+    // "Default Discord bot typingStart": {
+	// 	"prefix": "djs.typingStart",
+	// 	"body": [       
+    //         "${1:client}.on('typingStart', (channel, user) => {",
+    //         "\t${2:console.log(channel, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot typingStart."
+    // },
+
+    // "Default Discord bot typingStop": {
+	// 	"prefix": "djs.typingStop",
+	// 	"body": [       
+    //         "${1:client}.on('typingStop', (channel, user) => {",
+    //         "\t${2:console.log(channel, user);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot typingStop."
+    // },
+
+    // "Default Discord bot userNoteUpdate": {
+	// 	"prefix": "djs.userNoteUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('userNoteUpdate', (user, oldNote, newNote) => {",
+    //         "\t${2:console.log(user, oldNote, newNote);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot userNoteUpdate."
+    // },
+
+    // "Default Discord bot userUpdate": {
+	// 	"prefix": "djs.userUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('userUpdate', (oldUser, newUser) => {",
+    //         "\t${2:console.log(oldUser, newUser);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot userUpdate."
+    // },
+
+    // "Default Discord bot voiceStateUpdate": {
+	// 	"prefix": "djs.voiceStateUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('voiceStateUpdate', (oldMember, newMember) => {",
+    //         "\t${2:console.log(oldMember, newMember);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot voiceStateUpdate."
+    // },
+
+    // "Default Discord bot warn": {
+	// 	"prefix": "djs.warn",
+	// 	"body": [       
+    //         "${1:client}.on('warn', (info) => {",
+    //         "\t${2:console.log(info);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot warn."
+    // },
+
+    // "Default Discord bot webhookUpdate": {
+	// 	"prefix": "djs.webhookUpdate",
+	// 	"body": [       
+    //         "${1:client}.on('webhookUpdate', (channel) => {",
+    //         "\t${2:console.log(channel);}",
+    //         "});"
+	// 	],
+    //     "description": "Create a default Discord bot webhookUpdate."
+    // },
+}
