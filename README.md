@@ -133,7 +133,10 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.3.0 (Latest update)
+### 1.3.1 (Latest update)
+- Update the Discord.js template
+- Update the Discord.py template
+### 1.3.0 
 - Add the Harmony support
 ### 1.2.2
 - Fix the python template

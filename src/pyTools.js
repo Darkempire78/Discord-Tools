@@ -28,30 +28,20 @@ class Greetings(commands.Cog):
 
 # Intents
 intents = discord.Intents.default()
-
+# The bot
 bot = commands.Bot(prefix, intents = intents)
 
 # Load cogs
-initial_extensions = [
-\t"Cogs.onCommandError",
-\t"Cogs.help",
-\t"Cogs.ping"
-]
-
-print(initial_extensions)
-
 if __name__ == '__main__':
-\tfor extension in initial_extensions:
-\t\ttry:
-\t\t\tbot.load_extension(extension)
-\t\texcept Exception as e:
-\t\t\tprint(f"Failed to load extension {extension}")
+\tfor filename in os.listdir("Cogs"):
+\t\tif filename.endswith(".py"):
+\t\t\tbot.load_extension(f"Cogs.{filename[:-3]}")
 
 @bot.event
 async def on_ready():
 \tprint(f"We have logged in as {bot.user}")
-\tawait bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
 \tprint(discord.__version__)
+\tawait bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
 
 bot.run(token)`;
 

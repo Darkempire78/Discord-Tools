@@ -1,30 +1,52 @@
-const fs = require("fs"); //requireing, the module for reading files 
-const ascii = require("ascii-table"); //requiring ascii-table which is a great tool for creating ascii tables
-
-let table = new ascii("Events"); //creating a new table with the name "Commands"
+const fs = require("fs");
+const ascii = require("ascii-table");
+let table = new ascii("Events");
 table.setHeading("Events", "Load status");
-
+const allevents = [];
 module.exports = async (client) => {
-    let theevents; //global variable
-    fs.readdirSync("./events/").forEach(file => { //reading each command
-        theevents =  fs.readdirSync(`./events/`).filter(file => file.endsWith(".js")); //it will be only a command if it ends with .js
-        fs.readdir("./events/", (err, files) => { //for each file we will "LOAD THE EVENT"
-            if (err) return console.error(err); //if an error log it
-                    const event = require(`../events/${file}`); //create the event from the filename
-                    let eventName = file.split(".")[0]; //get the eventname from it
-                    theevents = eventName; //set it into the global variable
-                    client.on(eventName, event.bind(null, client)); //LOAD THE EVENT
-            });
-    });
-    
-    //now we have an array for all events in the event folder, we can load it in loop and pass it onto our beautiful table
-    for(let i = 0; i< theevents.length; i++){
+  try{
+    const load_dir = (dir) => {
+      const event_files = fs.readdirSync(`./events/${dir}`).filter((file) => file.endsWith(".js"));
+      for (const file of event_files){
+        const event = require(`../events/${dir}/${file}`)
+        let eventName = file.split(".")[0];
+        allevents.push(eventName);
+        client.on(eventName, event.bind(null, client));
+      }
+    }
+    await ["client", "guild"].forEach(e=>load_dir(e));
+    for (let i = 0; i < allevents.length; i++) {
         try {
-            table.addRow(theevents[i], 'Ready'); //log in table ready
-        } catch (error) {
-            console.error(error.stack); // If there is an error, console log the error stack message
+            table.addRow(allevents[i], "Ready");
+        } catch (e) {
+            console.log(String(e.stack).red);
         }
     }
-    console.log(table.toString()); //showing the table
-	console.log("Logging into the BOT..."); //showing loading status
-}
+    console.log(table.toString().cyan);
+    try{
+      const stringlength = 69;
+      console.log("\n")
+      console.log(`     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length)+ "┃".bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + `Welcome to SERVICE HANDLER!`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-`Welcome to SERVICE HANDLER!`.length)+ "┃".bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + `  /-/ By https://milrato.eu /-/`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-`  /-/ By https://milrato.eu /-/`.length)+ "┃".bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length)+ "┃".bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + `  /-/ Discord: Tomato#6966 /-/`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-`  /-/ By Discord: Tomato#6966 /-/`.length)+ "   ┃".bold.brightGreen)
+      console.log(`     ┃ `.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length)+ "┃".bold.brightGreen)
+      console.log(`     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
+    }catch{ /* */ }
+    try{
+      const stringlength2 = 69;
+      console.log("\n")
+      console.log(`     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.yellow)
+      console.log(`     ┃ `.bold.yellow + " ".repeat(-1+stringlength2-` ┃ `.length)+ "┃".bold.yellow)
+      console.log(`     ┃ `.bold.yellow + `Logging into the BOT...`.bold.yellow + " ".repeat(-1+stringlength2-` ┃ `.length-`Logging into the BOT...`.length)+ "┃".bold.yellow)
+      console.log(`     ┃ `.bold.yellow + " ".repeat(-1+stringlength2-` ┃ `.length)+ "┃".bold.yellow)
+      console.log(`     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow)
+    }catch{ /* */ }
+  }catch (e){
+    console.log(String(e.stack).bgRed)
+  }
+};
+
+/** Template by Tomato#6966 | https://github.com/Tomato6966/Discord-Js-Handler-Template */
