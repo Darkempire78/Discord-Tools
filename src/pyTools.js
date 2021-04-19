@@ -13,6 +13,7 @@ const pyCreateMainFile = () => {
     const pyMainScript = `import discord
 from discord.ext import commands
 import json
+import os
 
 # Get configuration.json
 with open("configuration.json", "r") as config: 
