@@ -69,7 +69,7 @@ module.exports = async (client, message) => {
         //try to delete the message of the user who ran the cmd
         try{  message.delete();   }catch{}
         //if Command has specific permission return error
-        if(command.memberpermissions && !message.member.hasPermission(command.memberpermissions)) {
+        if(command.memberpermissions && !message.member.hasPermission(command.memberpermissions, { checkAdmin: command.adminPermOverride, checkOwner: command.adminPermOverride })) {
           return message.channel.send(new Discord.MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
