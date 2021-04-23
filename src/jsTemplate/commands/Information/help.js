@@ -16,18 +16,18 @@ module.exports = {
           if (!cmd) {
               return message.channel.send(embed.setColor(ee.wrongcolor).setDescription(`No Information found for command **${args[0].toLowerCase()}**`));
           }
-          if (cmd.name) embed.addField("**Command name**", `\`${cmd.name}\``);
+          if (cmd.name) embed.addField("**Command :**", `\`${cmd.name}\``);
           if (cmd.name) embed.setTitle(`Detailed Information about:\`${cmd.name}\``);
           if (cmd.description) embed.addField("**Description**", `\`${cmd.description}\``);
           if (cmd.aliases) embed.addField("**Aliases**", `\`${cmd.aliases.map((a) => `${a}`).join("`, `")}\``);
           if (cmd.cooldown) embed.addField("**Cooldown**", `\`${cmd.cooldown} Seconds\``);
-          else embed.addField("**Cooldown**", `\`1 Second\``);
+          else embed.addField("**Cooldown**", `\`${config.defaultCommandCooldown}\``);
           if (cmd.usage) {
               embed.addField("**Usage**", `\`${config.prefix}${cmd.usage}\``);
               embed.setFooter("Syntax: <> = required, [] = optional");
           }
           if (cmd.useage) {
-              embed.addField("**Useage**", `\`${config.prefix}${cmd.useage}\``);
+              embed.addField("**Usage**", `\`${config.prefix}${cmd.useage}\``);
               embed.setFooter("Syntax: <> = required, [] = optional");
           }
           return message.channel.send(embed.setColor(ee.color));
