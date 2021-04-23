@@ -7,7 +7,7 @@ module.exports = {
     aliases: ["say-embed"],
     cooldown: 2,
     usage: "embed <TITLE> ++ <DESCRIPTION>",
-    description: "Resends a message from u as an Embed",
+    description: "Resends a message from you as an Embed",
     run: async (client, message, args, user, text, prefix) => {
     try{
       if(!args[0])
@@ -15,7 +15,7 @@ module.exports = {
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`❌ ERROR | You didn't provided a Title, nor a Description`)
-            .setDescription(`Usage: \`${prefix}embed <TITLE> ++ <DESCRIPTION>\``)
+            .setDescription(`Usage: \`${prefix}${this.usage}\``)
         );
       let userargs = args.join(" ").split("++");
       let title = userargs[0];
