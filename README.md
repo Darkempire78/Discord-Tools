@@ -38,6 +38,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ### Generate a template Discord bot : 
 - Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA, Harmony and Eris)
+
 ⚠️ A folder must be opened in VSCode to execute this command
 
 <img src="images/video1.gif" width="500"/>
@@ -47,6 +48,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
 - Shortcut : `Ctrl+Alt+D`
 - Works with Discord.py, Discord.js and JDA (JDA, Harmony and Eris documentions do not allow to make a research)
+
 ⚠️ A folder must be opened in VSCode to execute this command
 
 <img src="images/video5.gif" width="500"/>
