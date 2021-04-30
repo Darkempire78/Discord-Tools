@@ -143,12 +143,12 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.3.2
+### 1.3.2 (Latest update)
 - Update of the Discord.js snippets
 - Update of the Discord.js template
 - Fix an issue with the discord-tools.openDiscordDoc command 
 - Several small corrections
-### 1.3.1 (Latest update)
+### 1.3.1 
 - Update of the Discord.js template
 - Update of the Discord.py template
 ### 1.3.0 
