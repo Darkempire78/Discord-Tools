@@ -3,8 +3,9 @@
 ## [1.3.2]
 - Update of the Discord.js snippets
 - Update of the Discord.js template
+- Fix an issue with the discord-tools.openDiscordDoc command 
 - Several small corrections
-- 
+ 
 ## [1.3.1]
 - Update the Discord.js template
 - Update the Discord.py template

@@ -80,8 +80,15 @@ function activate(context) {
         if (editor) {
             const document = editor.document;
 
+            // Supported langues
+            const supportedLanguages = ["javascript", "python", "typescript", "java"];
             // Get the good documentation
             const language = document.languageId;
+
+            // Check if the language is supported
+            if (!supportedLanguages.includes(language)) {
+                return vscode.window.showErrorMessage(`No documentation found for ${language}!`);
+            }
 
             const languages = {
                 "javascript": {
