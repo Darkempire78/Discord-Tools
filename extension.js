@@ -6,6 +6,9 @@ const vscode = require('vscode');
 const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
 
+// HoverProvider
+// const dpyProvider = require('./hoverProvider/dpyProvider');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -127,14 +130,77 @@ function activate(context) {
         } 
 	});
     context.subscriptions.push(openDiscordDoc);
+
+
+    // let dpyHoverProvider = vscode.languages.registerHoverProvider(
+    //     "python",
+    //     new DpyProvider()
+    // ); 
+    // context.subscriptions.push(dpyHoverProvider);
 }
 
-exports.activate = activate;
+
+// HoverProvider
+
+// class DpyProvider {
+//     provideHover(document, position) {
+
+//         // Use json file from python generator
+
+//         // const wordRange = document.getWordRangeAtPosition(position);
+//         // const word = wordRange ? document.getText(wordRange) : "";
+
+//         // let test = dpyProvider[word] || ""
+//         // // test = test.replaceAll("'", "")
+//         // lDpyProvideret markdownText = new vscode.MarkdownString();
+        
+//         // test = test.split("\n");
+
+//         // for (let index = 0; index < test.length; index++) {
+//         //     test[index] = test[index] + "\n"
+//         //     markdownText += test[index];
+            
+//         // }
+//         // console.log(markdownText)
+//         // ;
+//         // if (info != "") {
+//         //     // Get the class
+//         //     let elements = info.split(" ");
+//         //     for (let i = 0; i < elements.length; i++) {
+//         //         if (elements[i].includes(":class:")) {
+//         //             elements[i] = elements[i].replace(":class:", "").replaceAll("`", "");
+//         //             elements[i] = `[**${elements[i]}**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=${elements[i]}#discord.${elements[i]})`;
+//         //         }
+//         //         // Check if class / atr and get the next element
+//         //         // Good : https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.commands.Bot
+//         //         // Bad : https://discordpy.readthedocs.io/en/latest/api.html?highlight=~ext.commands.Bot#discord.~ext.commands.Bot
+//         //     }
+//         //     info = elements.join(" ")
+
+//         //     // Replace
+//         //     info = info.replaceAll(".. warning::", "⚠️ Warning :");
+
+//         //     // Add the online doc
+//         //     info += `\n\n[**Read More**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=${word}#discord.${word})`;
+//         // }
+//         // info+= "our bot's own messages and private messages are sent through this event. This can lead cases of 'recursion' depending on how your bot was programmed. [**Message**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=Message#discord.Message) If you want the bot to not reply to itself, consider checking the user IDs. Note that [**~ext.commands.Bot**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=~ext.commands.Bot#discord.~ext.commands.Bot) does nothave this problem." 
+//         // console.log(info)
+//         // const md = new vscode.MarkdownString(info);
+//         // markdownText.isTrusted = true;
+//         const wordRange = document.getWordRangeAtPosition(position);
+//         const word = wordRange ? document.getText(wordRange) : '';
+//         const info = dpyProvider[word] || '';
+//         const md = new vscode.MarkdownString(info);
+//         return new vscode.Hover(md);
+//     }
+// }
+
 
 // this method is called when your extension is deactivated
 function deactivate() {}
 
-module.exports = {
-	activate,
-	deactivate
-}
+
+// Exports
+exports.activate = activate;
+exports.deactivate = deactivate;
+// exports.DpyProvider = DpyProvider;

@@ -18,9 +18,9 @@
 		"discord.py",
 		"discord.js",
 		"jda",
-        "eris",
-        "harmony",
-        "deno"
+		"eris",
+		"harmony",
+		"deno"
 	],
 	"categories": [
 		"Other",
@@ -52,22 +52,22 @@
 				"mac": "shift+cmd+d"
 			}
 		],
-        "menus": {
-            "commandPalette": [
-                {
-                    "command": "discord-tools.pyBotTemplate",
-                    "when": "workspaceFolderCount > 0"
-                },
-                {
-                    "command": "discord-tools.jsBotTemplate",
-                    "when": "workspaceFolderCount > 0"
-                },
-                {
-                    "command": "discord-tools.openDiscordDoc",
-                    "when": "workspaceFolderCount > 0"
-                }
-            ]
-        },
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "discord-tools.pyBotTemplate",
+					"when": "workspaceFolderCount > 0"
+				},
+				{
+					"command": "discord-tools.jsBotTemplate",
+					"when": "workspaceFolderCount > 0"
+				},
+				{
+					"command": "discord-tools.openDiscordDoc",
+					"when": "workspaceFolderCount > 0"
+				}
+			]
+		},
 		"snippets": [
 			{
 				"language": "python",
@@ -77,11 +77,11 @@
 				"language": "javascript",
 				"path": "./snippets/jsSnippets.code-snippets"
 			},
-            {
-                "language": "javascript",
+			{
+				"language": "javascript",
 				"path": "./snippets/erisSnippets.code-snippets"
-            },
-            {
+			},
+			{
 				"language": "typescript",
 				"path": "./snippets/harmonySnippets.code-snippets"
 			},
