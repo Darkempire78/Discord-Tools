@@ -1,0 +1,22 @@
+{
+	"name": "Discord Theme (Dark)",
+	"type": "dark",
+	"colors": {
+		"editor.background": "#36393f",
+		"editor.foreground": "#ffffff",
+		"activityBarBadge.background": "#F04747",
+		"sideBarTitle.foreground": "#ffffff",
+		"sideBarSectionHeader.background": "#2f3136",
+		"statusBar.background": "#202225",
+		"sideBar.background": "#2f3136",
+		"list.hoverBackground": "#2f3136",
+		"titleBar.activeBackground": "#202225",
+		"titleBar.inactiveBackground": "#202225",
+		"activityBar.background": "#202225",
+		"menubar.selectionBackground": "#4F545C",
+		"menu.background": "#202225",
+		"editorGroupHeader.tabsBackground": "#2f3136",
+		"tab.activeBackground": "#36393f",
+		"tab.inactiveBackground": "#2f3136",
+	}
+}

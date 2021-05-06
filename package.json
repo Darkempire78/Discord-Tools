@@ -24,7 +24,8 @@
 	],
 	"categories": [
 		"Other",
-		"Snippets"
+		"Snippets",
+        "Themes"
 	],
 	"activationEvents": [
 		"*"
@@ -89,7 +90,14 @@
 				"language": "java",
 				"path": "./snippets/javaSnippets.code-snippets"
 			}
-		]
+		],
+        "themes": [
+            {
+                "label": "Discord Theme",
+                "uiTheme": "vs-dark",
+                "path": "./themes/discordTheme-color-theme.json"
+            }
+        ]
 	},
 	"scripts": {
 		"lint": "eslint .",
