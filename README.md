@@ -119,6 +119,13 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 #### Java Preview :
 <img src="images/video4.gif" width="500"/>
 
+### Discord Theme (Dark version)
+Work for Python and JavasScript
+Activate the theme: `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
+
+#### Preview
+<img src="images/capture1.png" width="500"/>
+
 ## Functionality table
 
 |            | Template | Doc | Doc searcher | Snippets |
@@ -143,7 +150,9 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.3.2 (Latest update)
+### 1.3.3 (Latest update)
+- New Discord Theme (Javascript, Python)
+### 1.3.2
 - Update of the Discord.js snippets
 - Update of the Discord.js template
 - Fix an issue with the discord-tools.openDiscordDoc command 

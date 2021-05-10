@@ -21,6 +21,168 @@
 	},
 
 	"tokenColors": [
+        // Command Palette : "Developer: Inspect Editor Tokens and Scopes"
+
+    // Python
+        {
+            "scope": "variable.language.special.self.python",
+			"settings": {
+				"foreground": "#38c0ff"
+			}, 
+		},
+        {
+            "scope": [
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "settings": {
+                "foreground": "#8ddbff"
+            }
+        },
+        {
+            "scope": [
+                "storage.type.function.python",
+                "meta.function.python"
+            ],
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": [
+                "storage.type.class.python",
+                "meta.class.python"
+            ],
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": "punctuation.separator.period.python",
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "scope": "source.python",
+            "settings": {
+                "foreground": "#8ddbff"
+            }
+        },
+        {
+            "scope": "variable.parameter.function-call.python",
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": "storage.type.string.python",
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": [
+                "punctuation.definition.arguments.begin.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "settings": {
+                "foreground": "#ffe449"
+            }
+        },
+
+    // Javascript
+        {
+            "scope": [
+                "storage.type.js",
+                "meta.var.expr.js"
+            ],
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": [
+                "storage.type.class.js",
+                "meta.class.js"
+            ],
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": [
+                "storage.type.function.js",
+                "meta.function.js"
+            ],
+            "settings": {
+                "foreground": "#38c0ff"
+            }
+        },
+        {
+            "scope": "punctuation.definition.block.js",
+            "settings": {
+                "foreground": "#8DDBFF"
+            }
+        },
+        {
+            "scope": "meta.brace.round.js",
+            "settings": {
+                "foreground": "#fff9da"
+            }
+        },
+        {
+            "scope": "meta.arrow",
+            "settings": {
+                "foreground": "#cc72c5"
+            }
+        },
+        {
+            "scope": "punctuation.terminator.statement.js",
+            "settings": {
+                "foreground": "#ffe449"
+            }
+        },
+        
+        
+
+    // Others
+        {
+            // Class name
+            "scope": [
+                "support.class",
+                "entity.name.class",
+                "entity.other.attribute-name.class",
+                "entity.name.type.class"
+            ],
+            "settings": {
+                "foreground": "#8dff9c"
+            }
+        },
+        {
+            // Class arguments
+            "scope": "entity.other.inherited-class",
+            "settings": {
+                "foreground": "#b4ffbe"
+            }
+        },
+        {
+			"scope": [
+				"keyword.operator.new",
+				"keyword.operator.expression",
+				"keyword.operator.cast",
+				"keyword.operator.sizeof",
+				"keyword.operator.alignof",
+				"keyword.operator.typeid",
+				"keyword.operator.alignas",
+				"keyword.operator.instanceof",
+				"keyword.operator.logical.python",
+				"keyword.operator.wordlike"
+			],
+			"settings": {
+				"foreground": "#cc72c5"
+			}
+		},
         {
             "scope": [
                 "keyword.control",
@@ -56,6 +218,7 @@
 				"foreground": "#F44747"
 			}
 		},
+        
         {
 			"scope": [
 				"variable",
@@ -64,6 +227,7 @@
 				"entity.name.variable",
                 "variable.other.constant",
 				"variable.other.enummember",
+                "constant.language",
 			],
 			"settings": {
 				"foreground": "#8ddbff"
