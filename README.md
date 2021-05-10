@@ -122,9 +122,9 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ### Discord Theme (Dark version)
 Work for Python and JavasScript
-Activate the theme: `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
+Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 
-#### Preview
+#### Preview :
 <img src="images/capture1.png" width="500"/>
 
 ## Functionality table
