@@ -2,3 +2,4 @@ node_modules
 .vscode-test/
 *.vsix
 test discord doc/
+test Discord Integration/

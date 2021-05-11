@@ -42,7 +42,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
-<img src="images/video1.gif" width="500"/>
+<img src="assets/video1.gif" width="500"/>
 
 
 ### Open the Discord bot Documentation with/without a research :
@@ -52,7 +52,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
-<img src="images/video5.gif" width="500"/>
+<img src="assets/video5.gif" width="500"/>
 
 ### Generate code easily :
 
@@ -81,7 +81,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `eris.message` : Create a default Discord bot message event.
 
 #### Javascript Preview :
-<img src="images/video2.gif" width="500"/>
+<img src="assets/video2.gif" width="500"/>
 
 #### Typescript ([Harmony](https://harmony.mod.land/)) :
 - `hy.index` : Create a basic Discord bot index.ts file.
@@ -107,7 +107,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - **and 59 other events...**
 
 #### Python Preview :
-<img src="images/video3.gif" width="500"/>
+<img src="assets/video3.gif" width="500"/>
 
 #### Java ([JDA](https://github.com/DV8FromTheWorld/JDA)) :
 
@@ -118,14 +118,14 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - `jda.onmessagereceived` : Create a default Discord bot on.
 
 #### Java Preview :
-<img src="images/video4.gif" width="500"/>
+<img src="assets/video4.gif" width="500"/>
 
 ### Discord Theme (Dark version)
 Work for Python and JavasScript
 Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 
 #### Preview :
-<img src="images/capture1.png" width="500"/>
+<img src="assets/capture1.png" width="500"/>
 
 ## Functionality table
 

@@ -1,30 +1,56 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const Discord = require('discord.js-selfbot');
 
-// Others
+// const discordChat = require('./test Discord Integration/discordChat.js');
+
 const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
 
-// HoverProvider
-// const dpyProvider = require('./hoverProvider/dpyProvider');
+const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const discordToken = require('./test Discord Integration/test.json');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "discord-tools" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
     
+
+
+    // Discord test
+    const client = new Discord.Client();
+
+    client.on('ready', () => {
+        console.log(`Logged in as ${client.user.tag}!`);
+        
+        // Create the Discord Tree View
+        let discordTreeViewProvider = new DiscordTreeViewProvider(client);
+        
+        let view = vscode.window.createTreeView("discordTreeView", {
+            treeDataProvider: discordTreeViewProvider,
+        });
+        context.subscriptions.push(view);
+    });
+
+    client.on('message', message => {
+        if (message.author.id == "351641602067922945")
+        {
+            console.log(message)
+        }
+        
+    })
+
+    client.login(discordToken.token);
+
+
+    
+
+
+    
+
+
     // Generate a python template bot (Discord.py)
 	let pyBotTemplate = vscode.commands.registerCommand('discord-tools.pyBotTemplate', function () {
         pyTools.pyCreateTemplateBot();
@@ -130,77 +156,17 @@ function activate(context) {
         } 
 	});
     context.subscriptions.push(openDiscordDoc);
-
-
-    // let dpyHoverProvider = vscode.languages.registerHoverProvider(
-    //     "python",
-    //     new DpyProvider()
-    // ); 
-    // context.subscriptions.push(dpyHoverProvider);
 }
-
-
-// HoverProvider
-
-// class DpyProvider {
-//     provideHover(document, position) {
-
-//         // Use json file from python generator
-
-//         // const wordRange = document.getWordRangeAtPosition(position);
-//         // const word = wordRange ? document.getText(wordRange) : "";
-
-//         // let test = dpyProvider[word] || ""
-//         // // test = test.replaceAll("'", "")
-//         // lDpyProvideret markdownText = new vscode.MarkdownString();
-        
-//         // test = test.split("\n");
-
-//         // for (let index = 0; index < test.length; index++) {
-//         //     test[index] = test[index] + "\n"
-//         //     markdownText += test[index];
-            
-//         // }
-//         // console.log(markdownText)
-//         // ;
-//         // if (info != "") {
-//         //     // Get the class
-//         //     let elements = info.split(" ");
-//         //     for (let i = 0; i < elements.length; i++) {
-//         //         if (elements[i].includes(":class:")) {
-//         //             elements[i] = elements[i].replace(":class:", "").replaceAll("`", "");
-//         //             elements[i] = `[**${elements[i]}**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=${elements[i]}#discord.${elements[i]})`;
-//         //         }
-//         //         // Check if class / atr and get the next element
-//         //         // Good : https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.commands.Bot
-//         //         // Bad : https://discordpy.readthedocs.io/en/latest/api.html?highlight=~ext.commands.Bot#discord.~ext.commands.Bot
-//         //     }
-//         //     info = elements.join(" ")
-
-//         //     // Replace
-//         //     info = info.replaceAll(".. warning::", "⚠️ Warning :");
-
-//         //     // Add the online doc
-//         //     info += `\n\n[**Read More**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=${word}#discord.${word})`;
-//         // }
-//         // info+= "our bot's own messages and private messages are sent through this event. This can lead cases of 'recursion' depending on how your bot was programmed. [**Message**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=Message#discord.Message) If you want the bot to not reply to itself, consider checking the user IDs. Note that [**~ext.commands.Bot**](https://discordpy.readthedocs.io/en/latest/api.html?highlight=~ext.commands.Bot#discord.~ext.commands.Bot) does nothave this problem." 
-//         // console.log(info)
-//         // const md = new vscode.MarkdownString(info);
-//         // markdownText.isTrusted = true;
-//         const wordRange = document.getWordRangeAtPosition(position);
-//         const word = wordRange ? document.getText(wordRange) : '';
-//         const info = dpyProvider[word] || '';
-//         const md = new vscode.MarkdownString(info);
-//         return new vscode.Hover(md);
-//     }
-// }
-
 
 // this method is called when your extension is deactivated
 function deactivate() {}
 
 
+
+
+
+
+
 // Exports
 exports.activate = activate;
 exports.deactivate = deactivate;
-// exports.DpyProvider = DpyProvider;
