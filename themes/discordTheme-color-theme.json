@@ -144,7 +144,13 @@
             }
         },
         
-        
+    // Json
+        {
+            "scope": "support.type.property-name.json",
+            "settings": {
+                "foreground": "#8ddbff"
+            }
+        },
 
     // Others
         {

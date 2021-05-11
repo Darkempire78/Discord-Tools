@@ -100,7 +100,15 @@
 				"uiTheme": "vs-dark",
 				"path": "./themes/discordTheme-color-theme.json"
 			}
-		]
+		],
+        "views": {
+            "explorer": [
+                {
+                    "id": "discordTreeView",
+                    "name": "Discord Channels"
+                }
+            ]
+        }
 	},
 	"scripts": {
 		"lint": "eslint .",
