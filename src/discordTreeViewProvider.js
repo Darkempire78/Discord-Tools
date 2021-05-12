@@ -30,21 +30,22 @@ class DiscordTreeViewProvider {
 }
 
 class GuildTreeItem {
-    // we must provide the property label for it to show up the tree view
     constructor(guild, collapsibleState) {
         this.guild = guild;
         this.label = guild.name;
+        this.description = "";
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
 
         this.convertPositionToTreeItems();
     }
 
-    // Generate the channels of the guild
     convertPositionToTreeItems() {
         this.guild.channels.cache.forEach(channel => {
-            let channelName = new vscode.TreeItem(channel.name);
-            this.positionDetails.push(channelName)
+            if (channel.type == 'category') {
+                let category = new vscode.TreeItem(channel.name, vscode.TreeItemCollapsibleState.Expanded);
+                this.positionDetails.push(category)
+            }
         })
     }
 

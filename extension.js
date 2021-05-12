@@ -7,8 +7,12 @@ const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
 
 const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
+const discordChatWebview = require("./src/discordChatWebview.js");
+const statusBar = require("./src/statusBar.js")
 
 const discordToken = require('./test Discord Integration/test.json');
+
+let discordStatusBarItem;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -31,6 +35,8 @@ function activate(context) {
         let view = vscode.window.createTreeView("discordTreeView", {
             treeDataProvider: discordTreeViewProvider,
         });
+        // Update the status bar
+        statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat")
         context.subscriptions.push(view);
     });
 
@@ -45,11 +51,22 @@ function activate(context) {
     client.login(discordToken.token);
 
 
-    
+    // Status Bar
+    discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
+    statusBar.showStatusBarItem(discordStatusBarItem);
 
 
-    
-
+    // Open the Discord Chat
+    let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
+        const discordChatWebviewPanel = vscode.window.createWebviewPanel(
+            'discordChat', // Identifies the type of the webview. Used internally
+            'Discord Chat', // Title of the panel displayed to the user
+            vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
+            {} // Webview options. More on these later.
+        );
+        discordChatWebviewPanel.webview.html = discordChatWebview.getDiscordChatWebviewContent();
+    });
+    context.subscriptions.push(openDiscordChat);
 
     // Generate a python template bot (Discord.py)
 	let pyBotTemplate = vscode.commands.registerCommand('discord-tools.pyBotTemplate', function () {
@@ -160,11 +177,6 @@ function activate(context) {
 
 // this method is called when your extension is deactivated
 function deactivate() {}
-
-
-
-
-
 
 
 // Exports

@@ -47,6 +47,10 @@
 			{
 				"command": "discord-tools.openDiscordDoc",
 				"title": "Open the Discord bot Documention"
+			},
+            {
+				"command": "discord-tools.openDiscordChat",
+				"title": "Open the Discord Chat"
 			}
 		],
 		"keybindings": [
@@ -105,7 +109,7 @@
             "explorer": [
                 {
                     "id": "discordTreeView",
-                    "name": "Discord Channels"
+                    "name": "Discord"
                 }
             ]
         }
