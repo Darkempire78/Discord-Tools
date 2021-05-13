@@ -10,6 +10,9 @@
 		"type": "git",
 		"url": "https://github.com/Darkempire78/Discord-Tools"
 	},
+    "bugs": {
+        "url": "https://github.com/Darkempire78/Discord-Tools/issues"
+    },
 	"engines": {
 		"vscode": "^1.52.0"
 	},

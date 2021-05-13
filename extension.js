@@ -14,6 +14,7 @@ const statusBar = require("./src/statusBar.js")
 const discordToken = require('./test Discord Integration/test.json');
 
 let discordStatusBarItem;
+let discordChatWebviewPanel = undefined;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -27,46 +28,60 @@ function activate(context) {
     // Discord test
     const client = new Discord.Client();
 
-    // client.on('ready', () => {
-    //     console.log(`Logged in as ${client.user.tag}!`);
+    client.on('ready', () => {
+        console.log(`Logged in as ${client.user.tag}!`);
         
-    //     // Create the Discord Tree View
-    //     let discordTreeViewProvider = new DiscordTreeViewProvider(client);
+        // Create the Discord Tree View
+        let discordTreeViewProvider = new DiscordTreeViewProvider(client);
         
-    //     let view = vscode.window.createTreeView("discordTreeView", {
-    //         treeDataProvider: discordTreeViewProvider,
-    //     });
-    //     // Update the status bar
-    //     statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat")
-    //     context.subscriptions.push(view);
-    // });
+        let view = vscode.window.createTreeView("discordTreeView", {
+            treeDataProvider: discordTreeViewProvider,
+        });
 
-    // client.on('message', message => {
-    //     if (message.author.id == "351641602067922945")
-    //     {
-    //         console.log(message)
-    //     }
+        // Update the status bar
+        statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat")
+        context.subscriptions.push(view);
+    });
+
+    client.on('message', message => {
+        if (message.author.id == "351641602067922945")
+        {
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'receiveMessage' ,
+                    author: message.author.username,
+                    authorAvatar: message.author.avatarURL(),
+                    content: message.content,
+                    date: message.createdAt.toLocaleString()
+                }
+            );
+        }
         
-    // })
+    })
 
-    // client.login(discordToken.token);
+    client.login(discordToken.token);
 
-
+    
+    
     // Status Bar
     discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
     statusBar.showStatusBarItem(discordStatusBarItem);
 
     // Open the Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
-        const discordChatWebviewPanel = vscode.window.createWebviewPanel(
-            'discordChat', // Identifies the type of the webview. Used internally
-            'Discord Chat', // Title of the panel displayed to the user
-            vscode.ViewColumn.Two, // Editor column to show the new webview panel in
-            {
-                // Webview options
-                enableScripts: true
-            } 
-        );
+        if (discordChatWebviewPanel) {
+            discordChatWebviewPanel.reveal(vscode.ViewColumn.One);
+        } else {
+            discordChatWebviewPanel = vscode.window.createWebviewPanel(
+                'discordChat', // Identifies the type of the webview. Used internally
+                'Discord Chat', // Title of the panel displayed to the user
+                vscode.ViewColumn.Two, // Editor column to show the new webview panel in
+                {
+                    // Webview options
+                    enableScripts: true
+                } 
+            );
+        }
         
         const htmlFile = discordChatWebview.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
         const cssStylePath = vscode.Uri.file(path.join(context.extensionPath, 'webView', 'style.css'));

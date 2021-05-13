@@ -57,7 +57,7 @@ p {
     background: #2f3136; 
 } */
 
-.messagesListContainer {
+#messagesListContainer {
     color: #dcddde;
     position: fixed;
     width: -webkit-fill-available;
@@ -90,10 +90,12 @@ p {
 .messageDate {
     display: inline-block;
     color: #72767d;
+    padding-left: 3px;
     font-size: 14px;
 }
 
 .messageContent {
+    white-space: pre-line;
     padding-left: 50px;
 }
 

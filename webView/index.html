@@ -11,15 +11,15 @@
         <p class="channelName"># My Super Channel</p>
     </div>
 
-    <div class="messagesListContainer">
-        <div class="messageContainer">
+    <div id="messagesListContainer">
+        <!-- <div class="messageContainer">
             <img class="messageImage" src="https://cdn.discordapp.com/avatars/351641602067922945/0f3a32284da374fd3e5633f552359eed.png?size=4096">
             <div class="messageInfos">
                 <p class="messageAuthor">Pseudo</p>
                 <p class="messageDate">Date</p>
             </div>
             <p class="messageContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?</p>
-        </div>
+        </div> -->
     </div>
 </body>
 
@@ -35,6 +35,51 @@
 
 
 <script>
+// Handle the message inside the webview
+window.addEventListener('message', event => {
+
+    const message = event.data; // The JSON data our extension sent
+
+    switch (message.command) {
+        case 'receiveMessage':
+            const messagesListContainer = document.getElementById("messagesListContainer");
+
+            // Create the message
+            let messageContainer = document.createElement("div");
+            messageContainer.classList = ["messageContainer"];
+
+            let messageImage = document.createElement("img");
+            messageImage.classList = ["messageImage"];
+            messageImage.src = message.authorAvatar;
+
+            let messageInfos = document.createElement("div");
+            messageInfos.classList = ["messageInfos"];
+
+            let messageAuthor = document.createElement("p");
+            messageAuthor.classList = ["messageAuthor"];
+            messageAuthor.innerHTML = message.author;
+
+            let messageDate = document.createElement("p");
+            messageDate.classList = ["messageDate"];
+            messageDate.innerHTML = message.date;
+
+            let messageContent = document.createElement("p");
+            messageContent.classList = ["messageContent"];
+            messageContent.innerHTML = message.content;
+
+            // Append
+            messagesListContainer.appendChild(messageContainer)
+            messageContainer.appendChild(messageImage);
+            messageContainer.appendChild(messageInfos);
+            messageContainer.appendChild(messageContent);
+            
+            messageInfos.appendChild(messageAuthor);
+            messageInfos.appendChild(messageDate);
+    }
+});
+
+
+// Web page JS
 document.getElementById('messageTextArea').addEventListener('keydown', function (e) {
 
     let textAreaValue = document.getElementById('messageTextArea').value;
