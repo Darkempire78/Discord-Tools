@@ -99,6 +99,13 @@ document.getElementById('messageTextArea').addEventListener('keydown', function 
         }
         else {
             // Enter => Send the message
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({
+                command: 'sendMessage',
+                content: document.getElementById('messageTextArea').value
+            })
+            
+            // Clear
             document.getElementById('messageTextArea').value = "";
             document.getElementById('messageTextArea').style.height = "18px";
         }

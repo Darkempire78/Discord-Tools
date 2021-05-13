@@ -22,7 +22,9 @@ let discordChatWebviewPanel = undefined;
 function activate(context) {
 	console.log('Congratulations, your extension "discord-tools" is now active!');
 
-    
+    // Status Bar
+    discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
+    statusBar.showStatusBarItem(discordStatusBarItem);
 
 
     // Discord test
@@ -61,17 +63,17 @@ function activate(context) {
 
     client.login(discordToken.token);
 
-    
-    
-    // Status Bar
-    discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
-    statusBar.showStatusBarItem(discordStatusBarItem);
 
     // Open the Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
-        if (discordChatWebviewPanel) {
+        
+        if (discordChatWebviewPanel) { 
             discordChatWebviewPanel.reveal(vscode.ViewColumn.One);
-        } else {
+        }
+        else {
+            
+            console.log("2")
+            
             discordChatWebviewPanel = vscode.window.createWebviewPanel(
                 'discordChat', // Identifies the type of the webview. Used internally
                 'Discord Chat', // Title of the panel displayed to the user
@@ -81,14 +83,41 @@ function activate(context) {
                     enableScripts: true
                 } 
             );
+        
+            const htmlFile = discordChatWebview.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
+            const cssStylePath = vscode.Uri.file(path.join(context.extensionPath, 'webView', 'style.css'));
+            const cssThemeRes = cssStylePath.with({ scheme: 'vscode-resource' });
+            const cssThemeLinkTag = '<link rel="stylesheet" id = "swpd-theme" href="' + cssThemeRes + '" type="text/css" media="all" />';
+            
+            discordChatWebviewPanel.webview.html = cssThemeLinkTag + htmlFile;
+
+            // Handle messages from the webview (discord chat)
+            discordChatWebviewPanel.webview.onDidReceiveMessage(
+                message => {
+                    switch (message.command) {
+                        case 'sendMessage':
+                            // let date_format = new Date();
+                            // `${date_format.getMonth()}/${date_format.getDate()}/${date_format.getFullYear()}`
+
+                            discordChatWebviewPanel.webview.postMessage(
+                                { 
+                                    command: 'receiveMessage' ,
+                                    author: client.user.username,
+                                    authorAvatar: client.user.avatarURL(),
+                                    content: message.content,
+                                    date: "Date"
+                                }
+                            );
+                    }
+                },
+            )
+            discordChatWebviewPanel.onDidDispose(
+                event => {
+                    console.log("dispose")
+                    discordChatWebviewPanel = undefined;
+                }
+            )
         }
-        
-        const htmlFile = discordChatWebview.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
-        const cssStylePath = vscode.Uri.file(path.join(context.extensionPath, 'webView', 'style.css'));
-        const cssThemeRes = cssStylePath.with({ scheme: 'vscode-resource' });
-        const cssThemeLinkTag = '<link rel="stylesheet" id = "swpd-theme" href="' + cssThemeRes + '" type="text/css" media="all" />';
-        
-        discordChatWebviewPanel.webview.html = cssThemeLinkTag + htmlFile;
     });
     context.subscriptions.push(openDiscordChat);
 
