@@ -1,0 +1,135 @@
+html {
+    margin: 0;
+    height: 100%;
+}
+body {
+    margin: 0;
+    height: 100%;
+    background-color: #36393f;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+/* channelInfoContainer */
+
+.channelInfoContainer {
+    width: -webkit-fill-available;
+    height: 60px;
+    box-shadow: 0 0 6px 0 #0a0a0a;
+}
+
+.channelName {
+    padding: 20px 40px 20px 40px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+
+/* messagesListContainer */
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #2f3136; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #1b1b1b; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #2f3136; 
+} */
+
+.messagesListContainer {
+    color: #dcddde;
+    position: fixed;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    padding: 20px 50px 0 50px;
+    margin: 4px 0 130px 0;
+    overflow-y: scroll;
+}
+
+.messageContainer {
+    padding: 10px 0 10px 0;
+}
+
+.messageImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.messageInfos {
+    display: inline-block;
+    vertical-align: top;
+    padding: 8px 0 0 5px;
+}
+
+.messageAuthor {
+    display: inline-block;
+    font-size: 20px;
+}
+.messageDate {
+    display: inline-block;
+    color: #72767d;
+    font-size: 14px;
+}
+
+.messageContent {
+    padding-left: 50px;
+}
+
+/* sendMessageContainer */
+
+footer {
+    position: fixed;
+    width: -webkit-fill-available;
+    bottom: 0;
+}
+
+.sendMessageContainer {
+    width: -webkit-fill-available;
+    padding: 24px 24px 24px 24px;
+}
+
+.textAreaContainer {
+    background-color: #40444b;
+    border-radius: 8px;
+}
+
+.textArea {
+    padding: 11px 22px 11px 22px; 
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    height: 1rem;
+    width: -webkit-fill-available;
+    color: #ffffff;
+    background-color: #40444b;
+    border: none;
+    font-size: 1rem;
+}
+
+textarea:focus {
+    outline: none;
+}

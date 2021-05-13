@@ -143,6 +143,12 @@
                 "foreground": "#ffe449"
             }
         },
+        {
+            "scope": "support.type.object.module.js",
+            "settings": {
+                "foreground": "#cc72c5"
+            }
+        },
         
     // Json
         {

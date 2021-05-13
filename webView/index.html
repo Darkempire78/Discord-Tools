@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Discord Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="channelInfoContainer">
+        <p class="channelName"># My Super Channel</p>
+    </div>
+
+    <div class="messagesListContainer">
+        <div class="messageContainer">
+            <img class="messageImage" src="https://cdn.discordapp.com/avatars/351641602067922945/0f3a32284da374fd3e5633f552359eed.png?size=4096">
+            <div class="messageInfos">
+                <p class="messageAuthor">Pseudo</p>
+                <p class="messageDate">Date</p>
+            </div>
+            <p class="messageContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi aspernatur, hic aperiam atque recusandae, libero alias nobis quam vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?vel ratione cum explicabo dolore repellat expedita, totam id repellendus ducimus iste?</p>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <div class="sendMessageContainer">
+        <div class="textAreaContainer">
+            <div class="textArea">
+                <textarea id="messageTextArea" rows="1" placeholder="Send a message to #channel"></textarea>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+document.getElementById('messageTextArea').addEventListener('keydown', function (e) {
+
+    let textAreaValue = document.getElementById('messageTextArea').value;
+    textAreaValue = textAreaValue.split("\n");
+    let newTextAreaHeight = ((textAreaValue.length) * 19) + "px";
+
+    document.getElementById('messageTextArea').style.height = newTextAreaHeight;
+    
+    if (e.keyCode === 13) {
+        if (e.shiftKey || e.ctrlKey) {
+            // Ctrl + Enter => New line
+            let textAreaValue = document.getElementById('messageTextArea').value;
+            textAreaValue = textAreaValue.split("\n");
+            let newTextAreaHeight = ((textAreaValue.length) * 19) + "px";
+
+            document.getElementById('messageTextArea').style.height = newTextAreaHeight;
+        }
+        else {
+            // Enter => Send the message
+            document.getElementById('messageTextArea').value = "";
+            document.getElementById('messageTextArea').style.height = "18px";
+        }
+    }
+});
+</script>
+
+</html>
