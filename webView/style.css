@@ -4,6 +4,7 @@ html {
 }
 body {
     margin: 0;
+    padding: 0px !important;
     height: 100%;
     background-color: #36393f;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
@@ -62,7 +63,7 @@ p {
     position: fixed;
     width: -webkit-fill-available;
     height: -webkit-fill-available;
-    padding: 20px 50px 0 50px;
+    padding: 20px 25px 0 25px;
     margin: 4px 0 130px 0;
     overflow-y: scroll;
 }
