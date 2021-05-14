@@ -21,10 +21,9 @@ let discordChatWebviewPanel;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	console.log('Discord Tools is now active!');
-
     // Output channel
     generalOutputChannel = vscode.window.createOutputChannel("Discord Tools");
+    generalOutputChannel.appendLine('Discord Tools is now active!');
 
     // Status Bar
     discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
@@ -50,8 +49,17 @@ function activate(context) {
     });
 
     client.on('message', message => {
-        if (message.author.id == "351641602067922945")
+        if (message.channel.id == "744178929996398642")
         {
+            // Escape HTML
+            message.content = message.content.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
+            // Set cutom emojis
+            // let test = message.content.match(/<a?:.+:\d+>/gm)
+            // console.log(test)
+
+            // <img src="https://cdn.discordapp.com/emojis/771082435172630578.png" width="16px">
+
+            // Receive
             discordChatWebviewPanel.webview.postMessage(
                 { 
                     command: 'receiveMessage' ,
@@ -97,18 +105,10 @@ function activate(context) {
                 message => {
                     switch (message.command) {
                         case 'sendMessage':
-                            // let date_format = new Date();
-                            // `${date_format.getMonth()}/${date_format.getDate()}/${date_format.getFullYear()}`
-
-                            discordChatWebviewPanel.webview.postMessage(
-                                { 
-                                    command: 'receiveMessage' ,
-                                    author: client.user.username,
-                                    authorAvatar: client.user.avatarURL(),
-                                    content: message.content,
-                                    date: "Date"
-                                }
-                            );
+                            // Send the message
+                            client.channels.fetch('744178929996398642').then(channel => {
+                                channel.send(message.content);
+                            })
                     }
                 },
             )

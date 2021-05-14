@@ -63,7 +63,7 @@ p {
     position: fixed;
     width: -webkit-fill-available;
     height: -webkit-fill-available;
-    padding: 20px 25px 0 25px;
+    padding: 20px 25px 20px 25px;
     margin: 4px 0 130px 0;
     overflow-y: scroll;
 }
