@@ -23,7 +23,7 @@ p {
     box-shadow: 0 0 6px 0 #0a0a0a;
 }
 
-.channelName {
+#channelName {
     padding: 20px 40px 20px 40px;
     color: #ffffff;
     font-weight: bold;

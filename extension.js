@@ -16,6 +16,7 @@ const discordToken = require('./test Discord Integration/test.json');
 let generalOutputChannel;
 let discordStatusBarItem;
 let discordChatWebviewPanel;
+let discordCurrentChannelID;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -43,8 +44,22 @@ function activate(context) {
             treeDataProvider: discordTreeViewProvider,
             showCollapseAll: false
         });
-        discordTreeView.onDidChangeSelection( e => {
-            console.log(e)
+
+        // when channel is selected
+        discordTreeView.onDidChangeSelection( event => {
+            if (event.selection[0].type == "channel" && event.selection[0].channel.id != discordCurrentChannelID) {
+                discordCurrentChannelID = event.selection[0].channel.id;
+                
+                // Change the channel
+                if (discordChatWebviewPanel) {
+                    discordChatWebviewPanel.webview.postMessage(
+                        { 
+                            command: 'changeChannel' ,
+                            name: event.selection[0].channel.name
+                        }
+                    );
+                }
+            }
         });
 
         // Update the status bar
@@ -53,7 +68,7 @@ function activate(context) {
     });
 
     client.on('message', message => {
-        if (message.channel.id == "744178929996398642")
+        if (message.channel.id == discordCurrentChannelID)
         {
             // Escape HTML
             message.content = message.content.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
@@ -110,7 +125,7 @@ function activate(context) {
                     switch (message.command) {
                         case 'sendMessage':
                             // Send the message
-                            client.channels.fetch('744178929996398642').then(channel => {
+                            client.channels.fetch(discordCurrentChannelID).then(channel => {
                                 channel.send(message.content);
                             })
                     }

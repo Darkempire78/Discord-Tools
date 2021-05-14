@@ -34,6 +34,7 @@ class GuildTreeItem {
         this.guild = guild;
         this.label = guild.name;
         this.description = "";
+        this.type = "guild",
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
 
@@ -59,6 +60,7 @@ class CategoryTreeItem {
         this.category = category;
         this.label = category.name;
         this.description = "";
+        this.type = "category",
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
 
@@ -86,6 +88,7 @@ class ChannelTreeItem {
         this.channel = channel;
         this.label = channel.name;
         this.description = "";
+        this.type = "channel",
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
     }

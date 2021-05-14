@@ -8,7 +8,7 @@
 
 <body>
     <div class="channelInfoContainer">
-        <p class="channelName"># My Super Channel</p>
+        <p id="channelName"># NO CHANNEL FOUND</p>
     </div>
 
     <div id="messagesListContainer">
@@ -39,7 +39,7 @@
 const vscode = acquireVsCodeApi();
 
 // Handle the message inside the webview
-window.addEventListener('message', event => {
+window.addEventListener("message", event => {
 
     const message = event.data; // The JSON data our extension sent
 
@@ -81,6 +81,16 @@ window.addEventListener('message', event => {
 
             // Scrollbar to the bottom
             messagesListContainer.scrollTop = messagesListContainer.scrollHeight;
+            break;
+        
+        case 'changeChannel':
+            // Change the name
+            console.log(message.name)
+            let channelName = document.getElementById("channelName");
+            channelName.innerHTML = "# " + message.name;
+            // Clear the chat
+            removeAllChildNodes(document.getElementById("messagesListContainer"));
+            break;
     }
 });
 
@@ -116,6 +126,12 @@ document.getElementById('messageTextArea').addEventListener('keydown', function 
         }
     }
 });
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 </script>
 
 </html>
