@@ -90,6 +90,17 @@ window.addEventListener("message", event => {
             channelName.innerHTML = "# " + message.name;
             // Clear the chat
             removeAllChildNodes(document.getElementById("messagesListContainer"));
+
+            // Can send message
+            let messageTextArea = document.getElementById("messageTextArea");
+            if (message.canSendMessage) {
+                messageTextArea.disabled = false;
+                messageTextArea.placeholder = `Send a message to #${message.name}`;
+            }
+            else {
+                messageTextArea.disabled = true;
+                messageTextArea.placeholder = `You are not allowed to send messages in this channel`;
+            }
             break;
     }
 });

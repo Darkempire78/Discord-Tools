@@ -52,12 +52,18 @@ function activate(context) {
                 
                 // Change the channel
                 if (discordChatWebviewPanel) {
-                    discordChatWebviewPanel.webview.postMessage(
-                        { 
-                            command: 'changeChannel' ,
-                            name: event.selection[0].channel.name
-                        }
-                    );
+                    client.channels.fetch(discordCurrentChannelID).then(channel => {
+                        let hasPermissionInChannel = channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
+
+                        discordChatWebviewPanel.webview.postMessage(
+                            { 
+                                command: 'changeChannel' ,
+                                name: event.selection[0].channel.name,
+                                canSendMessage: hasPermissionInChannel
+                            }
+                        );
+                        generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
+                    })
                 }
             }
         });
@@ -88,6 +94,7 @@ function activate(context) {
                     date: message.createdAt.toLocaleString()
                 }
             );
+            generalOutputChannel.appendLine(`New message received : ${message.id} by ${message.author.username} (${message.author.id})`)
         }
         
     })
@@ -111,6 +118,7 @@ function activate(context) {
                     enableScripts: true
                 } 
             );
+            generalOutputChannel.appendLine("DiscordChatWebviewPanel created")
         
             const htmlFile = discordChatWebview.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
             const cssStylePath = vscode.Uri.file(path.join(context.extensionPath, 'webView', 'style.css'));
@@ -128,14 +136,14 @@ function activate(context) {
                             client.channels.fetch(discordCurrentChannelID).then(channel => {
                                 channel.send(message.content);
                             })
+                            generalOutputChannel.appendLine(`New message sent : ${message.id} to ${discordCurrentChannelID}`)
                     }
                 },
             )
-            discordChatWebviewPanel.onDidDispose(
-                event => {
-                    discordChatWebviewPanel = undefined;
-                }
-            )
+            discordChatWebviewPanel.onDidDispose( event => {
+                discordChatWebviewPanel = undefined;
+                generalOutputChannel.appendLine("DiscordChatWebviewPanel closed")
+            })
         }
     });
     context.subscriptions.push(openDiscordChat);
