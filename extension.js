@@ -13,14 +13,18 @@ const statusBar = require("./src/statusBar.js")
 
 const discordToken = require('./test Discord Integration/test.json');
 
+let generalOutputChannel;
 let discordStatusBarItem;
-let discordChatWebviewPanel = undefined;
+let discordChatWebviewPanel;
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	console.log('Congratulations, your extension "discord-tools" is now active!');
+	console.log('Discord Tools is now active!');
+
+    // Output channel
+    generalOutputChannel = vscode.window.createOutputChannel("Discord Tools");
 
     // Status Bar
     discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
@@ -31,7 +35,7 @@ function activate(context) {
     const client = new Discord.Client();
 
     client.on('ready', () => {
-        console.log(`Logged in as ${client.user.tag}!`);
+        generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
         
         // Create the Discord Tree View
         let discordTreeViewProvider = new DiscordTreeViewProvider(client);
@@ -64,16 +68,13 @@ function activate(context) {
     client.login(discordToken.token);
 
 
-    // Open the Discord Chat
+    // Open Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
         
         if (discordChatWebviewPanel) { 
             discordChatWebviewPanel.reveal(vscode.ViewColumn.One);
         }
         else {
-            
-            console.log("2")
-            
             discordChatWebviewPanel = vscode.window.createWebviewPanel(
                 'discordChat', // Identifies the type of the webview. Used internally
                 'Discord Chat', // Title of the panel displayed to the user
@@ -113,7 +114,6 @@ function activate(context) {
             )
             discordChatWebviewPanel.onDidDispose(
                 event => {
-                    console.log("dispose")
                     discordChatWebviewPanel = undefined;
                 }
             )

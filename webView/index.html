@@ -35,6 +35,9 @@
 
 
 <script>
+// Global variables
+const vscode = acquireVsCodeApi();
+
 // Handle the message inside the webview
 window.addEventListener('message', event => {
 
@@ -75,6 +78,9 @@ window.addEventListener('message', event => {
             
             messageInfos.appendChild(messageAuthor);
             messageInfos.appendChild(messageDate);
+
+            // Scrollbar to the bottom
+            messagesListContainer.scrollTop = messagesListContainer.scrollHeight;
     }
 });
 
@@ -99,7 +105,6 @@ document.getElementById('messageTextArea').addEventListener('keydown', function 
         }
         else {
             // Enter => Send the message
-            const vscode = acquireVsCodeApi();
             vscode.postMessage({
                 command: 'sendMessage',
                 content: document.getElementById('messageTextArea').value
