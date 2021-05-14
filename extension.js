@@ -39,13 +39,17 @@ function activate(context) {
         // Create the Discord Tree View
         let discordTreeViewProvider = new DiscordTreeViewProvider(client);
         
-        let view = vscode.window.createTreeView("discordTreeView", {
+        let discordTreeView = vscode.window.createTreeView("discordTreeView", {
             treeDataProvider: discordTreeViewProvider,
+            showCollapseAll: false
+        });
+        discordTreeView.onDidChangeSelection( e => {
+            console.log(e)
         });
 
         // Update the status bar
         statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat")
-        context.subscriptions.push(view);
+        context.subscriptions.push(discordTreeView);
     });
 
     client.on('message', message => {

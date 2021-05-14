@@ -43,10 +43,51 @@ class GuildTreeItem {
     convertPositionToTreeItems() {
         this.guild.channels.cache.forEach(channel => {
             if (channel.type == 'category') {
-                let category = new vscode.TreeItem(channel.name, vscode.TreeItemCollapsibleState.Expanded);
-                this.positionDetails.push(category)
+                let categoryItem = new CategoryTreeItem(channel, vscode.TreeItemCollapsibleState.Expanded);
+                this.positionDetails.push(categoryItem)
             }
         })
+    }
+
+    getPositionDetails() {
+        return this.positionDetails;
+    }
+}
+
+class CategoryTreeItem {
+    constructor(category, collapsibleState) {
+        this.category = category;
+        this.label = category.name;
+        this.description = "";
+        this.collapsibleState = collapsibleState;
+        this.positionDetails = [];
+
+        this.convertPositionToTreeItems();
+    }
+
+    convertPositionToTreeItems() {
+        this.category.children.forEach(channel => {
+            const allowedChannelType = ["text", "news", "store"];
+            if (allowedChannelType.includes(channel.type)) {
+                let channelItem = new ChannelTreeItem(channel, vscode.TreeItemCollapsibleState.None);
+                this.positionDetails.push(channelItem)
+            }
+        });
+            
+    }
+
+    getPositionDetails() {
+        return this.positionDetails;
+    }
+}
+
+class ChannelTreeItem {
+    constructor(channel, collapsibleState) {
+        this.channel = channel;
+        this.label = channel.name;
+        this.description = "";
+        this.collapsibleState = collapsibleState;
+        this.positionDetails = [];
     }
 
     getPositionDetails() {
