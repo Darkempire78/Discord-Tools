@@ -8,7 +8,7 @@
 
 <body>
     <div class="channelInfoContainer">
-        <p id="channelName"># NO CHANNEL FOUND</p>
+        <p id="channelName"># NO CHANNEL SELECTED</p>
     </div>
 
     <div id="messagesListContainer">
@@ -27,7 +27,7 @@
     <div class="sendMessageContainer">
         <div class="textAreaContainer">
             <div class="textArea">
-                <textarea id="messageTextArea" rows="1" placeholder="Send a message to #channel"></textarea>
+                <textarea id="messageTextArea" rows="1" placeholder="NO CHANNEL SELECTED" disabled></textarea>
             </div>
         </div>
     </div>
@@ -45,42 +45,7 @@ window.addEventListener("message", event => {
 
     switch (message.command) {
         case 'receiveMessage':
-            const messagesListContainer = document.getElementById("messagesListContainer");
-
-            // Create the message
-            let messageContainer = document.createElement("div");
-            messageContainer.classList = ["messageContainer"];
-
-            let messageImage = document.createElement("img");
-            messageImage.classList = ["messageImage"];
-            messageImage.src = message.authorAvatar;
-
-            let messageInfos = document.createElement("div");
-            messageInfos.classList = ["messageInfos"];
-
-            let messageAuthor = document.createElement("p");
-            messageAuthor.classList = ["messageAuthor"];
-            messageAuthor.innerHTML = message.author;
-
-            let messageDate = document.createElement("p");
-            messageDate.classList = ["messageDate"];
-            messageDate.innerHTML = message.date;
-
-            let messageContent = document.createElement("p");
-            messageContent.classList = ["messageContent"];
-            messageContent.innerHTML = message.content;
-
-            // Append
-            messagesListContainer.appendChild(messageContainer)
-            messageContainer.appendChild(messageImage);
-            messageContainer.appendChild(messageInfos);
-            messageContainer.appendChild(messageContent);
-            
-            messageInfos.appendChild(messageAuthor);
-            messageInfos.appendChild(messageDate);
-
-            // Scrollbar to the bottom
-            messagesListContainer.scrollTop = messagesListContainer.scrollHeight;
+            createMessage(message.content, message.author, message.authorAvatar, message.date)
             break;
         
         case 'changeChannel':
@@ -100,6 +65,12 @@ window.addEventListener("message", event => {
                 messageTextArea.disabled = true;
                 messageTextArea.placeholder = `You are not allowed to send messages in this channel`;
             }
+            
+            // Latest messages
+            message.latestMessages.reverse().map(lastestMessage => {
+                console.log(lastestMessage)
+                createMessage(lastestMessage.content, lastestMessage.authorID, "lastestMessage.author.avatarURL()", lastestMessage.createdTimestamp.toLocaleString())
+            })
             break;
     }
 });
@@ -136,6 +107,45 @@ document.getElementById('messageTextArea').addEventListener('keydown', function 
         }
     }
 });
+
+function createMessage(content, authorName, authorAvatar, date) {
+    const messagesListContainer = document.getElementById("messagesListContainer");
+            
+    // Create the message
+    let messageContainer = document.createElement("div");
+    messageContainer.classList = ["messageContainer"];
+
+    let messageImage = document.createElement("img");
+    messageImage.classList = ["messageImage"];
+    messageImage.src = authorAvatar;
+
+    let messageInfos = document.createElement("div");
+    messageInfos.classList = ["messageInfos"];
+
+    let messageAuthor = document.createElement("p");
+    messageAuthor.classList = ["messageAuthor"];
+    messageAuthor.innerHTML = authorName;
+
+    let messageDate = document.createElement("p");
+    messageDate.classList = ["messageDate"];
+    messageDate.innerHTML = date;
+
+    let messageContent = document.createElement("p");
+    messageContent.classList = ["messageContent"];
+    messageContent.innerHTML = content;
+
+    // Append
+    messagesListContainer.appendChild(messageContainer)
+    messageContainer.appendChild(messageImage);
+    messageContainer.appendChild(messageInfos);
+    messageContainer.appendChild(messageContent);
+    
+    messageInfos.appendChild(messageAuthor);
+    messageInfos.appendChild(messageDate);
+
+    // Scrollbar to the bottom
+    messagesListContainer.scrollTop = messagesListContainer.scrollHeight;
+}
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {

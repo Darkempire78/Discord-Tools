@@ -11,8 +11,6 @@ const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
 const discordChatWebview = require("./src/discordChatWebview.js");
 const statusBar = require("./src/statusBar.js")
 
-const discordToken = require('./test Discord Integration/test.json');
-
 let generalOutputChannel;
 let discordStatusBarItem;
 let discordChatWebviewPanel;
@@ -30,8 +28,7 @@ function activate(context) {
     discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
     statusBar.showStatusBarItem(discordStatusBarItem);
 
-
-    // Discord test
+    // Discord Bot
     const client = new Discord.Client();
 
     client.on('ready', () => {
@@ -53,16 +50,21 @@ function activate(context) {
                 // Change the channel
                 if (discordChatWebviewPanel) {
                     client.channels.fetch(discordCurrentChannelID).then(channel => {
+                        // Check if the user can send messages in the channel
                         let hasPermissionInChannel = channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
-
-                        discordChatWebviewPanel.webview.postMessage(
-                            { 
-                                command: 'changeChannel' ,
-                                name: event.selection[0].channel.name,
-                                canSendMessage: hasPermissionInChannel
-                            }
-                        );
-                        generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
+                        
+                        // Get the lastest messages
+                        channel.messages.fetch({ limit: 10 }).then(messages => {
+                            discordChatWebviewPanel.webview.postMessage(
+                                { 
+                                    command: 'changeChannel' ,
+                                    name: event.selection[0].channel.name,
+                                    latestMessages: messages,
+                                    canSendMessage: hasPermissionInChannel
+                                }
+                            );
+                            generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
+                        })
                     })
                 }
             }
@@ -99,8 +101,16 @@ function activate(context) {
         
     })
 
-    client.login(discordToken.token);
-
+    let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
+    if (discordToken != "") {
+        client.login(discordToken).catch(e => {
+            // Invalid token
+            generalOutputChannel.appendLine(`Invalid personal Discord token provided`)
+            vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
+            statusBar.updateStatusBarItem(discordStatusBarItem, "$(error) Discord Chat : Invalid token")
+        })
+    }
+    
     // Set up Discord Token
     let setUpDiscordToken = vscode.commands.registerCommand("discord-tools.setUpDiscordToken", async () => {
 		let userToken = await vscode.window.showInputBox({value: vscode.workspace.getConfiguration("discord-chat").get("token"), placeHolder:"Past your personal Discord token (see how to find it: https://www.youtube.com/watch?v=YEgFvgg7ZPI)"});
