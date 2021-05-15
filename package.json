@@ -41,19 +41,28 @@
 		"commands": [
 			{
 				"command": "discord-tools.pyBotTemplate",
-				"title": "Generate a python template bot (Discord.py)"
+				"title": "Generate a python template bot (Discord.py)",
+                "category": "Discord Template"
 			},
 			{
 				"command": "discord-tools.jsBotTemplate",
-				"title": "Generate a javascript template bot (Discord.js)"
+				"title": "Generate a javascript template bot (Discord.js)",
+                "category": "Discord Template"
 			},
 			{
 				"command": "discord-tools.openDiscordDoc",
-				"title": "Open the Discord bot Documention"
+				"title": "Open the Discord bot Documention",
+                "category": "Discord Doc"
+			},
+            {
+				"command": "discord-tools.setUpDiscordToken",
+				"title": "Set up your personal Discord token",
+                "category": "Discord Chat"
 			},
             {
 				"command": "discord-tools.openDiscordChat",
-				"title": "Open the Discord Chat"
+				"title": "Open the Discord Chat",
+                "category": "Discord Chat"
 			}
 		],
 		"keybindings": [
@@ -115,6 +124,17 @@
                     "name": "Discord"
                 }
             ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "Discord Tools",
+            "properties": {
+                "discord-chat.token": {
+                    "type": "string",
+                    "markdownDescription": "Your personal Discord token ([see how to find it here](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
+                    "default": ""
+                }
+            }
         }
 	},
 	"scripts": {

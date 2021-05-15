@@ -101,6 +101,14 @@ function activate(context) {
 
     client.login(discordToken.token);
 
+    // Set up Discord Token
+    let setUpDiscordToken = vscode.commands.registerCommand("discord-tools.setUpDiscordToken", async () => {
+		let userToken = await vscode.window.showInputBox({value: vscode.workspace.getConfiguration("discord-chat").get("token"), placeHolder:"Past your personal Discord token (see how to find it: https://www.youtube.com/watch?v=YEgFvgg7ZPI)"});
+		if (userToken) {
+            vscode.workspace.getConfiguration("discord-chat").update("token", userToken.replace(" ", ""));
+        }
+    });
+    context.subscriptions.push(setUpDiscordToken);
 
     // Open Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
@@ -136,7 +144,7 @@ function activate(context) {
                             client.channels.fetch(discordCurrentChannelID).then(channel => {
                                 channel.send(message.content);
                             })
-                            generalOutputChannel.appendLine(`New message sent : ${message.id} to ${discordCurrentChannelID}`)
+                            generalOutputChannel.appendLine(`New message sent to ${discordCurrentChannelID}`)
                     }
                 },
             )
