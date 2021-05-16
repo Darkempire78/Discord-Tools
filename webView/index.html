@@ -67,8 +67,6 @@ window.addEventListener("message", event => {
             }
             
             // Latest messages
-            console.log("message.latestMessages")
-            console.log(message.latestMessages)
             message.latestMessages.forEach(lastestMessage => {
                 console.log(lastestMessage)
                 createMessage(lastestMessage.content, lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.date)

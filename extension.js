@@ -53,15 +53,8 @@ function activate(context) {
                         // Check if the user can send messages in the channel
                         let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
                         
-                        // Get the lastest messages
-                        // channel.messages.fetch({ limit: 10 }).then(messages => {
-                        //     let latestMessages = discordChatWebview.convertLatestMessages(client, messages)
                         const messages = await channel.messages.fetch({ limit: 10 })
-                        console.log("return messages")
-                        console.log(messages)
                         const latestMessages = await discordChatWebview.convertLatestMessages(client, messages)
-                        console.log("return latestMessages")
-                        console.log(latestMessages)
                         
                         discordChatWebviewPanel.webview.postMessage(
                             { 

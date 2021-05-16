@@ -5,69 +5,23 @@ function getDiscordChatWebviewContent (path) {
     return fileContent;
 }
 
-// function convertLatestMessages (client, messages) {
-//     let messagesConverted = [];
-//     console.log(messages.values())
-//     for (const message of messages.values()) {
-//         console.log(message)
-//         let test = {
-//             "content": message.content,
-//             "author": message.authorID,
-//             "authorAvatar": "",
-//             "date": message.createdTimestamp.toLocaleString()
-//         }
-//         messagesConverted.push(test)
-//     }
-//     console.log(messagesConverted)
-//     return messagesConverted
-// }
-
 async function convertLatestMessages(client, messages) {
     let messagesConverted = [];
   
     for (const message of messages.values()) {
         const user = await client.users.fetch(message.member.id);
-        let test = {
+        let messageConverted = {
             content: message.content,
             author: message.author.username,
             authorAvatar: user.displayAvatarURL(),
             date: message.createdTimestamp.toLocaleString(),
         };
-        messagesConverted.push(test);
+        messagesConverted.push(messageConverted);
     }
     return messagesConverted;
-  }
+}
 
-// function convertLatestMessages (client, messages) {
-//     let messagesConverted = [];
-//     console.log(messages)
-//     // for (let index = 0; index < messages.length; index++) {
-//     //     const element = messages[index];
-//     //     console.log(element) 
-//     // }
 
-//     for (const iterator of messages) {
-//         let message = iterator[1]
-//         console.log(message.authorID)
-//         let test = {
-//             "content": message.content,
-//             "author": message.authorID,
-//             "authorAvatar": "",
-//             "date": message.createdTimestamp.toLocaleString()
-//         }
-//         messagesConverted.push(test)
-//         client.users.fetch(message.authorID).then(user => {
-//             console.log("user")
-//             console.log(user)
-//         })
-        
-//     }
-//     console.log("messagesConverted")
-//     console.log(messagesConverted)
-//     return messagesConverted
-// }
-
-// Exports
 // Exports
 module.exports = {
     getDiscordChatWebviewContent,
