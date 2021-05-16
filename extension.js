@@ -29,7 +29,7 @@ function activate(context) {
     statusBar.showStatusBarItem(discordStatusBarItem);
 
     // Discord Bot
-    const client = new Discord.Client();
+    const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 
     client.on('ready', () => {
         generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);

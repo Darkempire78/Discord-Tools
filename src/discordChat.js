@@ -22,24 +22,21 @@ function getDiscordChatWebviewContent (path) {
 //     return messagesConverted
 // }
 
-async function convertLatestMessages (client, messages) {
+async function convertLatestMessages(client, messages) {
     let messagesConverted = [];
-
-    for (const message of messages) {
-        console.log("message.authorID : " + message.author.id)
-        const user = await client.users.fetch(message.authorID)
-        console.log("user " + user)
-        console.log(user)
+  
+    for (const message of messages.values()) {
+        const user = await client.users.fetch(message.member.id);
         let test = {
-            "content": message.content,
-            "author": message.authorID,
-            "authorAvatar": user.displayAvatarURL(),
-            "date": message.createdTimestamp.toLocaleString()
-        }
-        messagesConverted.push(test)
+            content: message.content,
+            author: message.author.username,
+            authorAvatar: user.displayAvatarURL(),
+            date: message.createdTimestamp.toLocaleString(),
+        };
+        messagesConverted.push(test);
     }
-    return messagesConverted
-}
+    return messagesConverted;
+  }
 
 // function convertLatestMessages (client, messages) {
 //     let messagesConverted = [];

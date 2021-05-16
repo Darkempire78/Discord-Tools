@@ -71,7 +71,7 @@ window.addEventListener("message", event => {
             console.log(message.latestMessages)
             message.latestMessages.forEach(lastestMessage => {
                 console.log(lastestMessage)
-                createMessage(content, author, authorAvatar, date)
+                createMessage(lastestMessage.content, lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.date)
             })
             break;
     }
