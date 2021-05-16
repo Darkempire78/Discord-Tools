@@ -29,7 +29,7 @@ function activate(context) {
     statusBar.showStatusBarItem(discordStatusBarItem);
 
     // Discord Bot
-    const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
+    const client = new Discord.Client();
 
     client.on('ready', () => {
         generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
@@ -79,6 +79,7 @@ function activate(context) {
     client.on('message', message => {
         if (message.channel.id == discordCurrentChannelID)
         {
+            console.log(message)
             // Escape HTML
             message.content = message.content.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
             // Set cutom emojis

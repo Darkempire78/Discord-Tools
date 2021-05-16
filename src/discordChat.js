@@ -8,18 +8,19 @@ function getDiscordChatWebviewContent (path) {
 async function convertLatestMessages(client, messages) {
     let messagesConverted = [];
     
-    console.log(messages.values())
     for (const message of messages.values()) {
-        const user = await client.users.fetch(message.member.id);
+        let avatar = "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png";
+        if (message.author.avatar) avatar = `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp`
+        
         let messageConverted = {
             content: message.content,
             author: message.author.username,
-            authorAvatar: user.displayAvatarURL(),
-            date: message.createdTimestamp.toLocaleString(),
+            authorAvatar: avatar,
+            date: message.createdAt.toLocaleString(),
         };
         messagesConverted.push(messageConverted);
     }
-    return messagesConverted;
+    return messagesConverted.reverse();
 }
 
 
