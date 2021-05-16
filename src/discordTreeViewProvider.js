@@ -3,7 +3,7 @@ const vscode = require("vscode");
 class DiscordTreeViewProvider {
     constructor(client) {
         this.guilds = client.guilds.cache;
-        this.guildsTreeItems = this.convertGuildsToTreeItems(); 
+        this.guildsTreeItems = this.convertGuildsToTreeItems(client); 
     }
 
     getTreeItem(element) {
@@ -18,11 +18,11 @@ class DiscordTreeViewProvider {
         }
     }
 
-    convertGuildsToTreeItems() {
+    convertGuildsToTreeItems(client) {
         let array = [];
         this.guilds.forEach((element) => {
             array.push(
-                new GuildTreeItem(element, vscode.TreeItemCollapsibleState.Expanded)
+                new GuildTreeItem(client, element, vscode.TreeItemCollapsibleState.Expanded)
             );
         });
         return array;
@@ -30,7 +30,7 @@ class DiscordTreeViewProvider {
 }
 
 class GuildTreeItem {
-    constructor(guild, collapsibleState) {
+    constructor(client, guild, collapsibleState) {
         this.guild = guild;
         this.label = guild.name;
         this.description = "";
@@ -38,14 +38,17 @@ class GuildTreeItem {
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
 
-        this.convertPositionToTreeItems();
+        this.convertPositionToTreeItems(client);
     }
 
-    convertPositionToTreeItems() {
-        this.guild.channels.cache.forEach(channel => {
+    convertPositionToTreeItems(client) {
+        this.guild.channels.cache.forEach(async channel => {
             if (channel.type == 'category') {
-                let categoryItem = new CategoryTreeItem(channel, vscode.TreeItemCollapsibleState.Expanded);
-                this.positionDetails.push(categoryItem)
+                let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
+                if (hasPermissionInChannel) {
+                    let categoryItem = new CategoryTreeItem(client, channel, vscode.TreeItemCollapsibleState.Expanded);
+                    this.positionDetails.push(categoryItem)
+                }
             }
         })
     }
@@ -56,7 +59,7 @@ class GuildTreeItem {
 }
 
 class CategoryTreeItem {
-    constructor(category, collapsibleState) {
+    constructor(client, category, collapsibleState) {
         this.category = category;
         this.label = category.name;
         this.description = "";
@@ -64,15 +67,18 @@ class CategoryTreeItem {
         this.collapsibleState = collapsibleState;
         this.positionDetails = [];
 
-        this.convertPositionToTreeItems();
+        this.convertPositionToTreeItems(client);
     }
 
-    convertPositionToTreeItems() {
-        this.category.children.forEach(channel => {
+    convertPositionToTreeItems(client) {
+        this.category.children.forEach(async channel => {
             const allowedChannelType = ["text", "news", "store"];
             if (allowedChannelType.includes(channel.type)) {
-                let channelItem = new ChannelTreeItem(channel, vscode.TreeItemCollapsibleState.None);
+                let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
+                if (hasPermissionInChannel) {
+                    let channelItem = new ChannelTreeItem(channel, vscode.TreeItemCollapsibleState.None);
                 this.positionDetails.push(channelItem)
+                }
             }
         });
             

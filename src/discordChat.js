@@ -7,7 +7,8 @@ function getDiscordChatWebviewContent (path) {
 
 async function convertLatestMessages(client, messages) {
     let messagesConverted = [];
-  
+    
+    console.log(messages.values())
     for (const message of messages.values()) {
         const user = await client.users.fetch(message.member.id);
         let messageConverted = {

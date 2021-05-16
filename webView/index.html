@@ -67,10 +67,11 @@ window.addEventListener("message", event => {
             }
             
             // Latest messages
-            message.latestMessages.forEach(lastestMessage => {
-                console.log(lastestMessage)
-                createMessage(lastestMessage.content, lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.date)
-            })
+            if (message.latestMessages) {
+                message.latestMessages.forEach(lastestMessage => {
+                    createMessage(lastestMessage.content, lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.date)
+                })
+            }
             break;
     }
 });
