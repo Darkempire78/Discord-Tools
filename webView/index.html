@@ -67,9 +67,11 @@ window.addEventListener("message", event => {
             }
             
             // Latest messages
-            message.latestMessages.reverse().map(lastestMessage => {
+            console.log("message.latestMessages")
+            console.log(message.latestMessages)
+            message.latestMessages.forEach(lastestMessage => {
                 console.log(lastestMessage)
-                createMessage(lastestMessage.content, lastestMessage.authorID, "lastestMessage.author.avatarURL()", lastestMessage.createdTimestamp.toLocaleString())
+                createMessage(content, author, authorAvatar, date)
             })
             break;
     }

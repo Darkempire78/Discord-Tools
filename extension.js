@@ -8,7 +8,7 @@ const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
 
 const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
-const discordChatWebview = require("./src/discordChatWebview.js");
+const discordChatWebview = require("./src/discordChat.js");
 const statusBar = require("./src/statusBar.js")
 
 let generalOutputChannel;
@@ -49,22 +49,29 @@ function activate(context) {
                 
                 // Change the channel
                 if (discordChatWebviewPanel) {
-                    client.channels.fetch(discordCurrentChannelID).then(channel => {
+                    client.channels.fetch(discordCurrentChannelID).then(async channel => {
                         // Check if the user can send messages in the channel
-                        let hasPermissionInChannel = channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
+                        let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
                         
                         // Get the lastest messages
-                        channel.messages.fetch({ limit: 10 }).then(messages => {
-                            discordChatWebviewPanel.webview.postMessage(
-                                { 
-                                    command: 'changeChannel' ,
-                                    name: event.selection[0].channel.name,
-                                    latestMessages: messages,
-                                    canSendMessage: hasPermissionInChannel
-                                }
-                            );
-                            generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
-                        })
+                        // channel.messages.fetch({ limit: 10 }).then(messages => {
+                        //     let latestMessages = discordChatWebview.convertLatestMessages(client, messages)
+                        const messages = await channel.messages.fetch({ limit: 10 })
+                        console.log("return messages")
+                        console.log(messages)
+                        const latestMessages = await discordChatWebview.convertLatestMessages(client, messages)
+                        console.log("return latestMessages")
+                        console.log(latestMessages)
+                        
+                        discordChatWebviewPanel.webview.postMessage(
+                            { 
+                                command: 'changeChannel' ,
+                                name: event.selection[0].channel.name,
+                                latestMessages: latestMessages,
+                                canSendMessage: hasPermissionInChannel
+                            }
+                        );
+                        generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
                     })
                 }
             }
