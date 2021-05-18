@@ -73,10 +73,17 @@ window.addEventListener("message", event => {
                 })
             }
             break;
+
         case 'updateMessage':
-            let messageContainer = document.querySelector(`div[messageID='${message.id}']`)
+            let messageContainer = document.querySelector(`div[messageID='${message.id}']`);
             let messageContent = messageContainer.getElementsByClassName("messageContent")[0];
-            messageContent.innerHTML = message.content + " <span style=\"font-size: 8px; color: #72767d; user-select: none;\">(modified)</span>";
+            messageContent.innerHTML = message.content;
+            break;
+            
+        case 'deleteMessage':
+            const messageToDelete = document.querySelector(`div[messageID='${message.id}']`);
+            removeAllChildNodes(messageToDelete);
+            messageToDelete.remove();
             break;
     }
 });

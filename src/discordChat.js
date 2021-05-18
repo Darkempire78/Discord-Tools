@@ -31,6 +31,10 @@ function convertMessageContent(message) {
     // Escape HTML
     let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
 
+    // If edited
+    if (message.editedAt) {
+        messageContentConverted += " <span style=\"font-size: 8px; color: #72767d; user-select: none;\">(modified)</span>";
+    }
     // Message Attachments
     // Images 
     if (message.attachments.size > 0) {

@@ -111,14 +111,25 @@ function activate(context) {
             // Update the message
             discordChatWebviewPanel.webview.postMessage(
                 { 
-                    command: 'updateMessage' ,
+                    command: 'updateMessage',
                     content: messageCleanContent,
                     id: newMessage.id
                 }
             );
-            generalOutputChannel.appendLine(`New message received : ${newMessage.id} by ${newMessage.author.username} (${newMessage.author.id})`)
+            generalOutputChannel.appendLine(`Message edited : ${newMessage.id} by ${newMessage.author.username} (${newMessage.author.id})`)
         }
     })
+
+    client.on('messageDelete', (message) => {
+        // Delete the message
+        discordChatWebviewPanel.webview.postMessage(
+            { 
+                command: 'deleteMessage',
+                id: message.id
+            }
+        );
+        generalOutputChannel.appendLine(`Message deleted : ${message.id}`)
+    });
 
     loginDiscordBot(client)
 
