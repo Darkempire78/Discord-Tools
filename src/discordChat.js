@@ -31,6 +31,9 @@ function convertMessageContent(message) {
     // Escape HTML
     let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
 
+    // Url clickable
+    messageContentConverted = urlify(messageContentConverted);
+
     // If edited
     if (message.editedAt) {
         messageContentConverted += " <span style=\"font-size: 8px; color: #72767d; user-select: none;\">(modified)</span>";
@@ -66,6 +69,15 @@ function convertMessageContent(message) {
 
     return messageContentConverted
 
+}
+
+// Utils
+
+function urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return `<a href="${url}">${url}</a>`;
+    })
 }
 
 
