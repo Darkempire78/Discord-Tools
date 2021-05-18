@@ -13,10 +13,10 @@ async function convertLatestMessages(client, messages) {
         let avatar = "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png";
         if (message.author.avatar) avatar = `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp`
         // Escape HTML
-        message.cleanContent = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
+        const messageCleanContent = convertMessageContent(message);
         
         let messageConverted = {
-            content: message.cleanContent,
+            content: messageCleanContent,
             author: message.author.username,
             authorAvatar: avatar,
             date: message.createdAt.toLocaleString(),
@@ -26,9 +26,47 @@ async function convertLatestMessages(client, messages) {
     return messagesConverted.reverse();
 }
 
+function convertMessageContent(message) {
+    // Escape HTML
+    let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
+
+    // Message Attachments
+    // Images 
+    if (message.attachments.size > 0) {
+        message.attachments.forEach(attachment => {
+            const extension = attachment.url.split(".")
+            const avilableImageExtensions = ["jpg", "png", "gif"];
+            if (avilableImageExtensions.includes(extension[extension.length - 1])) {
+                messageContentConverted = `<img src="${attachment.url}" alt="[ImageLoadingFailed : ${attachment.url}]" style="max-height:400px; max-width:400px;">`;
+            }
+        });
+    }
+
+    // Tenof Gifs from url
+    // if (messageContentConverted != "") {
+    //     let messageContentConvertedList = messageContentConverted.split(" ");
+    //     const wordNumber = messageContentConvertedList.lenght;
+    //     let isAlone = false;
+    //     if (wordNumber == 1) { 
+    //         isAlone = true 
+    //     };
+    //     // Check if it's a gif
+    //     for (let i of messageContentConvertedList) {
+    //         if (i.startsWith("https://tenor.com")) {
+
+    //         }
+    //     }
+    // }
+    
+
+    return messageContentConverted
+
+}
+
 
 // Exports
 module.exports = {
     getDiscordChatWebviewContent,
-    convertLatestMessages
+    convertLatestMessages,
+    convertMessageContent
 };

@@ -43,7 +43,7 @@ class GuildTreeItem {
     }
 
     convertPositionToTreeItems(client) {
-        this.guild.channels.cache.forEach(async channel => {
+        this.guild.channels.cache.sort((a, b) => a.position - b.position).forEach(async channel => {
             if (channel.type == 'category') {
                 let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
                 if (hasPermissionInChannel) {
@@ -77,7 +77,7 @@ class CategoryTreeItem {
     }
 
     convertPositionToTreeItems(client) {
-        this.category.children.forEach(async channel => {
+        this.category.children.sort((a, b) => a.position - b.position).forEach(async channel => {
             const allowedChannelType = ["text", "news", "store"];
             if (allowedChannelType.includes(channel.type)) {
                 let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);

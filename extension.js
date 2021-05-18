@@ -8,7 +8,7 @@ const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
 
 const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
-const discordChatWebview = require("./src/discordChat.js");
+const discordChat = require("./src/discordChat.js");
 const statusBar = require("./src/statusBar.js")
 
 let generalOutputChannel;
@@ -64,7 +64,7 @@ function activate(context) {
                     
                     const messages = await channel.messages.fetch({ limit: 10 })
                     let latestMessages;
-                    if (messages) latestMessages = await discordChatWebview.convertLatestMessages(client, messages)
+                    if (messages) latestMessages = await discordChat.convertLatestMessages(client, messages)
                     
                     discordChatWebviewPanel.webview.postMessage(
                         { 
@@ -87,24 +87,7 @@ function activate(context) {
     client.on('message', message => {
         if (message.channel.id == discordCurrentChannelID)
         {
-            // Escape HTML
-            let messageCleanContent = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
-            // Set cutom emojis
-            // let test = message.cleanContent.match(/<a?:.+:\d+>/gm)
-            // console.log(test)
-
-            // <img src="https://cdn.discordapp.com/emojis/771082435172630578.png" width="16px">
-            // Message Attachments
-            // Images 
-            if (message.attachments.size > 0) {
-                message.attachments.forEach(attachment => {
-                    const extension = attachment.url.split(".")
-                    const avilableImageExtensions = ["jpg", "png", "gif"];
-                    if (avilableImageExtensions.includes(extension[extension.length - 1])) {
-                        messageCleanContent = `<img src="${attachment.url}" alt="[ImageLoadingFailed : ${attachment.url}]" style="max-height:400px; max-width:400px;">`;
-                    }
-                });
-            }           
+            let messageCleanContent = discordChat.convertMessageContent(message);
 
             // Receive
             discordChatWebviewPanel.webview.postMessage(
@@ -178,7 +161,7 @@ function activate(context) {
             );
             generalOutputChannel.appendLine("DiscordChatWebviewPanel created")
         
-            const htmlFile = discordChatWebview.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
+            const htmlFile = discordChat.getDiscordChatWebviewContent(vscode.Uri.file(path.join(context.extensionPath, 'webView', 'index.html')));
             const cssStylePath = vscode.Uri.file(path.join(context.extensionPath, 'webView', 'style.css'));
             const cssThemeRes = cssStylePath.with({ scheme: 'vscode-resource' });
             const cssThemeLinkTag = '<link rel="stylesheet" id = "swpd-theme" href="' + cssThemeRes + '" type="text/css" media="all" />';
