@@ -45,7 +45,7 @@ window.addEventListener("message", event => {
 
     switch (message.command) {
         case 'receiveMessage':
-            createMessage(message.content, message.author, message.authorAvatar, message.date)
+            createMessage(message.author, message.authorAvatar, message.content, message.id, message.date)
             break;
         
         case 'changeChannel':
@@ -69,9 +69,14 @@ window.addEventListener("message", event => {
             // Latest messages
             if (message.latestMessages) {
                 message.latestMessages.forEach(lastestMessage => {
-                    createMessage(lastestMessage.content, lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.date)
+                    createMessage(lastestMessage.author, lastestMessage.authorAvatar, lastestMessage.content, lastestMessage.id, lastestMessage.date)
                 })
             }
+            break;
+        case 'updateMessage':
+            let messageContainer = document.querySelector(`div[messageID='${message.id}']`)
+            let messageContent = messageContainer.getElementsByClassName("messageContent")[0];
+            messageContent.innerHTML = message.content + " <span style=\"font-size: 8px; color: #72767d; user-select: none;\">(modified)</span>";
             break;
     }
 });
@@ -109,16 +114,17 @@ document.getElementById('messageTextArea').addEventListener('keydown', function 
     }
 });
 
-function createMessage(content, authorName, authorAvatar, date) {
+function createMessage(authorName, authorAvatar, content, id, date) {
     const messagesListContainer = document.getElementById("messagesListContainer");
             
     // Create the message
     let messageContainer = document.createElement("div");
     messageContainer.classList = ["messageContainer"];
+    messageContainer.setAttribute("messageID", id)
 
     let messageImage = document.createElement("img");
     messageImage.classList = ["messageImage"];
-    messageImage.src = authorAvatar;
+    messageImage.src = authorAvatar
 
     let messageInfos = document.createElement("div");
     messageInfos.classList = ["messageInfos"];

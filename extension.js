@@ -96,12 +96,28 @@ function activate(context) {
                     author: message.author.username,
                     authorAvatar: message.author.avatarURL(),
                     content: messageCleanContent,
+                    id: message.id,
                     date: message.createdAt.toLocaleString()
                 }
             );
             generalOutputChannel.appendLine(`New message received : ${message.id} by ${message.author.username} (${message.author.id})`)
+        } 
+    })
+
+    client.on('messageUpdate', (oldMessage, newMessage) => {
+        if(newMessage.channel.id == discordCurrentChannelID){
+            let messageCleanContent = discordChat.convertMessageContent(newMessage);
+
+            // Update the message
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'updateMessage' ,
+                    content: messageCleanContent,
+                    id: newMessage.id
+                }
+            );
+            generalOutputChannel.appendLine(`New message received : ${newMessage.id} by ${newMessage.author.username} (${newMessage.author.id})`)
         }
-        
     })
 
     loginDiscordBot(client)

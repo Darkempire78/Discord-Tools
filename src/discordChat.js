@@ -16,10 +16,11 @@ async function convertLatestMessages(client, messages) {
         const messageCleanContent = convertMessageContent(message);
         
         let messageConverted = {
-            content: messageCleanContent,
             author: message.author.username,
             authorAvatar: avatar,
-            date: message.createdAt.toLocaleString(),
+            content: messageCleanContent,
+            id: message.id,
+            date: message.createdAt.toLocaleString()
         };
         messagesConverted.push(messageConverted);
     }
