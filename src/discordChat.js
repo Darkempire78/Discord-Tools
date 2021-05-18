@@ -13,7 +13,7 @@ async function convertLatestMessages(client, messages) {
         if (message.author.avatar) avatar = `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp`
         
         let messageConverted = {
-            content: message.content,
+            content: message.cleanContent,
             author: message.author.username,
             authorAvatar: avatar,
             date: message.createdAt.toLocaleString(),

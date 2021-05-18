@@ -1,3 +1,4 @@
+const path = require("path");
 const vscode = require("vscode");
 
 class DiscordTreeViewProvider {
@@ -56,6 +57,11 @@ class GuildTreeItem {
     getPositionDetails() {
         return this.positionDetails;
     }
+
+    iconPath = {
+        dark: path.join(__filename, '..', '..', 'resources', 'icons', 'dark', 'server.svg'),
+        light: path.join(__filename, '..', '..', 'resources', 'icons', 'light', 'server.svg')
+    };
 }
 
 class CategoryTreeItem {
@@ -102,6 +108,11 @@ class ChannelTreeItem {
     getPositionDetails() {
         return this.positionDetails;
     }
+
+    iconPath = {
+        dark: path.join(__filename, '..', '..', 'resources', 'icons', 'dark', 'channel.svg'),
+        light: path.join(__filename, '..', '..', 'resources', 'icons', 'light', 'channel.svg')
+    };
 }
 
 module.exports = DiscordTreeViewProvider;

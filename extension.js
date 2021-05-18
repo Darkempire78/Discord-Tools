@@ -45,29 +45,34 @@ function activate(context) {
         // when channel is selected
         discordTreeView.onDidChangeSelection( event => {
             if (event.selection[0].type == "channel" && event.selection[0].channel.id != discordCurrentChannelID) {
+
+                if (!discordChatWebviewPanel) {
+                    vscode.commands.executeCommand("discord-tools.openDiscordChat"); 
+                }
+
+                // Update the current channel
                 discordCurrentChannelID = event.selection[0].channel.id;
                 
                 // Change the channel
-                if (discordChatWebviewPanel) {
-                    client.channels.fetch(discordCurrentChannelID).then(async channel => {
-                        // Check if the user can send messages in the channel
-                        let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
-                        
-                        const messages = await channel.messages.fetch({ limit: 10 })
-                        let latestMessages;
-                        if (messages) latestMessages = await discordChatWebview.convertLatestMessages(client, messages)
-                        
-                        discordChatWebviewPanel.webview.postMessage(
-                            { 
-                                command: 'changeChannel' ,
-                                name: event.selection[0].channel.name,
-                                latestMessages: latestMessages,
-                                canSendMessage: hasPermissionInChannel
-                            }
-                        );
-                        generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
-                    })
-                }
+                client.channels.fetch(discordCurrentChannelID).then(async channel => {
+                    // Check if the user can send messages in the channel
+                    let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
+                    
+                    const messages = await channel.messages.fetch({ limit: 10 })
+                    let latestMessages;
+                    if (messages) latestMessages = await discordChatWebview.convertLatestMessages(client, messages)
+                    
+                    discordChatWebviewPanel.webview.postMessage(
+                        { 
+                            command: 'changeChannel' ,
+                            name: event.selection[0].channel.name,
+                            latestMessages: latestMessages,
+                            canSendMessage: hasPermissionInChannel
+                        }
+                    );
+                    generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
+                })
+                
             }
         });
 
@@ -81,9 +86,9 @@ function activate(context) {
         {
             console.log(message)
             // Escape HTML
-            message.content = message.content.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
+            message.cleanContent = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
             // Set cutom emojis
-            // let test = message.content.match(/<a?:.+:\d+>/gm)
+            // let test = message.cleanContent.match(/<a?:.+:\d+>/gm)
             // console.log(test)
 
             // <img src="https://cdn.discordapp.com/emojis/771082435172630578.png" width="16px">
@@ -94,7 +99,7 @@ function activate(context) {
                     command: 'receiveMessage' ,
                     author: message.author.username,
                     authorAvatar: message.author.avatarURL(),
-                    content: message.content,
+                    content: message.cleanContent,
                     date: message.createdAt.toLocaleString()
                 }
             );
