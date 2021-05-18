@@ -60,6 +60,11 @@
                 "category": "Discord Chat"
 			},
             {
+				"command": "discord-tools.reloadBot",
+				"title": "Reload the Discord Bot",
+                "category": "Discord Chat"
+			},
+            {
 				"command": "discord-tools.openDiscordChat",
 				"title": "Open the Discord Chat",
                 "category": "Discord Chat"

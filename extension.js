@@ -12,9 +12,13 @@ const discordChatWebview = require("./src/discordChat.js");
 const statusBar = require("./src/statusBar.js")
 
 let generalOutputChannel;
+
 let discordStatusBarItem;
 let discordChatWebviewPanel;
+let discordTreeViewProvider;
+
 let discordCurrentChannelID;
+let client;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -29,13 +33,13 @@ function activate(context) {
     statusBar.showStatusBarItem(discordStatusBarItem);
 
     // Discord Bot
-    const client = new Discord.Client();
+    client = new Discord.Client();
 
     client.on('ready', () => {
         generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
         
         // Create the Discord Tree View
-        let discordTreeViewProvider = new DiscordTreeViewProvider(client);
+        discordTreeViewProvider = new DiscordTreeViewProvider(client);
         
         let discordTreeView = vscode.window.createTreeView("discordTreeView", {
             treeDataProvider: discordTreeViewProvider,
@@ -71,8 +75,7 @@ function activate(context) {
                         }
                     );
                     generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
-                })
-                
+                })  
             }
         });
 
@@ -84,14 +87,29 @@ function activate(context) {
     client.on('message', message => {
         if (message.channel.id == discordCurrentChannelID)
         {
-            console.log(message)
             // Escape HTML
-            message.cleanContent = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
+            let messageCleanContent = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
             // Set cutom emojis
             // let test = message.cleanContent.match(/<a?:.+:\d+>/gm)
             // console.log(test)
 
             // <img src="https://cdn.discordapp.com/emojis/771082435172630578.png" width="16px">
+            // Message Attachments
+            // Images 
+            if (message.attachments.size > 0) {
+                message.attachments.forEach(attachment => {
+                    const extension = attachment.url.split(".")
+                    const avilableImageExtensions = ["jpg", "png", "gif"];
+                    if (avilableImageExtensions.includes(extension[extension.length - 1])) {
+                        console.log("includes")
+                        if (attachment.width > 400) {attachment.width = 400};
+                        if (attachment.height > 400) {attachment.height = 400};
+                        messageCleanContent = `<img src=\"${attachment.url}\" alt="[ImageLoadingFailed : ${attachment.url}]" width="${attachment.width}" height="${attachment.height}">`;
+                    }
+                });
+            }
+            console.log(messageCleanContent)
+            
 
             // Receive
             discordChatWebviewPanel.webview.postMessage(
@@ -99,7 +117,7 @@ function activate(context) {
                     command: 'receiveMessage' ,
                     author: message.author.username,
                     authorAvatar: message.author.avatarURL(),
-                    content: message.cleanContent,
+                    content: messageCleanContent,
                     date: message.createdAt.toLocaleString()
                 }
             );
@@ -108,15 +126,20 @@ function activate(context) {
         
     })
 
-    let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
-    if (discordToken != "") {
-        client.login(discordToken).catch(e => {
-            // Invalid token
-            generalOutputChannel.appendLine(`Invalid personal Discord token provided`)
-            vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
-            statusBar.updateStatusBarItem(discordStatusBarItem, "$(error) Discord Chat : Invalid token")
-        })
+    loginDiscordBot(client)
+
+    function loginDiscordBot(client) {
+        let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
+        if (discordToken != "") {
+            client.login(discordToken).catch(e => {
+                // Invalid token
+                generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
+                vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
+                statusBar.updateStatusBarItem(discordStatusBarItem, "$(error) Discord Chat : Invalid token")
+            })
+        }
     }
+    
     
     // Set up Discord Token
     let setUpDiscordToken = vscode.commands.registerCommand("discord-tools.setUpDiscordToken", async () => {
@@ -126,6 +149,21 @@ function activate(context) {
         }
     });
     context.subscriptions.push(setUpDiscordToken);
+
+    // Reload the bot
+    // let reloadBot = vscode.commands.registerCommand('discord-tools.reloadBot', function () {
+    //     console.log("test")
+    //     // 
+    //     // discordTreeViewProvider.refresh()
+    //     // // Kill
+    //     // client.destroy().then(() => {
+    //     //     generalOutputChannel.appendLine(`Discord client killed!`)
+    //     //     statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
+	// 	//     loginDiscordBot(client);
+    //     //     console.log(client)
+    //     // })
+    // });
+    // context.subscriptions.push(reloadBot);
 
     // Open Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {
