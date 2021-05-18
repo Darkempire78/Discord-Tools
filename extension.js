@@ -101,15 +101,10 @@ function activate(context) {
                     const extension = attachment.url.split(".")
                     const avilableImageExtensions = ["jpg", "png", "gif"];
                     if (avilableImageExtensions.includes(extension[extension.length - 1])) {
-                        console.log("includes")
-                        if (attachment.width > 400) {attachment.width = 400};
-                        if (attachment.height > 400) {attachment.height = 400};
-                        messageCleanContent = `<img src=\"${attachment.url}\" alt="[ImageLoadingFailed : ${attachment.url}]" width="${attachment.width}" height="${attachment.height}">`;
+                        messageCleanContent = `<img src="${attachment.url}" alt="[ImageLoadingFailed : ${attachment.url}]" style="max-height:400px; max-width:400px;">`;
                     }
                 });
-            }
-            console.log(messageCleanContent)
-            
+            }           
 
             // Receive
             discordChatWebviewPanel.webview.postMessage(
