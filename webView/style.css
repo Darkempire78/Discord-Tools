@@ -100,6 +100,22 @@ p {
     padding-left: 50px;
 }
 
+pre {
+    margin: 0px;
+}
+
+code {
+    color: #dcddde;
+    background-color: #2f3136;
+    padding: .5em;
+    border-radius: 4px;
+    border: 1px solid #202225;
+    text-indent: 0;
+    line-height: 1.125rem;
+    display: block;
+    white-space: pre-wrap;
+}
+
 /* sendMessageContainer */
 
 footer {

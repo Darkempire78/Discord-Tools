@@ -1,8 +1,10 @@
 const fs = require('fs')
-// https://github.com/markdown-it/markdown-it#linkify
-let md = require('markdown-it')()
+// https://github.com/markdown-it/markdown-it
+let md = require('markdown-it')({
+                linkify: true
+            })
             .disable(["image", "heading", "list"])
-            .enable(["html_block", "linkify"])
+            .enable(["blockquote", "linkify"])
 
 function getDiscordChatWebviewContent (path) {
     let fileContent = fs.readFileSync(path.fsPath, 'utf8');
@@ -34,9 +36,14 @@ async function convertLatestMessages(client, messages) {
 function convertMessageContent(message) {
     // Escape HTML
     let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
-
+    
+    // Convert links
+    // messageContentConverted = urlify(messageContentConverted);
+    
     // Convert to markdown
     messageContentConverted = md.render(messageContentConverted);
+
+    
     
 
     // If edited
@@ -74,6 +81,13 @@ function convertMessageContent(message) {
 
     return messageContentConverted
 
+}
+
+function urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return `<a href="${url}">${url}</a>`;
+    })
 }
 
 
