@@ -10,9 +10,9 @@
 		"type": "git",
 		"url": "https://github.com/Darkempire78/Discord-Tools"
 	},
-    "bugs": {
-        "url": "https://github.com/Darkempire78/Discord-Tools/issues"
-    },
+	"bugs": {
+		"url": "https://github.com/Darkempire78/Discord-Tools/issues"
+	},
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -42,32 +42,32 @@
 			{
 				"command": "discord-tools.pyBotTemplate",
 				"title": "Generate a python template bot (Discord.py)",
-                "category": "Discord Template"
+				"category": "Discord Template"
 			},
 			{
 				"command": "discord-tools.jsBotTemplate",
 				"title": "Generate a javascript template bot (Discord.js)",
-                "category": "Discord Template"
+				"category": "Discord Template"
 			},
 			{
 				"command": "discord-tools.openDiscordDoc",
 				"title": "Open the Discord bot Documention",
-                "category": "Discord Doc"
+				"category": "Discord Doc"
 			},
-            {
+			{
 				"command": "discord-tools.setUpDiscordToken",
 				"title": "Set up your personal Discord token",
-                "category": "Discord Chat"
+				"category": "Discord Chat"
 			},
-            {
+			{
 				"command": "discord-tools.reloadBot",
 				"title": "Reload the Discord Bot",
-                "category": "Discord Chat"
+				"category": "Discord Chat"
 			},
-            {
+			{
 				"command": "discord-tools.openDiscordChat",
 				"title": "Open the Discord Chat",
-                "category": "Discord Chat"
+				"category": "Discord Chat"
 			}
 		],
 		"keybindings": [
@@ -122,25 +122,25 @@
 				"path": "./themes/discordTheme-color-theme.json"
 			}
 		],
-        "views": {
-            "explorer": [
-                {
-                    "id": "discordTreeView",
-                    "name": "Discord"
-                }
-            ]
-        },
-        "configuration": {
-            "type": "object",
-            "title": "Discord Tools",
-            "properties": {
-                "discord-chat.token": {
-                    "type": "string",
-                    "markdownDescription": "Your personal Discord token ([see how to find it here](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
-                    "default": ""
-                }
-            }
-        }
+		"views": {
+			"explorer": [
+				{
+					"id": "discordTreeView",
+					"name": "Discord"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Discord Tools",
+			"properties": {
+				"discord-chat.token": {
+					"type": "string",
+					"markdownDescription": "Your personal Discord token ([see how to find it here](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
+					"default": ""
+				}
+			}
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
@@ -164,6 +164,7 @@
 	},
 	"dependencies": {
 		"discord.js-selfbot": "^12.0.2",
-		"fs-extra": "^9.0.1"
+		"fs-extra": "^9.0.1",
+		"markdown-it": "^12.0.6"
 	}
 }
