@@ -44,9 +44,14 @@ class GuildTreeItem {
 
     convertPositionToTreeItems(client) {
         this.guild.channels.cache.sort((a, b) => a.position - b.position).forEach(async channel => {
-            if (channel.type == 'category') {
-                let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
-                if (hasPermissionInChannel) {
+            let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
+            if (hasPermissionInChannel) {
+                const allowedChannelType = ["text", "news", "store"];
+                if (channel.parent === null && allowedChannelType.includes(channel.type)) {
+                    let channelItem = new ChannelTreeItem(channel, vscode.TreeItemCollapsibleState.None);
+                    this.positionDetails.unshift(channelItem)
+                }
+                else if (channel.type == 'category') {
                     let categoryItem = new CategoryTreeItem(client, channel, vscode.TreeItemCollapsibleState.Expanded);
                     this.positionDetails.push(categoryItem)
                 }

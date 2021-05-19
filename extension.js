@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const path = require('path');
+// @ts-ignore
 const Discord = require('discord.js-selfbot');
 
 // const discordChat = require('./test Discord Integration/discordChat.js');
@@ -245,6 +246,7 @@ function activate(context) {
             
             if (library["packages"] == true) {
                 
+                // @ts-ignore
                 let packageManager = await vscode.window.showQuickPick(Object.keys(library.package_manager), { "placeHolder": 'Select a package manager' });
                 
                 if (packageManager) {
@@ -254,6 +256,7 @@ function activate(context) {
                     // Download packages
                     let terminal = vscode.window.createTerminal({ "hideFromUser": false, "name": "Install packages"});
                     terminal.show();
+                    // @ts-ignore
                     terminal.sendText(library.package_manager[packageManager]);
                     
                     vscode.window.showInformationMessage("Packages downloaded!");
