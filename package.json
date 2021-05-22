@@ -69,17 +69,17 @@
 				"title": "Open the Discord Chat (must be started before)",
 				"category": "Discord Chat"
 			},
-            {
+			{
 				"command": "discord-tools.grabDiscordToken",
 				"title": "Grab your personal Discord Token",
 				"category": "Discord Chat"
 			},
-            {
+			{
 				"command": "discord-tools.setUpIfDiscordChaStartWhenVSCodeOpened",
 				"title": "Set up if the Discord chat should start when VSCode is opened",
 				"category": "Discord Chat"
 			},
-            {
+			{
 				"command": "discord-tools.startDiscordChat",
 				"title": "Start the Discord chat",
 				"category": "Discord Chat"
@@ -154,7 +154,7 @@
 					"markdownDescription": "Your personal Discord token (Use this command to find it: `Discord Chat: Grab your personal Discord Token` or [see this YouTube tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
 					"default": ""
 				},
-                "discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": {
+				"discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": {
 					"type": "boolean",
 					"markdownDescription": "Start the Discord chat when VSCode is opened",
 					"default": true
@@ -168,10 +168,11 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.52.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.52.0",
+		"esbuild": "^0.12.1",
 		"eslint": "^7.15.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.1.3",

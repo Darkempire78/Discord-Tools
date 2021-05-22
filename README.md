@@ -189,6 +189,7 @@ Please make sure to update tests as appropriate.
 ### 1.4.0 (Latest update)
 - Discord chat [BETA]
 - JSON Discord Theme fixed 
+- Log system
 ### 1.3.3 
 - New Discord Theme (Javascript, Python)
 ### 1.3.2
