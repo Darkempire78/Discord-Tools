@@ -151,7 +151,7 @@
 			"properties": {
 				"discord-chat.token": {
 					"type": "string",
-					"markdownDescription": "Your personal Discord token ([see how to find it here](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
+					"markdownDescription": "Your personal Discord token (Use this command to find it: `Discord Chat: Grab your personal Discord Token` or [see this YouTube tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
 					"default": ""
 				},
                 "discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": {
