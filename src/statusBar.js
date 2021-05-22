@@ -13,7 +13,6 @@ function createStatusBarItem(discordStatusBarItem) {
     
 function showStatusBarItem(discordStatusBarItem) {
     // https://code.visualstudio.com/api/references/icons-in-labels
-    discordStatusBarItem.text = "";
     discordStatusBarItem.show();
 }
 

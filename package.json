@@ -73,6 +73,11 @@
 				"command": "discord-tools.grabDiscordToken",
 				"title": "Grab your personal Discord Token",
 				"category": "Discord Chat"
+			},
+            {
+				"command": "discord-tools.setUpIfDiscordChaStartWhenVSCodeOpened",
+				"title": "Set up if the Discord chat should start when VSCode is opened",
+				"category": "Discord Chat"
 			}
 		],
 		"keybindings": [
@@ -143,6 +148,11 @@
 					"type": "string",
 					"markdownDescription": "Your personal Discord token ([see how to find it here](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",
 					"default": ""
+				},
+                "discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": {
+					"type": "boolean",
+					"markdownDescription": "Start the Discord chat when VSCode is opened",
+					"default": true
 				}
 			}
 		}

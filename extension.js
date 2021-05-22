@@ -142,6 +142,7 @@ function activate(context) {
             statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
             client.login(discordToken).then(() => {
                 generalOutputChannel.appendLine(`Discord client logged`);
+                statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat");
             }).catch(e => {
                 // Invalid token
                 generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
@@ -150,7 +151,6 @@ function activate(context) {
             })
         }
     }
-    
     
     // Set up Discord Token
     let setUpDiscordToken = vscode.commands.registerCommand("discord-tools.setUpDiscordToken", async () => {
@@ -163,15 +163,29 @@ function activate(context) {
 
     // Reload the bot
     let reloadBot = vscode.commands.registerCommand('discord-tools.reloadBot', function () {
-        // discordTreeViewProvider.refresh()
+        // discordTreeViewProvider.refresh();
         // Destroy the bot
         client.destroy()
         generalOutputChannel.appendLine(`Discord client destroyed`)
         loginDiscordBot(client);
+        
         vscode.window.showInformationMessage("Discord Client reload successfully!");
 
     });
     context.subscriptions.push(reloadBot);
+
+    // Set up if the Discord chat should start when VSCode is opened startDiscordChatWhenVSCodeOpened
+    let setUpIfDiscordChaStartWhenVSCodeOpened = vscode.commands.registerCommand("discord-tools.setUpIfDiscordChaStartWhenVSCodeOpened", async () => {
+        
+        let update = await vscode.window.showQuickPick(["true", "false"], { "placeHolder": "Do you want to start the Discord chat when VSCode is opened ?" });
+		if (update == "true") {
+            vscode.workspace.getConfiguration("discord-chat").update("setUpIfDiscordChaStartWhenVSCodeOpened", true);
+        } else {
+            vscode.workspace.getConfiguration("discord-chat").update("setUpIfDiscordChaStartWhenVSCodeOpened", false);
+        }
+        // vscode.workspace.getConfiguration("discord-chat").update("setUpIfDiscordChaStartWhenVSCodeOpened", "test");
+    });
+    context.subscriptions.push(setUpIfDiscordChaStartWhenVSCodeOpened);
 
     // Grab your Discord Token
     let grabDiscordToken = vscode.commands.registerCommand('discord-tools.grabDiscordToken', function () {

@@ -86,13 +86,13 @@ p {
 
 .messageAuthor {
     display: inline-block;
-    font-size: 20px;
+    font-size: 19px;
 }
 .messageDate {
     display: inline-block;
     color: #72767d;
     padding-left: 3px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .messageContent {
