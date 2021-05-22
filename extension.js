@@ -82,8 +82,6 @@ function activate(context) {
             }
         });
 
-        // Update the status bar
-        statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat")
         context.subscriptions.push(discordTreeView);
     });
 
@@ -124,14 +122,16 @@ function activate(context) {
     })
 
     client.on('messageDelete', (message) => {
-        // Delete the message
-        discordChatWebviewPanel.webview.postMessage(
-            { 
-                command: 'deleteMessage',
-                id: message.id
-            }
-        );
-        generalOutputChannel.appendLine(`Message deleted : ${message.id}`)
+        if(message.channel.id == discordCurrentChannelID){
+            // Delete the message
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'deleteMessage',
+                    id: message.id
+                }
+            );
+            generalOutputChannel.appendLine(`Message deleted : ${message.id}`)
+        }
     });
 
     loginDiscordBot(client)
@@ -140,7 +140,9 @@ function activate(context) {
         let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
         if (discordToken != "") {
             statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
-            client.login(discordToken).catch(e => {
+            client.login(discordToken).then(() => {
+                generalOutputChannel.appendLine(`Discord client logged`);
+            }).catch(e => {
                 // Invalid token
                 generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
                 vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
@@ -161,20 +163,12 @@ function activate(context) {
 
     // Reload the bot
     let reloadBot = vscode.commands.registerCommand('discord-tools.reloadBot', function () {
-        console.log("test")
-        // 
         // discordTreeViewProvider.refresh()
-        // // Kill
+        // Destroy the bot
         client.destroy()
-        console.log("destroyed");
-            // generalOutputChannel.appendLine(`Discord client killed!`)
-        setTimeout(() => { 
-            console.log("logging");
-            loginDiscordBot(client);
-            console.log("logged");
-        }, 6000);
-		
-            // console.log(client)
+        generalOutputChannel.appendLine(`Discord client destroyed`)
+        loginDiscordBot(client);
+        vscode.window.showInformationMessage("Discord Client reload successfully!");
 
     });
     context.subscriptions.push(reloadBot);
