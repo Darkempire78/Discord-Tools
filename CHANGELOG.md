@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.4.0]
+- Discord chat [BETA]
+- JSON Discord Theme fixed 
+
 ## [1.3.3]
 - New Discord Theme (Javascript, Python)
 

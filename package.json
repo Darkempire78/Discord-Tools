@@ -1,9 +1,9 @@
 {
 	"name": "discord-tools",
 	"displayName": "Discord Tools",
-	"description": "Generate and complete your Discord code faster.",
+	"description": "Dicord chat, bot template, snippets, theme and more!",
 	"icon": "images/logo.png",
-	"version": "1.3.3",
+	"version": "1.4.0",
 	"publisher": "Darkempire78",
 	"license": "GPL-3.0 License",
 	"repository": {

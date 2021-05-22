@@ -18,7 +18,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [ ] Soon...
 
 ## Index
-- [**Discord chat in VSCode**](#discord-chat-in-vscode-)
+- [**Discord chat in VSCode**](##beta-discord-chat-in-vscode-)
 - [**Generate a template Discord bot**](#generate-a-template-discord-bot-)
 - [**Open the Discord bot Documentation with/without a research**](#open-the-discord-bot-documentation-withwithout-a-research-)
 - [**Javascript snippets**](#available-snippets)
@@ -62,7 +62,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 * `Discord Chat: Reload the Discord Bot`
 
 #### Preview
-<img src="images/Capture2.png" width="500"/>
+<img src="images/Capture2.png" width="700"/>
 
 #### To do (soon)
 - [ ] Fix small chat glitches
@@ -159,7 +159,7 @@ Work for Python and JavasScript
 Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 
 #### Preview :
-<img src="images/capture1.png" width="500"/>
+<img src="images/capture1.png" width="700"/>
 
 ## Functionality table
 
@@ -185,7 +185,11 @@ Please make sure to update tests as appropriate.
 
 
 ## Release Notes
-### 1.3.3 (Latest update)
+
+### 1.4.0 (Latest update)
+- Discord chat [BETA]
+- JSON Discord Theme fixed 
+### 1.3.3 
 - New Discord Theme (Javascript, Python)
 ### 1.3.2
 - Update of the Discord.js snippets
