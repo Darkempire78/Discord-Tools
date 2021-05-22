@@ -37,21 +37,16 @@ function convertMessageContent(message) {
     // Escape HTML
     let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
     
-    // Convert links
-    // messageContentConverted = urlify(messageContentConverted);
-    
     // Convert to markdown
     messageContentConverted = md.render(messageContentConverted);
-
-    
-    
 
     // If edited
     if (message.editedAt) {
         messageContentConverted += " <span style=\"font-size: 8px; color: #72767d; user-select: none;\">(modified)</span>";
     }
+
     // Message Attachments
-    // Images 
+    // Images
     if (message.attachments.size > 0) {
         message.attachments.forEach(attachment => {
             const extension = attachment.url.split(".")
@@ -78,9 +73,7 @@ function convertMessageContent(message) {
     //     }
     // }
     
-
     return messageContentConverted
-
 }
 
 // Exports

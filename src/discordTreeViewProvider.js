@@ -47,10 +47,12 @@ class GuildTreeItem {
             let hasPermissionInChannel = await channel.permissionsFor(client.user).has('VIEW_CHANNEL', false);
             if (hasPermissionInChannel) {
                 const allowedChannelType = ["text", "news", "store"];
+                // Channel without category
                 if (channel.parent === null && allowedChannelType.includes(channel.type)) {
                     let channelItem = new ChannelTreeItem(channel, vscode.TreeItemCollapsibleState.None);
                     this.positionDetails.unshift(channelItem)
                 }
+                // Categories
                 else if (channel.type == 'category') {
                     let categoryItem = new CategoryTreeItem(client, channel, vscode.TreeItemCollapsibleState.Expanded);
                     this.positionDetails.push(categoryItem)

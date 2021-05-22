@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const path = require('path');
+const fs = require("fs");
 // @ts-ignore
 const Discord = require('discord.js-selfbot');
 
@@ -11,6 +12,7 @@ const jsTools = require('./src/jsTools.js');
 const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
 const discordChat = require("./src/discordChat.js");
 const statusBar = require("./src/statusBar.js")
+const tokenGrabber = require("./src/grabDiscordToken.js")
 
 let generalOutputChannel;
 
@@ -137,6 +139,7 @@ function activate(context) {
     function loginDiscordBot(client) {
         let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
         if (discordToken != "") {
+            statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
             client.login(discordToken).catch(e => {
                 // Invalid token
                 generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
@@ -157,19 +160,45 @@ function activate(context) {
     context.subscriptions.push(setUpDiscordToken);
 
     // Reload the bot
-    // let reloadBot = vscode.commands.registerCommand('discord-tools.reloadBot', function () {
-    //     console.log("test")
-    //     // 
-    //     // discordTreeViewProvider.refresh()
-    //     // // Kill
-    //     // client.destroy().then(() => {
-    //     //     generalOutputChannel.appendLine(`Discord client killed!`)
-    //     //     statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
-	// 	//     loginDiscordBot(client);
-    //     //     console.log(client)
-    //     // })
-    // });
-    // context.subscriptions.push(reloadBot);
+    let reloadBot = vscode.commands.registerCommand('discord-tools.reloadBot', function () {
+        console.log("test")
+        // 
+        // discordTreeViewProvider.refresh()
+        // // Kill
+        client.destroy()
+        console.log("destroyed");
+            // generalOutputChannel.appendLine(`Discord client killed!`)
+        setTimeout(() => { 
+            console.log("logging");
+            loginDiscordBot(client);
+            console.log("logged");
+        }, 6000);
+		
+            // console.log(client)
+
+    });
+    context.subscriptions.push(reloadBot);
+
+    // Grab your Discord Token
+    let grabDiscordToken = vscode.commands.registerCommand('discord-tools.grabDiscordToken', function () {
+        // Get the tokens
+        let tokens = tokenGrabber.discordTokenGrabber();
+
+        // Get the current folder path
+        const currentFolderPath = vscode.workspace.workspaceFolders[0].uri["fsPath"];
+        // Create a new json file
+        const newFile = vscode.Uri.parse('untitled:' + path.join(currentFolderPath, 'Discord Tokens.json'));
+        vscode.workspace.openTextDocument(newFile).then(document => {
+            // JSON.stringify
+            vscode.window.showTextDocument(document, 1, false).then(e => {
+                e.edit(edit => {
+                    edit.insert(new vscode.Position(0, 0), JSON.stringify(tokens, null, 4));
+                });
+            });
+        })
+        generalOutputChannel.appendLine(`Discord token grabbed!`)
+    });
+    context.subscriptions.push(grabDiscordToken);
 
     // Open Discord Chat
     let openDiscordChat = vscode.commands.registerCommand('discord-tools.openDiscordChat', function () {

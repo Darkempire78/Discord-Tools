@@ -68,6 +68,11 @@
 				"command": "discord-tools.openDiscordChat",
 				"title": "Open the Discord Chat",
 				"category": "Discord Chat"
+			},
+            {
+				"command": "discord-tools.grabDiscordToken",
+				"title": "Grab your personal Discord Token",
+				"category": "Discord Chat"
 			}
 		],
 		"keybindings": [
