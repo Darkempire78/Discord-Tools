@@ -18,6 +18,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [ ] Soon...
 
 ## Index
+- [**Discord chat in VSCode**](#discord-chat-in-vscode-)
 - [**Generate a template Discord bot**](#generate-a-template-discord-bot-)
 - [**Open the Discord bot Documentation with/without a research**](#open-the-discord-bot-documentation-withwithout-a-research-)
 - [**Javascript snippets**](#available-snippets)
@@ -36,6 +37,29 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 - [**License**](#license)
 
 ## Features
+
+### [BETA] Discord chat in VSCode : 
+⚠️ **This feature is currently in BETA, so it is possible that some features are not yet implemented and you may find bugs.**
+
+⚠️ It seems that the way this extension works is not entirely within Discord's terms of service. See the [Discord's terms](https://discord.com/terms) for more.
+This extension does not collect personal information and does not automatically respond to messages!
+
+#### Features
+* Discord Chat
+* Navigation tree through the servers (DM will be supported in the future)
+* Parameters
+
+#### Commands
+
+#### Preview
+<img src="images/Capture2.gif" width="500"/>
+
+#### To do (soon)
+- [ ] Fix small chat glitches
+- [ ] Refresh the Navigation tree when the chat is reload
+- [ ] Embed support
+- [ ] File support
+- [ ] Private message support
 
 ### Generate a template Discord bot : 
 - Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA, Harmony and Eris)
