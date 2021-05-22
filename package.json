@@ -66,7 +66,7 @@
 			},
 			{
 				"command": "discord-tools.openDiscordChat",
-				"title": "Open the Discord Chat",
+				"title": "Open the Discord Chat (must be started before)",
 				"category": "Discord Chat"
 			},
             {
@@ -77,6 +77,11 @@
             {
 				"command": "discord-tools.setUpIfDiscordChaStartWhenVSCodeOpened",
 				"title": "Set up if the Discord chat should start when VSCode is opened",
+				"category": "Discord Chat"
+			},
+            {
+				"command": "discord-tools.startDiscordChat",
+				"title": "Start the Discord chat",
 				"category": "Discord Chat"
 			}
 		],

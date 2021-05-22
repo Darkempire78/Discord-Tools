@@ -1,6 +1,5 @@
 const vscode = require('vscode');
 const path = require('path');
-const fs = require("fs");
 // @ts-ignore
 const Discord = require('discord.js-selfbot');
 
@@ -31,127 +30,23 @@ function activate(context) {
     generalOutputChannel = vscode.window.createOutputChannel("Discord Tools");
     generalOutputChannel.appendLine('Discord Tools is now active!');
 
-    // Status Bar
-    discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
-    statusBar.showStatusBarItem(discordStatusBarItem);
-
-    // Discord Bot
-    client = new Discord.Client();
-
-    client.on('ready', () => {
-        generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
-        
-        // Create the Discord Tree View
-        discordTreeViewProvider = new DiscordTreeViewProvider(client);
-        
-        let discordTreeView = vscode.window.createTreeView("discordTreeView", {
-            treeDataProvider: discordTreeViewProvider,
-            showCollapseAll: false
-        });
-
-        // when channel is selected
-        discordTreeView.onDidChangeSelection( event => {
-            if (event.selection[0].type == "channel" && event.selection[0].channel.id != discordCurrentChannelID) {
-
-                if (!discordChatWebviewPanel) {
-                    vscode.commands.executeCommand("discord-tools.openDiscordChat"); 
-                }
-
-                // Update the current channel
-                discordCurrentChannelID = event.selection[0].channel.id;
-                
-                // Change the channel
-                client.channels.fetch(discordCurrentChannelID).then(async channel => {
-                    // Check if the user can send messages in the channel
-                    let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
-                    
-                    const messages = await channel.messages.fetch({ limit: 10 })
-                    let latestMessages;
-                    if (messages) latestMessages = await discordChat.convertLatestMessages(client, messages)
-                    
-                    discordChatWebviewPanel.webview.postMessage(
-                        { 
-                            command: 'changeChannel' ,
-                            name: event.selection[0].channel.name,
-                            latestMessages: latestMessages,
-                            canSendMessage: hasPermissionInChannel
-                        }
-                    );
-                    generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
-                })  
-            }
-        });
-
-        context.subscriptions.push(discordTreeView);
-    });
-
-    client.on('message', message => {
-        if (message.channel.id == discordCurrentChannelID)
-        {
-            let messageCleanContent = discordChat.convertMessageContent(message);
-
-            // Receive
-            discordChatWebviewPanel.webview.postMessage(
-                { 
-                    command: 'receiveMessage' ,
-                    author: message.author.username,
-                    authorAvatar: message.author.avatarURL(),
-                    content: messageCleanContent,
-                    id: message.id,
-                    date: message.createdAt.toLocaleString()
-                }
-            );
-            generalOutputChannel.appendLine(`New message received : ${message.id} by ${message.author.username} (${message.author.id})`)
-        } 
-    })
-
-    client.on('messageUpdate', (oldMessage, newMessage) => {
-        if(newMessage.channel.id == discordCurrentChannelID){
-            let messageCleanContent = discordChat.convertMessageContent(newMessage);
-
-            // Update the message
-            discordChatWebviewPanel.webview.postMessage(
-                { 
-                    command: 'updateMessage',
-                    content: messageCleanContent,
-                    id: newMessage.id
-                }
-            );
-            generalOutputChannel.appendLine(`Message edited : ${newMessage.id} by ${newMessage.author.username} (${newMessage.author.id})`)
-        }
-    })
-
-    client.on('messageDelete', (message) => {
-        if(message.channel.id == discordCurrentChannelID){
-            // Delete the message
-            discordChatWebviewPanel.webview.postMessage(
-                { 
-                    command: 'deleteMessage',
-                    id: message.id
-                }
-            );
-            generalOutputChannel.appendLine(`Message deleted : ${message.id}`)
-        }
-    });
-
-    loginDiscordBot(client)
-
-    function loginDiscordBot(client) {
-        let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
-        if (discordToken != "") {
-            statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
-            client.login(discordToken).then(() => {
-                generalOutputChannel.appendLine(`Discord client logged`);
-                statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat");
-            }).catch(e => {
-                // Invalid token
-                generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
-                vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
-                statusBar.updateStatusBarItem(discordStatusBarItem, "$(error) Discord Chat : Invalid token")
-            })
-        }
+    // Start the Discord chat
+    if (vscode.workspace.getConfiguration("discord-chat").get("setUpIfDiscordChaStartWhenVSCodeOpened") === true) {
+       startDiscordChat(context);
     }
     
+    // Start the Discord Chat (command)
+    // startDiscordChat
+    let startDiscordChatCmd = vscode.commands.registerCommand("discord-tools.startDiscordChat", async () => {
+		if (client === undefined) {
+            startDiscordChat(context);
+        }
+        else {
+            vscode.window.showErrorMessage(`The Discord chat is already launched!`);
+        }
+    });
+    context.subscriptions.push(startDiscordChatCmd);
+
     // Set up Discord Token
     let setUpDiscordToken = vscode.commands.registerCommand("discord-tools.setUpDiscordToken", async () => {
 		let userToken = await vscode.window.showInputBox({value: vscode.workspace.getConfiguration("discord-chat").get("token"), placeHolder:"Past your personal Discord token (see how to find it: https://www.youtube.com/watch?v=YEgFvgg7ZPI)"});
@@ -361,6 +256,130 @@ function activate(context) {
         } 
 	});
     context.subscriptions.push(openDiscordDoc);
+}
+
+function startDiscordChat(context) {
+    // Status Bar
+    discordStatusBarItem = statusBar.createStatusBarItem(discordStatusBarItem);
+    statusBar.showStatusBarItem(discordStatusBarItem);
+
+    // Discord Bot
+    client = new Discord.Client();
+
+    client.on('ready', () => {
+        generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
+        
+        // Create the Discord Tree View
+        discordTreeViewProvider = new DiscordTreeViewProvider(client);
+        
+        let discordTreeView = vscode.window.createTreeView("discordTreeView", {
+            treeDataProvider: discordTreeViewProvider,
+            showCollapseAll: false
+        });
+
+        // when channel is selected
+        discordTreeView.onDidChangeSelection( event => {
+            if (event.selection[0].type == "channel" && event.selection[0].channel.id != discordCurrentChannelID) {
+
+                if (!discordChatWebviewPanel) {
+                    vscode.commands.executeCommand("discord-tools.openDiscordChat"); 
+                }
+
+                // Update the current channel
+                discordCurrentChannelID = event.selection[0].channel.id;
+                
+                // Change the channel
+                client.channels.fetch(discordCurrentChannelID).then(async channel => {
+                    // Check if the user can send messages in the channel
+                    let hasPermissionInChannel = await channel.permissionsFor(client.user).has('SEND_MESSAGES', false);
+                    
+                    const messages = await channel.messages.fetch({ limit: 10 })
+                    let latestMessages;
+                    if (messages) latestMessages = await discordChat.convertLatestMessages(client, messages)
+                    
+                    discordChatWebviewPanel.webview.postMessage(
+                        { 
+                            command: 'changeChannel' ,
+                            name: event.selection[0].channel.name,
+                            latestMessages: latestMessages,
+                            canSendMessage: hasPermissionInChannel
+                        }
+                    );
+                    generalOutputChannel.appendLine(`New channel selected : ${event.selection[0].channel.name} (${event.selection[0].channel.id})`)
+                })  
+            }
+        });
+
+        context.subscriptions.push(discordTreeView);
+    });
+
+    client.on('message', message => {
+        if (message.channel.id == discordCurrentChannelID)
+        {
+            let messageCleanContent = discordChat.convertMessageContent(message);
+
+            // Receive
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'receiveMessage' ,
+                    author: message.author.username,
+                    authorAvatar: message.author.avatarURL(),
+                    content: messageCleanContent,
+                    id: message.id,
+                    date: message.createdAt.toLocaleString()
+                }
+            );
+            generalOutputChannel.appendLine(`New message received : ${message.id} by ${message.author.username} (${message.author.id})`)
+        } 
+    })
+
+    client.on('messageUpdate', (oldMessage, newMessage) => {
+        if(newMessage.channel.id == discordCurrentChannelID){
+            let messageCleanContent = discordChat.convertMessageContent(newMessage);
+
+            // Update the message
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'updateMessage',
+                    content: messageCleanContent,
+                    id: newMessage.id
+                }
+            );
+            generalOutputChannel.appendLine(`Message edited : ${newMessage.id} by ${newMessage.author.username} (${newMessage.author.id})`)
+        }
+    })
+
+    client.on('messageDelete', (message) => {
+        if(message.channel.id == discordCurrentChannelID){
+            // Delete the message
+            discordChatWebviewPanel.webview.postMessage(
+                { 
+                    command: 'deleteMessage',
+                    id: message.id
+                }
+            );
+            generalOutputChannel.appendLine(`Message deleted : ${message.id}`)
+        }
+    });
+
+    loginDiscordBot(client)
+    vscode.window.showInformationMessage("Discord Client loaded successfully!");
+}
+
+function loginDiscordBot(client) {
+    let discordToken = vscode.workspace.getConfiguration("discord-chat").get("token");
+    if (discordToken != "") {
+        statusBar.updateStatusBarItem(discordStatusBarItem, "$(loading~spin) Loading Discord Chat...")
+        client.login(discordToken).then(() => {
+            generalOutputChannel.appendLine(`Discord client logged`);
+            statusBar.updateStatusBarItem(discordStatusBarItem, "$(comments-view-icon) Connected to Discord Chat");
+        }).catch(e => {
+            // Invalid token
+            generalOutputChannel.appendLine(`Invalid personal Discord token provided`);
+            vscode.window.showErrorMessage(`Invalid personal Discord token provided!`);
+            statusBar.updateStatusBarItem(discordStatusBarItem, "$(error) Discord Chat : Invalid token")
+        })
+    }
 }
 
 // this method is called when your extension is deactivated
