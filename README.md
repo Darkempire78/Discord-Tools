@@ -39,10 +39,14 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 ## Features
 
 ### [BETA] Discord chat in VSCode : 
-⚠️ **This feature is currently in BETA, so it is possible that some features are not yet implemented and you may find bugs.**
+⚠️ **This feature is currently in BETA, so it is possible that some features are not yet implemented and you may find bugs. If you find an error, thank you for reporting it [here](https://github.com/Darkempire78/Discord-Tools/issues/new)**
 
 ⚠️ It seems that the way this extension works is not entirely within Discord's terms of service. See the [Discord's terms](https://discord.com/terms) for more.
-This extension does not collect personal information and does not automatically respond to messages!
+However, please note that this extension does not collect personal information and does not automatically respond to messages!
+
+#### Instalation
+You must set up your personal Discord token with the command: `Discord Chat: Set up your personal Discord toke` (`Crtl + Maj + P` to open the Command palette)
+You can find your Discord token with the command: `Discord Chat: Grab your personal Discord Token`. However, if this does not work, you can follow [this tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI)
 
 #### Features
 * Discord Chat
@@ -50,9 +54,15 @@ This extension does not collect personal information and does not automatically 
 * Parameters
 
 #### Commands
+* `Discord Chat: Set up your personal Discord token`
+* `Discord Chat: Start the Discord chat`
+* `Discord Chat: Grab your personal Discord Token`
+* `Discord Chat: Set up if the Discord chat should start when VSCode is opened`
+* `Discord Chat: Open the Discord Chat (must be started before)`
+* `Discord Chat: Reload the Discord Bot`
 
 #### Preview
-<img src="images/Capture2.gif" width="500"/>
+<img src="images/Capture2.png" width="500"/>
 
 #### To do (soon)
 - [ ] Fix small chat glitches
