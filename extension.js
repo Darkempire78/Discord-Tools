@@ -40,6 +40,7 @@ function activate(context) {
     let startDiscordChatCmd = vscode.commands.registerCommand("discord-tools.startDiscordChat", async () => {
 		if (client === undefined) {
             startDiscordChat(context);
+            vscode.window.showInformationMessage("Discord Client launched successfully!");
         }
         else {
             vscode.window.showErrorMessage(`The Discord chat is already launched!`);
@@ -268,6 +269,7 @@ function startDiscordChat(context) {
 
     client.on('ready', () => {
         generalOutputChannel.appendLine(`Logged in as ${client.user.tag}!`);
+        vscode.window.showInformationMessage("Discord Client launched successfully!");
         
         // Create the Discord Tree View
         discordTreeViewProvider = new DiscordTreeViewProvider(client);
@@ -363,7 +365,6 @@ function startDiscordChat(context) {
     });
 
     loginDiscordBot(client)
-    vscode.window.showInformationMessage("Discord Client loaded successfully!");
 }
 
 function loginDiscordBot(client) {
