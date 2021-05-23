@@ -1,9 +1,9 @@
 {
 	"name": "discord-tools",
 	"displayName": "Discord Tools",
-	"description": "Dicord chat, bot template, snippets, theme and more!",
+	"description": "Discord chat, bot template, snippets, theme and more!",
 	"icon": "images/logo.png",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"publisher": "Darkempire78",
 	"license": "GPL-3.0 License",
 	"repository": {

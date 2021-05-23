@@ -318,7 +318,7 @@ function startDiscordChat(context) {
     client.on('message', message => {
         if (message.channel.id == discordCurrentChannelID)
         {
-            let messageCleanContent = discordChat.convertMessageContent(message);
+            let messageCleanContent = discordChat.convertMessageContent(client, message);
 
             // Receive
             discordChatWebviewPanel.webview.postMessage(
@@ -337,7 +337,7 @@ function startDiscordChat(context) {
 
     client.on('messageUpdate', (oldMessage, newMessage) => {
         if(newMessage.channel.id == discordCurrentChannelID){
-            let messageCleanContent = discordChat.convertMessageContent(newMessage);
+            let messageCleanContent = discordChat.convertMessageContent(client, newMessage);
 
             // Update the message
             discordChatWebviewPanel.webview.postMessage(

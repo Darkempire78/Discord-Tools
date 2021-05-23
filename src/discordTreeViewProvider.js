@@ -23,7 +23,7 @@ class DiscordTreeViewProvider {
         let array = [];
         this.guilds.forEach((element) => {
             array.push(
-                new GuildTreeItem(client, element, vscode.TreeItemCollapsibleState.Expanded)
+                new GuildTreeItem(client, element, vscode.TreeItemCollapsibleState.Collapsed)
             );
         });
         return array;
@@ -54,7 +54,7 @@ class GuildTreeItem {
                 }
                 // Categories
                 else if (channel.type == 'category') {
-                    let categoryItem = new CategoryTreeItem(client, channel, vscode.TreeItemCollapsibleState.Expanded);
+                    let categoryItem = new CategoryTreeItem(client, channel, vscode.TreeItemCollapsibleState.Collapsed);
                     this.positionDetails.push(categoryItem)
                 }
             }

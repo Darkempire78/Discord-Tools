@@ -19,7 +19,7 @@ async function convertLatestMessages(client, messages) {
         let avatar = "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png";
         if (message.author.avatar) avatar = `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp`
         // Escape HTML
-        const messageCleanContent = convertMessageContent(message);
+        const messageCleanContent = convertMessageContent(client, message);
         
         let messageConverted = {
             author: message.author.username,
@@ -33,12 +33,30 @@ async function convertLatestMessages(client, messages) {
     return messagesConverted.reverse();
 }
 
-function convertMessageContent(message) {
+function convertMessageContent(client, message) {
     // Escape HTML
     let messageContentConverted = message.cleanContent.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
     
     // Convert to markdown
     messageContentConverted = md.render(messageContentConverted);
+    console.log(messageContentConverted)
+    console.log(typeof messageContentConverted)
+    
+    // Custom emojis
+    // const emojiRegex = new RegExp(/^&lt;a:.+?:\d+&gt;$|^&lt;:.+?:\d+&gt;$/g); // Because "<" and ">" are replaced by "&lt;" and "&gt;"
+    // const emojis = messageContentConverted.match(emojiRegex);
+    // console.log(emojis)
+    // if (emojis) {
+    //     for (const emoji of emojis) {
+    //         console.log(emoji)
+    //         const emojiID = emoji.replaceAll(">", "").split(":");
+    //         console.log(emojiID)
+    //         const customEmoji = client.emojis.get(emojiID[emojiID.lenght - 1]);
+    //         console.log(customEmoji)
+    //         messageContentConverted.replace(emoji, `<img src="${customEmoji.url}" alt="${emoji}" style="max-height:48px; max-width:48;">`)
+    //     }
+    // }
+    
 
     // If edited
     if (message.editedAt) {
