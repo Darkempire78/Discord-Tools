@@ -39,24 +39,17 @@ function convertMessageContent(client, message) {
     
     // Convert to markdown
     messageContentConverted = md.render(messageContentConverted);
-    console.log(messageContentConverted)
-    console.log(typeof messageContentConverted)
     
     // Custom emojis
-    // const emojiRegex = new RegExp(/^&lt;a:.+?:\d+&gt;$|^&lt;:.+?:\d+&gt;$/g); // Because "<" and ">" are replaced by "&lt;" and "&gt;"
-    // const emojis = messageContentConverted.match(emojiRegex);
-    // console.log(emojis)
-    // if (emojis) {
-    //     for (const emoji of emojis) {
-    //         console.log(emoji)
-    //         const emojiID = emoji.replaceAll(">", "").split(":");
-    //         console.log(emojiID)
-    //         const customEmoji = client.emojis.get(emojiID[emojiID.lenght - 1]);
-    //         console.log(customEmoji)
-    //         messageContentConverted.replace(emoji, `<img src="${customEmoji.url}" alt="${emoji}" style="max-height:48px; max-width:48;">`)
-    //     }
-    // }
-    
+    const emojiRegex = new RegExp(/&lt;a:.+?:\d+&gt;|&lt;:.+?:\d+&gt;/g); // Because "<" and ">" are replaced by "&lt;" and "&gt;"
+    const emojis = messageContentConverted.match(emojiRegex);
+    if (emojis) {
+        for (const emoji of emojis) {
+            let emojiID = emoji.replace("&gt;", "").split(":"); // remove ">" at the end
+            const customEmoji = client.emojis.cache.get(emojiID[emojiID.length - 1]);
+            messageContentConverted = messageContentConverted.replace(emoji, `<img src="${customEmoji.url}" alt="[EmojiLoadingFailed]" style="max-height:22px; max-width:22;">`);
+        }
+    } 
 
     // If edited
     if (message.editedAt) {

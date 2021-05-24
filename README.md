@@ -188,8 +188,9 @@ Please make sure to update tests as appropriate.
 
 ### 1.4.2
 - The servers in the Discord chat navigation tree are collapsed by default
+- Custom emojis support
 ### 1.4.1 (Latest update)
-- small fix
+- Small fix
 ### 1.4.0 
 - Discord chat [BETA]
 - JSON Discord Theme fixed 
