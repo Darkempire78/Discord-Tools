@@ -2,6 +2,7 @@ const vscode = require('vscode');
 
 // Others
 const fse = require('fs-extra');
+const path = require("path");
 
 
 const jsCreateTemplateBot = () => {
@@ -10,8 +11,7 @@ const jsCreateTemplateBot = () => {
     const currentFolderPath = vscode.workspace.workspaceFolders[0].uri["fsPath"]
 
     // Copy JavaScript bot Template
-    var jsTemplateFolder = vscode.extensions.getExtension("Darkempire78.discord-tools").extensionPath;
-    jsTemplateFolder = jsTemplateFolder + "/src/jsTemplate";
+    const jsTemplateFolder = path.join(vscode.extensions.getExtension("Darkempire78.discord-tools").extensionPath, "src", "jsTemplate");
                                   
     // To copy a folder or file  
     fse.copy(jsTemplateFolder, currentFolderPath, function (err) {

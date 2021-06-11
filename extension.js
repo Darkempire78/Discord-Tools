@@ -151,8 +151,47 @@ function activate(context) {
     context.subscriptions.push(openDiscordChat);
 
     // Generate a python template bot (Discord.py)
-	let pyBotTemplate = vscode.commands.registerCommand('discord-tools.pyBotTemplate', function () {
-        pyTools.pyCreateTemplateBot();
+	let pyBotTemplate = vscode.commands.registerCommand('discord-tools.pyBotTemplate', async function () {
+        const legend = {
+            "Install Discord module": {
+                "packages": true,
+				"package_manager": { 
+                    "PyPI": "pip3 install discord.py" 
+                }
+			},
+			"Do not install Discord module": {
+                "packages": false
+			}
+		};
+
+
+		let library = await vscode.window.showQuickPick(Object.keys(legend), { "placeHolder": "Select" });
+		if (library) {
+
+            library = legend[library]
+            
+            if (library["packages"] == true) {
+                
+                // @ts-ignore
+                let packageManager = await vscode.window.showQuickPick(Object.keys(library.package_manager), { "placeHolder": 'Select a package manager' });
+                
+                if (packageManager) {
+                    // Create the bot template
+                    pyTools.pyCreateTemplateBot();
+                    
+                    // Download packages
+                    let terminal = vscode.window.createTerminal({ "hideFromUser": false, "name": "Install packages"});
+                    terminal.show();
+                    // @ts-ignore
+                    terminal.sendText(library.package_manager[packageManager]);
+                    
+                    vscode.window.showInformationMessage("Packages downloaded!");
+                }
+            } else {
+                // Create the bot template
+                pyTools.pyCreateTemplateBot();
+            }  
+        };
 	});
     context.subscriptions.push(pyBotTemplate);
     
@@ -160,14 +199,15 @@ function activate(context) {
 	let jsBotTemplate = vscode.commands.registerCommand('discord-tools.jsBotTemplate', async () =>  {
 
         const legend = {
-
+            "Install packages": {
+                "packages": true,
+				"package_manager": { 
+                    "npm": "npm install ", 
+                    "yarn": "yarn install" 
+                }
+			},
 			"Do not install packages": {
                 "packages": false
-			},
-
-			"Install packages": {
-                "packages": true,
-				"package_manager": { "npm": "npm install ", "yarn": "yarn install" }
 			}
 		};
 
