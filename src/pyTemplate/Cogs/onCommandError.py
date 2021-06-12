@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import MissingPermissions, CheckFailure, CommandNotFound
+from discord.ext.commands import MissingPermissions, CheckFailure, CommandNotFound, NotOwner
 import time
 
 
@@ -25,9 +25,11 @@ class OnCommandErrorCog(commands.Cog, name="on command error"):
 		elif isinstance(error, CommandNotFound):
 			return
 		elif isinstance(error, MissingPermissions):
- 			await ctx.send(error.text)
+ 			await ctx.send(error)
 		elif isinstance(error, CheckFailure):
-			await ctx.send(error.original.text)
+			await ctx.send(error)
+		elif isinstance(error, NotOwner):
+			await ctx.send(error)
 		else:
 			print(error) 
 
