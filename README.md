@@ -187,6 +187,7 @@ Please make sure to update tests as appropriate.
 ## Release Notes
 
 ### 1.4.3 
+- Improve of the Discord.py template system
 - Update of the Discord.py template 
 
 ### 1.4.2 (Latest update)
