@@ -4,10 +4,10 @@ html {
 }
 body {
     margin: 0;
-    padding: 0px !important;
+    padding: 0 !important;
     height: 100%;
     background-color: #36393f;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 p {
@@ -101,7 +101,7 @@ p {
 }
 
 pre {
-    margin: 0px;
+    margin: 0;
 }
 
 code {
