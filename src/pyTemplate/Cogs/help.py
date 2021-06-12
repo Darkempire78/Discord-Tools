@@ -8,8 +8,9 @@ class HelpCog(commands.Cog, name="help command"):
   
 
 	@commands.command(name = 'help',
-					usage="(commandName)",
-					description = "Display the help message.")
+					usage="{commandName}",
+					description = "Display the help message.",
+					aliases = ['h', '?'])
 	@commands.cooldown(1, 2, commands.BucketType.member)
 	async def help (self, ctx, commandName:str=None):
 
@@ -33,26 +34,31 @@ class HelpCog(commands.Cog, name="help command"):
 			if commandName2 is None:
 				await ctx.channel.send("No command found!")   
 			else:
-				embed = discord.Embed(title=f"**{commandName2.name.upper()} COMMAND :**", description="", color=randint(0, 0xffffff))
+				embed = discord.Embed(title=f"{commandName2.name.upper()} Command", description="", color=randint(0, 0xffffff))
 				embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
-				embed.add_field(name=f"**NAME :**", value=f"{commandName2.name}", inline=False)
-				aliases = ""
-			if len(commandName2.aliases) > 0:
-				for aliase in commandName2.aliases:
-					aliases = aliase
-			else:
-				commandName2.aliases = None
-				aliases = None
-				embed.add_field(name=f"**ALIASES :**", value=f"{aliases}", inline=False)
+				embed.add_field(name=f"Name", value=f"{commandName2.name}", inline=False)
+				aliases = commandName2.aliases
+				aliasList = ""
+				if len(aliases) > 0:
+					for alias in aliases:
+						aliasList += alias + ", "
+					aliasList = aliasList[:-2]
+					embed.add_field(name=f"Aliases", value=aliasList)
+				else:
+					embed.add_field(name=f"Aliases", value="None", inline=False)
+
 				if commandName2.usage is None:
-					commandName2.usage = ""
-				embed.add_field(name=f"**USAGE :**", value=f"{self.bot.command_prefix}{commandName2.name} {commandName2.usage}", inline=False)
-				embed.add_field(name=f"**DESCRIPTION :**", value=f"{commandName2.description}", inline=False)
+					commandName2.usage = "None"
+					embed.add_field(name=f"Usage", value=f"{commandName2.usage}", inline=False)
+				else:
+					embed.add_field(name=f"Usage", value=f"{self.bot.command_prefix}{commandName2.name} {commandName2.usage}", inline=False)
+				embed.add_field(name=f"Description", value=f"{commandName2.description}", inline=False)
 				await ctx.channel.send(embed=embed)             
 		else:
-			embed = discord.Embed(title=f"__**Help page of {self.bot.user.name}**__", description=f"**{self.bot.command_prefix}help (command)** : Display the help list or the help data for a specific command.", color=randint(0, 0xffffff))
+			embed = discord.Embed(title=f"Help page", description=f"{self.bot.command_prefix}help " + "{commandName} Display the help list or the help data for a specific command.", color=randint(0, 0xffffff))
 			embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
-			embed.add_field(name=f"__COMMANDS :__", value=f"**{self.bot.command_prefix}command <parameters>** : Command description.", inline=False)
+			for i in self.bot.commands:
+				embed.add_field(name=i.name, value=i.description, inline=False)
 			await ctx.channel.send(embed=embed)
 
 def setup(bot:commands.Bot):
