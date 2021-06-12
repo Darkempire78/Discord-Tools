@@ -47,9 +47,8 @@ class HelpCog(commands.Cog, name="help command"):
 				else:
 					embed.add_field(name=f"Aliases", value="None", inline=False)
 
-				if commandName2.usage is None:
-					commandName2.usage = "None"
-					embed.add_field(name=f"Usage", value=f"{commandName2.usage}", inline=False)
+				if commandName2.usage == None:
+					embed.add_field(name=f"Usage", value=f"None", inline=False)
 				else:
 					embed.add_field(name=f"Usage", value=f"{self.bot.command_prefix}{commandName2.name} {commandName2.usage}", inline=False)
 				embed.add_field(name=f"Description", value=f"{commandName2.description}", inline=False)
