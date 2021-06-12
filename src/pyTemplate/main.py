@@ -8,6 +8,7 @@ with open("configuration.json", "r") as config:
 	data = json.load(config)
 	token = data["token"]
 	prefix = data["prefix"]
+	owner_id = data["owner_id"]
 
 
 class Greetings(commands.Cog):
@@ -18,7 +19,7 @@ class Greetings(commands.Cog):
 # Intents
 intents = discord.Intents.default()
 # The bot
-bot = commands.Bot(prefix, intents = intents)
+bot = commands.Bot(prefix, intents = intents, owner_id = owner_id)
 
 # Load cogs
 if __name__ == '__main__':
