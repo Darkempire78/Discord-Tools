@@ -8,7 +8,7 @@ class HelpCog(commands.Cog, name="help command"):
   
 
 	@commands.command(name = 'help',
-					usage="{commandName}",
+					usage="(commandName)",
 					description = "Display the help message.",
 					aliases = ['h', '?'])
 	@commands.cooldown(1, 2, commands.BucketType.member)
@@ -54,7 +54,7 @@ class HelpCog(commands.Cog, name="help command"):
 				embed.add_field(name=f"Description", value=f"{commandName2.description}", inline=False)
 				await ctx.channel.send(embed=embed)             
 		else:
-			embed = discord.Embed(title=f"Help page", description=f"{self.bot.command_prefix}help " + "{commandName} Display the help list or the help data for a specific command.", color=randint(0, 0xffffff))
+			embed = discord.Embed(title=f"Help page", description=f"{self.bot.command_prefix}help (commandName) Display the help list or the help data for a specific command.", color=randint(0, 0xffffff))
 			embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
 			for i in self.bot.commands:
 				embed.add_field(name=i.name, value=i.description, inline=False)
