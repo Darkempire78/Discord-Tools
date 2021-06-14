@@ -72,7 +72,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - [ ] Private message support
 
 ### Generate a template Discord bot : 
-- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for JDA, Harmony and Eris)
+- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for Harmony and Eris)
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
@@ -169,7 +169,7 @@ Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 | Eris       |     ❌    |  ❌  |       ❌      |     ✅    |
 | Harmony    |     ❌    |  ✅  |       ❌      |     ✅    |
 | Discord.py |     ✅    |  ✅  |       ✅      |     ✅    |
-| JDA        |     ❌    |  ✅  |       ❌      |     ✅    |
+| JDA        |     ✅    |  ✅  |       ❌      |     ✅    |
 
 ## Discord
 
