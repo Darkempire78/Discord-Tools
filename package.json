@@ -50,6 +50,11 @@
 				"category": "Discord Template"
 			},
 			{
+				"command": "discord-tools.jdaBotTemplate",
+				"title": "Generate a Java template bot (JDA)",
+				"category": "Discord Template"
+			},
+			{
 				"command": "discord-tools.openDiscordDoc",
 				"title": "Open the Discord bot Documention",
 				"category": "Discord Doc"
