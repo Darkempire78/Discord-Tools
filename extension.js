@@ -7,6 +7,7 @@ const Discord = require('discord.js-selfbot');
 
 const pyTools = require('./src/pyTools.js');
 const jsTools = require('./src/jsTools.js');
+const javaTools = require('./src/javaTools.js');
 
 const DiscordTreeViewProvider = require("./src/discordTreeViewProvider.js");
 const discordChat = require("./src/discordChat.js");
@@ -241,6 +242,33 @@ function activate(context) {
         };
 	});
     context.subscriptions.push(jsBotTemplate);
+
+    // Generate a Java template bot (JDA)
+    const jdaBotTemplate=vscode.commands.registerCommand('discord-tools.jdaBotTemplate', async () =>  {
+        const legend = {
+
+			"Do not download dependencies and build project": {
+                "build": false
+			},
+
+			"Download dependencies and build project": {
+                "build": true
+			}
+		};
+
+		let library = await vscode.window.showQuickPick(Object.keys(legend), { "placeHolder": "Select" });
+        let groupId = await vscode.window.showInputBox({value: "group.id", placeHolder:"com.example.project"});
+        let artifactId = await vscode.window.showInputBox({value: "artifact-id", placeHolder:"example-discord-bot"});
+
+		library = legend[library];
+
+        if(groupId&&artifactId){
+            javaTools.jdaCreateTemplateBot(groupId,artifactId,library?library["build"]:false); 
+        }else{
+            vscode.window.showErrorMessage("Please enter valid artifact coordinates");
+        }
+	});
+    context.subscriptions.push(jdaBotTemplate);
     
     // Open the Discord bot Documention
 	let openDiscordDoc = vscode.commands.registerCommand('discord-tools.openDiscordDoc', function () {    
