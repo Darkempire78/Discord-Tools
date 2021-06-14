@@ -76,6 +76,8 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
+⚠️ Maven must be installed to build the jda tempate
+
 <img src="images/video1.gif" width="500"/>
 
 
