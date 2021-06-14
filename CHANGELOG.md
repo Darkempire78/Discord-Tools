@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.4.3]
+- New JDA bot template
+- Improve of the Discord.py template system
+- Update of the Discord.py template
+
 ## [1.4.2]
 - The servers in the Discord chat navigation tree are collapsed by default
 - Custom emojis support

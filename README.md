@@ -76,7 +76,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
-⚠️ Maven must be installed to build the JDA tempate
+⚠️ [Maven](https://maven.apache.org/) must be installed to build the JDA tempate
 
 <img src="images/video1.gif" width="500"/>
 
@@ -188,12 +188,11 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.4.3 
+### 1.4.3 (Latest update)
 - New JDA bot template
 - Improve of the Discord.py template system
 - Update of the Discord.py template
-
-### 1.4.2 (Latest update)
+### 1.4.2 
 - The servers in the Discord chat navigation tree are collapsed by default
 - Custom emojis support
 ### 1.4.1 
