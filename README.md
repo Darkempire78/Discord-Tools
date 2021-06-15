@@ -45,7 +45,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 However, please note that this extension does not collect personal information and does not automatically respond to messages!
 
 #### Instalation
-You must set up your personal Discord token with the command: `Discord Chat: Set up your personal Discord toke` (`Crtl + Maj + P` to open the Command palette)
+You must set up your personal Discord token with the command: `Discord Chat: Set up your personal Discord toke` (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the Command palette)
 You can find your Discord token with the command: `Discord Chat: Grab your personal Discord Token`. However, if this does not work, you can follow [this tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI)
 
 #### Features
@@ -72,7 +72,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - [ ] Private message support
 
 ### Generate a template Discord bot : 
-- Open the command palette (Ctrl+Shift+P) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for Harmony and Eris)
+- Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) and choose : `Generate a <language> template bot (Discord.<language>)` (not available for Harmony and Eris)
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
@@ -82,8 +82,8 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 
 
 ### Open the Discord bot Documentation with/without a research :
-- Open the command palette (Ctrl+Shift+P) and choose : `Open the Discord bot Documention`
-- Shortcut : `Ctrl+Alt+D`
+- Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) and choose : `Open the Discord bot Documention`
+- Shortcut : <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>
 - Works with Discord.py, Discord.js and JDA (JDA, Harmony and Eris documentions do not allow to make a research)
 
 ⚠️ A folder must be opened in VSCode to execute this command
