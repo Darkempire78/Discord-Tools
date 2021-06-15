@@ -6,8 +6,7 @@
 
 Discord Tools is a Visual Studio Code extension to code Discord bots more easily.
 
-- **GITHUB :** https://github.com/Darkempire78/Discord-Tools
-- **DOWNLOAD :** https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools
+[**GitHub**](https://github.com/Darkempire78/Discord-Tools) - [**VSC Marketplace**](https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools) - [**Open VSX**](https://open-vsx.org/extension/Darkempire78/discord-tools/1.4.3)
 
 ## Supported Languages
 
