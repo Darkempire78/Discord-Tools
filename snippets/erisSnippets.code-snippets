@@ -120,7 +120,7 @@
             "});",
 		],
         "description": "Create a default Discord bot message."
-    }
+    },
 
     // "Default Discord bot channelCreate": {
 	// 	"prefix": "djs.channelCreate",
@@ -571,4 +571,27 @@
 	// 	],
     //     "description": "Create a default Discord bot webhookUpdate."
     // },
+    "A simple aoi.js discord bot": {
+        "prefix": "aoi.bot",
+        "body": [
+          "const Aoijs = require(\"aoi.js\")",
+          "",
+          "const bot = new Aoijs.Bot({",
+          "  sharding: false, //true or false ",
+          "  shardAmount: 2, //Shard amount ",
+          "  mobile: false, //true or false - Discord Mobile Status",
+          "  token: \"TOKEN\", //Discord Bot Token",
+          "  prefix: [\"PREFIX\"], //Change PREFIX to your Prefix",
+          "  autoUpdate: false // set to true if version should be updated automatically after a package update",
+          "})",
+          "",
+          "bot.onMessage() // Allows Commands to Executed",
+          "",
+          "bot.command({",
+          "name: \"ping\", ",
+          "code: `Pong! \\`$ping\\`` ",
+          "})"
+        ],
+        "description": "A simple aoi.js discord bot"
+      }
 }
