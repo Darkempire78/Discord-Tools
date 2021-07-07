@@ -304,7 +304,11 @@ function activate(context) {
                 "java": {
                     "classic": "https://ci.dv8tion.net/job/JDA/javadoc/index.html",
                     "search": null
-                }
+                },
+                "aoi":{
+                    "classic": "https://aoi.leref.ga",
+                    "search": "https://aoi.leref.ga/?q=",
+                },
             };
 
             const selection = editor.selection;
