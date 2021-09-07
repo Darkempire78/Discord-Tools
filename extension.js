@@ -393,7 +393,7 @@ function startDiscordChat(context) {
                 { 
                     command: 'receiveMessage' ,
                     author: message.author.username,
-                    authorAvatar: message.author.avatarURL(),
+                    authorAvatar: message.author.displayAvatarURL(),
                     content: messageCleanContent,
                     id: message.id,
                     date: message.createdAt.toLocaleString()
