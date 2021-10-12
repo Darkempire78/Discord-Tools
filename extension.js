@@ -291,7 +291,7 @@ function activate(context) {
             const languages = {
                 "javascript": {
                     "classic": "https://discord.js.org/#/docs/main/stable/general/welcome",
-                    "search": "https://discord.js.org/#/docs/main/stable/search?q="
+                    "search": "https://discord.js.org/#/docs/main/stable/search?query="
                 },
                 "python": {
                     "classic": "https://discordpy.readthedocs.io/en/latest/api.html",
