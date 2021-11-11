@@ -187,6 +187,8 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
+### 1.4.4
+- Fix Discord.js documentation searcher
 ### 1.4.3 (Latest update)
 - New JDA bot template
 - Improve of the Discord.py template system
