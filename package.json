@@ -3,7 +3,7 @@
 	"displayName": "Discord Tools",
 	"description": "Discord chat, bot template, snippets, theme and more!",
 	"icon": "images/logo.png",
-	"version": "1.4.3",
+	"version": "1.5.0",
 	"publisher": "Darkempire78",
 	"license": "GPL-3.0 License",
 	"repository": {
@@ -20,6 +20,7 @@
 		"discord",
 		"discord bot",
 		"discord.py",
+		"pycord",
 		"discord.js",
 		"jda",
 		"eris",
@@ -116,11 +117,15 @@
 		"snippets": [
 			{
 				"language": "python",
-				"path": "./snippets/pySnippets.code-snippets"
+				"path": "./snippets/discordpySnippets.code-snippets"
+			},
+			{
+				"language": "python",
+				"path": "./snippets/pycordSnippets.code-snippets"
 			},
 			{
 				"language": "javascript",
-				"path": "./snippets/jsSnippets.code-snippets"
+				"path": "./snippets/discordjsSnippets.code-snippets"
 			},
 			{
 				"language": "javascript",
@@ -132,7 +137,7 @@
 			},
 			{
 				"language": "java",
-				"path": "./snippets/javaSnippets.code-snippets"
+				"path": "./snippets/jdaSnippets.code-snippets"
 			}
 		],
 		"themes": [
@@ -154,6 +159,44 @@
 			"type": "object",
 			"title": "Discord Tools",
 			"properties": {
+				"discord-documentation.pythonWrapper": {
+					"type": "string",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"enum": [
+						"Discord.py",
+						"Pycord"
+					],
+					"uniqueItems": true,
+					"default": "Discord.py"
+				},
+				"discord-documentation.javaWrapper": {
+					"type": "string",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"enum": [
+						"JDA"
+					],
+					"uniqueItems": true,
+					"default": "JDA"
+				},
+				"discord-documentation.javascriptWrapper": {
+					"type": "string",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"enum": [
+						"Discord.js",
+						"Eris"
+					],
+					"uniqueItems": true,
+					"default": "Discord.js"
+				},
+				"discord-documentation.typescriptWrapper": {
+					"type": "string",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"enum": [
+						"Harmony"
+					],
+					"uniqueItems": true,
+					"default": "Harmony"
+				},
 				"discord-chat.token": {
 					"type": "string",
 					"markdownDescription": "Your personal Discord token (Use this command to find it: `Discord Chat: Grab your personal Discord Token` or [see this YouTube tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI))",

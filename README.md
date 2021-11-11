@@ -12,7 +12,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 
 - [x] Javascript ([**Discord.js**](https://discord.js.org/#/), [**Eris**](https://abal.moe/Eris/))
 - [x] Typescript ([**Harmony**](https://harmony.mod.land/))
-- [x] Python ([**Discord.py**](https://discordpy.readthedocs.io/en/latest/))
+- [x] Python ([**Discord.py**](https://discordpy.readthedocs.io/en/latest/), [**Pycord**](https://docs.pycord.dev/en/master/))
 - [x] Java ([**JDA**](https://github.com/DV8FromTheWorld/JDA))
 - [ ] Soon...
 
@@ -27,6 +27,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
   - [Harmony](#typescript-harmony-)
 -  [**Python snippets**](#python-discordpy-)
     - [Discord.py](#python-discordpy-)
+    - [Pycord](#python-pycord-)
 -  [**Java snippets**](#java-jda-)
     - [JDA](#java-jda-)
 - [**Themes**](#discord-theme-dark-version)
@@ -83,7 +84,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 ### Open the Discord bot Documentation with/without a research :
 - Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) and choose : `Open the Discord bot Documention`
 - Shortcut : <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>
-- Works with Discord.py, Discord.js and JDA (JDA, Harmony and Eris documentions do not allow to make a research)
+- JDA, Harmony and Eris documentions do not allow to make a research
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
@@ -105,7 +106,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `djs.guildmemberremove` : Create a default Discord bot guildMemberRemove event.
 - `djs.guildcreate` : Create a default Discord bot guildCreate event.
 - `djs.guilddelete` : Create a default Discord bot guildDelete event.
-- **and 47 other events...**
+- **and 47 other snippets...**
 
 #### Javascript ([Eris](https://abal.moe/Eris/)) :
 - `eris.index` : Create a basic Discord bot index.js file.
@@ -139,7 +140,22 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
 - `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
 - `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
-- **and 59 other events...**
+- **and 59 other snippets...**
+
+#### Python ([Discord.py](https://discordpy.readthedocs.io/en/latest/)) :
+
+- `dpy.main` : Create a basic Discord bot main.py file.
+- `dpy.slash` : Create a basic Discord slash command.
+- `dpy.cmd` : Create a basic Discord command.
+- `dpy.cmd+` : Create a complex Discord command.
+- `dpy.embed` : Create a basic Discord embed.
+- `dpy.embed+` : Create a complex Discord embed.
+- `dpy.onmessage` : CCreate a default Discord bot on_message event.
+- `dpy.onmemberjoin` : Create a default Discord bot on_member_join event.
+- `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
+- `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
+- `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
+- **and 30 other snippets...**
 
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
@@ -167,9 +183,10 @@ Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 |            | Template | Doc | Doc searcher | Snippets |
 |------------|:--------:|:---:|:------------:|:--------:|
 | Discord.js |     ✅    |  ✅  |       ✅      |     ✅    |
-| Eris       |     ❌    |  ❌  |       ❌      |     ✅    |
+| Eris       |     ❌    |  ✅  |       ❌      |     ✅    |
 | Harmony    |     ❌    |  ✅  |       ❌      |     ✅    |
 | Discord.py |     ✅    |  ✅  |       ✅      |     ✅    |
+| Pycord     |     ❌    |  ✅  |       ✅      |     ✅    |
 | JDA        |     ✅    |  ✅  |       ❌      |     ✅    |
 
 ## Discord
@@ -187,9 +204,11 @@ Please make sure to update tests as appropriate.
 
 ## Release Notes
 
-### 1.4.4
+### 1.5.0 (Latest update)
+- Add the Pycord support
 - Fix Discord.js documentation searcher
-### 1.4.3 (Latest update)
+- Improve the documentation system
+### 1.4.3 
 - New JDA bot template
 - Improve of the Discord.py template system
 - Update of the Discord.py template

@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.5.0]
+- Add the Pycord support
+- Fix Discord.js documentation searcher
+- Improve the documentation system
+
 ## [1.4.3]
 - New JDA bot template
 - Improve of the Discord.py template system

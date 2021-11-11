@@ -290,36 +290,54 @@ function activate(context) {
 
             const languages = {
                 "javascript": {
-                    "classic": "https://discord.js.org/#/docs/main/stable/general/welcome",
-                    "search": "https://discord.js.org/#/docs/main/stable/search?query="
+                    "Discord.js": {
+                        "classic": "https://discord.js.org/#/docs/main/stable/general/welcome",
+                        "search": "https://discord.js.org/#/docs/main/stable/search?query="
+                    },
+                    "Eris": {
+                        "classic": "https://abal.moe/Eris/docs/getting-started",
+                        "search": null
+                    } 
                 },
                 "python": {
-                    "classic": "https://discordpy.readthedocs.io/en/latest/api.html",
-                    "search": "https://discordpy.readthedocs.io/en/latest/search.html?q="
+                    "Discord.py": {
+                        "classic": "https://discordpy.readthedocs.io/en/latest/api.html",
+                        "search": "https://discordpy.readthedocs.io/en/latest/search.html?q="
+                    },
+                    "Pycord": {
+                        "classic": "https://docs.pycord.dev/en/master/api.html",
+                        "search": "https://docs.pycord.dev/en/master/search.html?q="
+                    }
                 },
                 "typescript": {
-                    "classic": "https://doc.deno.land/https/raw.githubusercontent.com/harmonyland/harmony/main/mod.ts",
-                    "search": null
+                    "Harmony": {
+                        "classic": "https://doc.deno.land/https/raw.githubusercontent.com/harmonyland/harmony/main/mod.ts",
+                        "search": null
+                    }
                 },
                 "java": {
-                    "classic": "https://ci.dv8tion.net/job/JDA/javadoc/index.html",
-                    "search": null
+                    "JDA": {
+                        "classic": "https://ci.dv8tion.net/job/JDA/javadoc/index.html",
+                        "search": null
+                    } 
                 }
             };
 
             const selection = editor.selection;
             // Get the word within the selection
             const textSelection = document.getText(selection);
+            let url = null
+            const wrapper = vscode.workspace.getConfiguration("discord-documentation").get(`${language}Wrapper`);
             if (textSelection){
                 // Get the good url
-                const url = languages[language]["search"]
+                url = languages[language][wrapper]["search"]
                 if (url) {
                     // Open an url
                     return vscode.env.openExternal(vscode.Uri.parse(url + textSelection));
                 } 
             }
             // Get the good url
-            const url = languages[language]["classic"]
+            url = languages[language][wrapper]["classic"]
             // Open an url
             vscode.env.openExternal(vscode.Uri.parse(url));
         } 
