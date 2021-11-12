@@ -142,7 +142,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
 - **and 59 other snippets...**
 
-#### Python ([Discord.py](https://discordpy.readthedocs.io/en/latest/)) :
+#### Python ([Pycord](https://docs.pycord.dev/en/master/)) :
 
 - `dpy.main` : Create a basic Discord bot main.py file.
 - `dpy.slash` : Create a basic Discord slash command.
