@@ -85,6 +85,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) and choose : `Open the Discord bot Documention`
 - Shortcut : <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>
 - JDA, Harmony and Eris documentions do not allow to make a research
+- You can change the wrapper in the extension settings if it is not the right documentation that opens by default
 
 ⚠️ A folder must be opened in VSCode to execute this command
 
