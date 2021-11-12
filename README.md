@@ -155,7 +155,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
 - `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
 - `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
-- **and 30 other snippets...**
+- **and 60 other snippets...**
 
 #### Python Preview :
 <img src="images/video3.gif" width="500"/>
