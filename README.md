@@ -145,17 +145,17 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 
 #### Python ([Pycord](https://docs.pycord.dev/en/master/)) :
 
-- `dpy.main` : Create a basic Discord bot main.py file.
-- `dpy.slash` : Create a basic Discord slash command.
-- `dpy.cmd` : Create a basic Discord command.
-- `dpy.cmd+` : Create a complex Discord command.
-- `dpy.embed` : Create a basic Discord embed.
-- `dpy.embed+` : Create a complex Discord embed.
-- `dpy.onmessage` : CCreate a default Discord bot on_message event.
-- `dpy.onmemberjoin` : Create a default Discord bot on_member_join event.
-- `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
-- `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
-- `dpy.onguildremove` : Create a default Discord bot on_guild_remove event.
+- `pyc.main` : Create a basic Discord bot main.py file.
+- `pyc.slash` : Create a basic Discord slash command.
+- `pyc.cmd` : Create a basic Discord command.
+- `pyc.cmd+` : Create a complex Discord command.
+- `pyc.embed` : Create a basic Discord embed.
+- `pyc.embed+` : Create a complex Discord embed.
+- `pyc.onmessage` : CCreate a default Discord bot on_message event.
+- `pyc.onmemberjoin` : Create a default Discord bot on_member_join event.
+- `pyc.onmemberremove` : Create a default Discord bot on_member_remove event.
+- `pyc.onguildjoin` : Create a default Discord bot on_guild_join event.
+- `pyc.onguildremove` : Create a default Discord bot on_guild_remove event.
 - **and 60 other snippets...**
 
 #### Python Preview :
