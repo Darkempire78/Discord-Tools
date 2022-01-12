@@ -234,7 +234,7 @@
 	"dependencies": {
 		"discord.js-selfbot": "^12.0.2",
 		"fs-extra": "^9.0.1",
-		"markdown-it": "^12.0.6",
+		"markdown-it": "^12.3.2",
 		"npx": "^10.2.2"
 	}
 }
