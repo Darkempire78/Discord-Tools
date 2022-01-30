@@ -1,6 +1,6 @@
 {
 	"Default Discord bot main function": {
-		"prefix": ["dja.index", "dja.main", "dja.bot", "dja.client"],
+		"prefix": ["jda.index", "jda.main", "jda.bot", "jda.client"],
 		"body": [
 			"public static void main(String[] args) {",
             "JDABuilder builder = JDABuilder.createDefault(args[0]);",
@@ -23,13 +23,11 @@
     "Default Discord bot command": {
 		"prefix": ["jda.cmd", "jda.command"],
 		"body": [       
-            "public class CommandName implements ServerCommand {",
+            "public class CommandName implements Command {",
             "",
             "\t@Override",
-            "\tpublic void performCommand(Member member, TextChannel channel, Message message) {",
-            "",
-            "\t\tchannel.sendMessage(\"template command\");",
-            "",
+            "\tpublic void run(SlashCommandEvent event) {",
+            "\t\tevent.reply(\"Message\").queue();",
             "\t}",
             "}"
 		],
