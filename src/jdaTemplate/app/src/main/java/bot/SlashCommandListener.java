@@ -6,10 +6,12 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 public class SlashCommandListener extends ListenerAdapter {
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
-        for (Command command : App.getCommands()) {
-            if (command.getName().equals(event.getName())) {
-                command.run(event);
-            }
+        try {
+            App.getCommands().get(event.getName()).run(event);
+        } catch (Exception e) {
+            event.reply("An unknown error occurred while executing the command.").queue();
+
+            e.printStackTrace();
         }
     }
 }

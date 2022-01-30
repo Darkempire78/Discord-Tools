@@ -1,21 +1,24 @@
 package bot;
 
-import bot.Commands.HelloCommand;
-
+import bot.command.HelloCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
 import javax.security.auth.login.LoginException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
-    private static final ArrayList<Command> commands = new ArrayList<>();
+    private static Map<String, Command> commands = new HashMap<>();
 
-    static {
-        commands.add(new HelloCommand());
-        // Add commands here
+    public static void addCommand(Command cmd) {
+        commands.put(cmd.getName(), cmd);
+    }
+
+    public static Map<String, Command> getCommands() {
+        return commands;
     }
 
     public static void main(String[] args) throws LoginException {
@@ -23,16 +26,14 @@ public class App {
                 .addEventListeners(new SlashCommandListener())
                 .build();
 
+        addCommand(new HelloCommand());
+
         CommandListUpdateAction update = bot.updateCommands();
 
-        for (Command command : commands) {
+        for (Command command : commands.values()) {
             update.addCommands(new CommandData(command.getName(), command.getDescription()).addOptions(command.getOptions()));
         }
 
         update.queue();
-    }
-
-    public static ArrayList<Command> getCommands() {
-        return commands;
     }
 }

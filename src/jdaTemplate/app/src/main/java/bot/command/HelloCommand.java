@@ -1,4 +1,4 @@
-package bot.Commands;
+package bot.command;
 
 import bot.Command;
 
