@@ -1,5 +1,7 @@
 package bot;
 
+import bot.Commands.HelloCommand;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
@@ -9,9 +11,10 @@ import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 
 public class App {
-    public static final ArrayList<Command> commands = new ArrayList<>();
+    private static final ArrayList<Command> commands = new ArrayList<>();
 
     static {
+        commands.add(new HelloCommand());
         // Add commands here
     }
 
@@ -27,5 +30,9 @@ public class App {
         }
 
         update.queue();
+    }
+
+    public static ArrayList<Command> getCommands() {
+        return commands;
     }
 }
