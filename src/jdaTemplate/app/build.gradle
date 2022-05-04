@@ -1,0 +1,19 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Discord API
+    implementation("net.dv8tion:JDA:5.0.0-alpha.4")
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'Bot.App'
+}
