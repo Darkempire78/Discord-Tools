@@ -1,6 +1,4 @@
-![CodeFactor](https://img.shields.io/codefactor/grade/github/Darkempire78/Discord-Tools?style=for-the-badge)
-![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/Darkempire78.discord-tools?style=for-the-badge)
-<a href="https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools"><img src="https://img.shields.io/visual-studio-marketplace/i/Darkempire78.discord-tools?style=for-the-badge"></a> <a href="https://discord.com/invite/sPvJmY7mcV"><img src="https://img.shields.io/discord/831524351311609907?color=%237289DA&label=DISCORD&style=for-the-badge"></a>
+![CodeFactor](https://img.shields.io/codefactor/grade/github/Darkempire78/Discord-Tools?style=for-the-badge) ![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/Darkempire78.discord-tools?style=for-the-badge) <a href="https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools"><img src="https://img.shields.io/visual-studio-marketplace/i/Darkempire78.discord-tools?style=for-the-badge"></a> <a href="https://discord.com/invite/sPvJmY7mcV"><img src="https://img.shields.io/discord/831524351311609907?color=%237289DA&label=DISCORD&style=for-the-badge"></a>
 
 # Discord Tools
 
