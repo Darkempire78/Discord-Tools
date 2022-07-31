@@ -134,7 +134,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `dpy.cmd+` : Create a complex Discord command.
 - `dpy.embed` : Create a basic Discord embed.
 - `dpy.embed+` : Create a complex Discord embed.
-- `dpy.onmessage` : CCreate a default Discord bot on_message event.
+- `dpy.onmessage` : Create a default Discord bot on_message event.
 - `dpy.onmemberjoin` : Create a default Discord bot on_member_join event.
 - `dpy.onmemberremove` : Create a default Discord bot on_member_remove event.
 - `dpy.onguildjoin` : Create a default Discord bot on_guild_join event.
@@ -149,7 +149,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 - `pyc.cmd+` : Create a complex Discord command.
 - `pyc.embed` : Create a basic Discord embed.
 - `pyc.embed+` : Create a complex Discord embed.
-- `pyc.onmessage` : CCreate a default Discord bot on_message event.
+- `pyc.onmessage` : Create a default Discord bot on_message event.
 - `pyc.onmemberjoin` : Create a default Discord bot on_member_join event.
 - `pyc.onmemberremove` : Create a default Discord bot on_member_remove event.
 - `pyc.onguildjoin` : Create a default Discord bot on_guild_join event.
