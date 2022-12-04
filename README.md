@@ -43,7 +43,7 @@ Discord Tools is a Visual Studio Code extension to code Discord bots more easily
 However, please note that this extension does not collect personal information and does not automatically respond to messages!
 
 #### Installation
-You must set up your personal Discord token with the command: `Discord Chat: Set up your personal Discord toke` (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the Command palette)
+You must set up your personal Discord token with the command: `Discord Chat: Set up your personal Discord token` (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the Command palette)
 You can find your Discord token with the command: `Discord Chat: Grab your personal Discord Token`. However, if this does not work, you can follow [this tutorial](https://www.youtube.com/watch?v=YEgFvgg7ZPI)
 
 #### Features
