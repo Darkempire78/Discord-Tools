@@ -171,7 +171,7 @@ You can find your Discord token with the command: `Discord Chat: Grab your perso
 <img src="images/video4.gif" width="500"/>
 
 ### Discord Theme (Dark version)
-Work for Python and JavasScript
+Works for Python and JavasScript
 Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 
 #### Preview :
@@ -190,7 +190,7 @@ Activate the theme : `CTRL + K + CTRL + T` and choose `Discord Theme (Dark)`
 
 ## Discord
 
-Join the Discord server !
+Join the Discord server!
 
 [![](https://i.imgur.com/UfyvtOL.png)](https://discord.gg/sPvJmY7mcV)
 
