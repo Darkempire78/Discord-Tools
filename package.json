@@ -171,7 +171,7 @@
 				},
 				"discord-documentation.javaWrapper": {
 					"type": "string",
-					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your java wrapper",
 					"enum": [
 						"JDA"
 					],
@@ -180,7 +180,7 @@
 				},
 				"discord-documentation.javascriptWrapper": {
 					"type": "string",
-					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your javascript wrapper",
 					"enum": [
 						"Discord.js",
 						"Eris"
@@ -190,7 +190,7 @@
 				},
 				"discord-documentation.typescriptWrapper": {
 					"type": "string",
-					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your python wrapper",
+					"markdownDescription": "Open the Discord bot Documentation with/without a research.\nSelect your typescript wrapper",
 					"enum": [
 						"Harmony"
 					],
