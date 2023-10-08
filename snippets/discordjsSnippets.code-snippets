@@ -1,89 +1,86 @@
 {
 	"Default Discord bot index.js file": {
-		"prefix": ["djs.index", "djs.main", "djs.bot", "djs.client"],
+        "prefix": ["djs.index", "djs.main", "djs.bot", "djs.client"],
 		"body": [
-			"const Discord = require('discord.js');",
+            "const { Client, Collection, GatewayIntentBits, Partials, Events, ChannelType } = require('discord.js');",
             "const config = require('./configuration.json');",
             "const fs = require('fs');",
             "",
-            "const client = new Discord.Client();",
-            "client.commands = new Discord.Collection();",
-            "",
-            "// Take commands",
-            "const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));",
-            "for (const file of commandFiles) {",
-            "\tconst command = require(`./commands/` + file);",
-            "\tclient.commands.set(command.name, command);",
-            "}",
-            "",
-            "// Cooldowns",
-            "const cooldowns = new Discord.Collection();",
-            "",
-            "// On Ready",
-            "client.once('ready', () => {",
-            "\tconsole.log('Ready!');",
+            "const client = new Client({",
+            "    shards: 'auto',",
+            "    intents: [GatewayIntentBits.Guild, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages],",
+            "    partials: [Partials.Message, Partials.Channel, Partials.Reaction]",
             "});",
             "",
-            "// On Message",
-            "client.on('message', message => {",
-            "\tif (!message.content.startsWith(config.prefix) || message.author.bot) return;",
+            "client.commands = new Collection();",
             "",
-            "\tconst args = message.content.slice(config.prefix.length).split(/ +/);",
-            "\tconst commandName = args.shift().toLowerCase();",
+            "const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));",
             "",
-            "\tconst command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));",
+            "for (const file of commandFiles) {",
+            "    const command = require(`./commands/` + file);",
+            "    client.commands.set(command.name, command);",
+            "}",
             "",
-            "\t// If command exist",
-            "\tif (!command) return;",
+            "const cooldowns = new Collection();",
             "",
-            "\t// Check if command can be executed in DM",
-            "\tif (command.guildOnly && message.channel.type !== 'text') {",
-            "\t\treturn message.reply('I can\\'t execute that command inside DMs!');",
-            "\t}",
+            "client.once(Events.ClientReady, () => {",
+            "    console.log('Ready!');",
+            "});",
             "",
-            "\t// Check if args are required",
-            "\tif (command.args && !args.length) {",
-            "\t\tlet reply = `You didn't provide any arguments, ${message.author}!`;",
+            "client.on(Events.MessageCreate, message => {",
+            "    if (!message.content.startsWith(config.prefix) || message.author.bot) return;",
             "",
-            "\t\tif (command.usage) {",
-            "\t\t\treply += `\\nThe proper usage would be: \\`${config.prefix}${command.name} ${command.usage}\\``;",
-            "\t\t}",
+            "    const args = message.content.slice(config.prefix.length).split(/ +/);",
+            "    const commandName = args.shift().toLowerCase();",
             "",
-            "\t\treturn message.channel.send(reply);",
-            "\t}",
+            "    const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));",
             "",
-            "\t// Check if user is in cooldown",
-            "\tif (!cooldowns.has(command.name)) {",
-            "\t\tcooldowns.set(command.name, new Discord.Collection());",
-            "\t}",
+            "    if (!command) return;",
             "",
-            "\tconst now = Date.now();",
-            "\tconst timestamps = cooldowns.get(command.name);",
-            "\tconst cooldownAmount = (command.cooldown || 3) * 1000;",
+            "    if (command.guildOnly && message.channel.type !== ChannelType.GuildText) {",
+            "        return message.reply('I can\\'t execute that command inside DMs!');",
+            "    }",
             "",
-            "\tif (timestamps.has(message.author.id)) {",
-            "\t\tconst expirationTime = timestamps.get(message.author.id) + cooldownAmount;",
+            "    if (command.args && !args.length) {",
+            "        let reply = `You didn't provide any arguments, ${message.author}!`;",
             "",
-            "\t\tif (now < expirationTime) {",
-            "\t\t\t// If user is in cooldown",
-            "\t\t\tconst timeLeft = (expirationTime - now) / 1000;",
-            "\t\t\treturn message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \\`${command.name}\\` command.`);",
-            "\t\t}",
-            "\t} else {",
-            "\t\ttimestamps.set(message.author.id, now);",
-            "\t\tsetTimeout(() => timestamps.delete(message.author.id), cooldownAmount);",
-            "\t\t// Execute command",
-            "\t\ttry {",
-            "\t\t\tcommand.execute(message, args);",
-            "\t\t} catch (error) {",
-            "\t\t\tconsole.error(error);",
-            "\t\t\tmessage.reply('there was an error trying to execute that command!');",
-            "\t\t}",
-            "\t}",
+            "        if (command.usage) {",
+            "            reply += `\\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;",
+            "        }",
+            "",
+            "        return message.channel.send(reply);",
+            "    }",
+            "",
+            "    if (!cooldowns.has(command.name)) {",
+            "        cooldowns.set(command.name, new Collection());",
+            "    }",
+            "",
+            "    const now = Date.now();",
+            "    const timestamps = cooldowns.get(command.name);",
+            "    const cooldownAmount = (command.cooldown || 3) * 1000;",
+            "",
+            "    if (timestamps.has(message.author.id)) {",
+            "        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;",
+            "",
+            "        if (now < expirationTime) {",
+            "            const timeLeft = (expirationTime - now) / 1000;",
+            "            return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);",
+            "        }",
+            "    } else {",
+            "        timestamps.set(message.author.id, now);",
+            "        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);",
+            "",
+            "        try {",
+            "            command.execute(message, args);",
+            "        } catch (error) {",
+            "            console.error(error);",
+            "            message.reply('there was an error trying to execute that command!');",
+            "        }",
+            "    }",
             "});",
             "",
             "client.login(config.token);"
-		],
+        ],
         "description": "Create a basic Discord bot index.js file."
     },
 
@@ -110,7 +107,7 @@
             "\tdescription: \"${3:description}\",",
             "\tcategory: \"${4:category}\",",
             "\tguildOnly: ${5:true},",
-	    "\tmemberpermissions:\"${6:VIEW_CHANNEL}\",",
+	    "\tmemberpermissions:\"${6:ViewChannel}\",",
 	    "\tadminPermOverride: ${7:true},",
             "\tcooldown: ${8:2},",
             "\targs: ${9:args},",
@@ -126,8 +123,8 @@
     "Default Discord bot embed": {
 		"prefix": "djs.embed",
 		"body": [       
-            "const embed = new Discord.MessageEmbed()",
-            "\t.setColor('#0099ff')",
+            "const embed = new Discord.EmbedBuilder()",
+            "\t.setColor(0x0099ff)",
             "\t.setTitle('${1:title}')",
             "\t.setDescription('${2:description}')",
             "\t.addFields(",
@@ -142,11 +139,11 @@
     "Complex Discord bot embed": {
 		"prefix": "djs.embed+",
 		"body": [       
-            "const embed = new Discord.MessageEmbed()",
+            "const embed = new Discord.EmbedBuilder()",
             "\t.setColor('${1:#0099ff}')",
             "\t.setTitle('${2:title}')",
             "\t.setURL('${3:https://discord.js.org/}')",
-            "\t.setAuthor('${4:name}', '${5:https://i.imgur.com/wSTFkRM.png}', '${6:https://discord.js.org}')",
+            "\t.setAuthor({ name:'${4:name}', iconURL:'${5:https://i.imgur.com/wSTFkRM.png}', '${6:https://discord.js.org}'})",
             "\t.setDescription('${7:description}')",
             "\t.setThumbnail('${8:https://i.imgur.com/wSTFkRM.png}')",
             "\t.addFields(",
@@ -154,9 +151,9 @@
             "\t)",
             "\t.setImage('${12:https://i.imgur.com/wSTFkRM.png}')",
             "\t.setTimestamp('${13:timestamp}')",
-            "\t.setFooter('${14:footer}', '${15:https://i.imgur.com/wSTFkRM.png}');",
+            "\t.setFooter({ text: '${14:footer}', iconURL: '${15:https://i.imgur.com/wSTFkRM.png}'});",
             "",
-            "\tchannel.send(embed);"
+            "\tchannel.send({ embeds: [embed] });"
 		],
         "description": "Create a complex Discord embed."
     },
@@ -164,7 +161,7 @@
     "Default Discord bot message": {
 		"prefix": "djs.message",
 		"body": [       
-            "${1:client}.on('message', message => {",
+            "${1:client}.on(Discord.Events.MessageCreate, message => {",
             "\tif (!message.content.startsWith(config.prefix) || message.author.bot) return;",
             "",
             "\tconst args = message.content.slice(config.prefix.length).split(/ +/);",
@@ -227,7 +224,7 @@
     "Default Discord bot channelCreate": {
 		"prefix": "djs.channelCreate",
 		"body": [       
-            "${1:client}.on('channelCreate', (channel) => {",
+            "${1:client}.on(Discord.Events.ChannelCreate, (channel) => {",
             "\t${2:console.log(channel);}",
             "});"
 		],
@@ -237,7 +234,7 @@
     "Default Discord bot channelDelete": {
 		"prefix": "djs.channelDelete",
 		"body": [       
-            "${1:client}.on('channelDelete', (channel) => {",
+            "${1:client}.on(Discord.Events.ChannelDelete, (channel) => {",
             "\t${2:console.log(channel);}",
             "});"
 		],
@@ -247,7 +244,7 @@
     "Default Discord bot channelPinsUpdate": {
 		"prefix": "djs.channelPinsUpdate",
 		"body": [       
-            "${1:client}.on('channelPinsUpdate', (channel, time) => {",
+            "${1:client}.on(Discord.Events.ChannelPinsUpdate, (channel, time) => {",
             "\t${2:console.log(channel, time);}",
             "});"
 		],
@@ -257,57 +254,37 @@
     "Default Discord bot channelUpdate": {
 		"prefix": "djs.channelUpdate",
 		"body": [       
-            "${1:client}.on('channelUpdate', (oldChannel, newChannel) => {",
+            "${1:client}.on(Discord.Events.ChannelUpdate, (oldChannel, newChannel) => {",
             "\t${2:console.log(oldChannel, newChannel);}",
             "});"
 		],
         "description": "Create a default Discord bot channelUpdate."
     },
 
-    "Default Discord bot clientUserGuildSettingsUpdate": {
-		"prefix": "djs.clientUserGuildSettingsUpdate",
-		"body": [       
-            "${1:client}.on('clientUserGuildSettingsUpdate', (clientUserGuildSettings) => {",
-            "\t${2:console.log(clientUserGuildSettings);}",
+    "Default Discord bot applicationCommandPermissionsUpdate": {
+        "prefix": "djs.applicationCommandPermissionsUpdate",
+        "body": [
+            "${1:client}.on(Discord.Events.ApplicationCommandPermissionsUpdate, (request) => {",
+            "\t${2:console.log(request)}",
             "});"
-		],
-        "description": "Create a default Discord bot clientUserGuildSettingsUpdate."
-    },
-
-    "Default Discord bot clientUserSettingsUpdate": {
-		"prefix": "djs.clientUserSettingsUpdate",
-		"body": [       
-            "${1:client}.on('clientUserSettingsUpdate', (clientUserSettings) => {",
-            "\t${2:console.log(clientUserSettings);}",
-            "});"
-		],
-        "description": "Create a default Discord bot clientUserSettingsUpdate."
-    },
+        ],
+        "description",: "Create a default Discord bot applicationCommandPermissionsUpdate"
+    }
 
     "Default Discord bot debug": {
 		"prefix": "djs.debug",
 		"body": [       
-            "${1:client}.on('debug', (info) => {",
+            "${1:client}.on('Discord.Events.Debug, (info) => {",
             "\t${2:console.log(info);}",
             "});"
 		],
         "description": "Create a default Discord bot debug."
     },
 
-    "Default Discord bot disconnect": {
-		"prefix": "djs.disconnect",
-		"body": [       
-            "${1:client}.on('disconnect', (event) => {",
-            "\t${2:console.log(event);}",
-            "});"
-		],
-        "description": "Create a default Discord bot disconnect."
-    },
-
     "Default Discord bot emojiCreate": {
 		"prefix": "djs.emojiCreate",
 		"body": [       
-            "${1:client}.on('emojiCreate', (emoji) => {",
+            "${1:client}.on(Discord.Events.GuildEmojiCreate', (emoji) => {",
             "\t${2:console.log(emoji);}",
             "});"
 		],
@@ -317,7 +294,7 @@
     "Default Discord bot emojiDelete": {
 		"prefix": "djs.emojiDelete",
 		"body": [       
-            "${1:client}.on('emojiDelete', (emoji) => {",
+            "${1:client}.on(Discord.Events.GuildEmojiDelete, (emoji) => {",
             "\t${2:console.log(emoji);}",
             "});"
 		],
@@ -327,7 +304,7 @@
     "Default Discord bot emojiUpdate": {
 		"prefix": "djs.emojiUpdate",
 		"body": [       
-            "${1:client}.on('emojiUpdate', (oldEmoji, newEmoji) => {",
+            "${1:client}.on(Discord.Events.GuildEmojiUpdate, (oldEmoji, newEmoji) => {",
             "\t${2:console.log(oldEmoji, newEmoji);}",
             "});"
 		],
@@ -337,7 +314,7 @@
     "Default Discord bot error": {
 		"prefix": "djs.error",
 		"body": [       
-            "${1:client}.on('error', (error) => {",
+            "${1:client}.on(Discord.Events.Error, (error) => {",
             "\t${2:console.log(error);}",
             "});"
 		],
@@ -347,7 +324,7 @@
     "Default Discord bot guildBanAdd": {
 		"prefix": "djs.guildBanAdd",
 		"body": [       
-            "${1:client}.on('guildBanAdd', (guild, user) => {",
+            "${1:client}.on(Discord.Events.GuildBanAdd, (guild, user) => {",
             "\t${2:console.log(guild, user);}",
             "});"
 		],
@@ -357,7 +334,7 @@
     "Default Discord bot guildBanRemove": {
 		"prefix": "djs.guildBanRemove",
 		"body": [       
-            "${1:client}.on('guildBanRemove', (guild, user) => {",
+            "${1:client}.on(Discord.Events.GuildBanRemove, (guild, user) => {",
             "\t${2:console.log(guild, user);}",
             "});"
 		],
@@ -367,7 +344,7 @@
     "Default Discord bot guildCreate": {
 		"prefix": "djs.guildCreate",
 		"body": [       
-            "${1:client}.on('guildCreate', (guild) => {",
+            "${1:client}.on(Discord.Events.GuildCreate, (guild) => {",
             "\t${2:console.log(guild);}",
             "});"
 		],
@@ -377,7 +354,7 @@
     "Default Discord bot guildDelete": {
 		"prefix": "djs.guildDelete",
 		"body": [       
-            "${1:client}.on('guildDelete', (guild) => {",
+            "${1:client}.on(Discord.Events.GuildDelete', (guild) => {",
             "\t${2:console.log(guild);}",
             "});"
 		],
@@ -387,7 +364,7 @@
     "Default Discord bot guildIntegrationsUpdate": {
 		"prefix": "djs.guildIntegrationsUpdate",
 		"body": [       
-            "${1:client}.on('guildIntegrationsUpdate', (guild) => {",
+            "${1:client}.on(Discord.Events.GuildIntegrationsUpdate, (guild) => {",
             "\t${2:console.log(guild);}",
             "});"
 		],
@@ -397,7 +374,7 @@
     "Default Discord bot guildMemberAdd": {
 		"prefix": "djs.guildMemberAdd",
 		"body": [       
-            "${1:client}.on('guildMemberAdd', (member) => {",
+            "${1:client}.on(Discord.Events.GuildMemberAdd, (member) => {",
             "\t${2:console.log(member);}",
             "});"
 		],
@@ -407,7 +384,7 @@
     "Default Discord bot guildMemberRemove": {
 		"prefix": "djs.guildMemberRemove",
 		"body": [       
-            "${1:client}.on('guildMemberRemove', (member) => {",
+            "${1:client}.on(Discord.Events.GuildMemberRemove, (member) => {",
             "\t${2:console.log(member);}",
             "});"
 		],
@@ -417,27 +394,17 @@
     "Default Discord bot guildMemberAvailable": {
 		"prefix": "djs.guildMemberAvailable",
 		"body": [       
-            "${1:client}.on('guildMemberAvailable', (member) => {",
+            "${1:client}.on(Discord.Events.GuildMemberAvailable, (member) => {",
             "\t${2:console.log(member);}",
             "});"
 		],
         "description": "Create a default Discord bot guildMemberAvailable."
     },
 
-    "Default Discord bot guildMemberSpeaking": {
-		"prefix": "djs.guildMemberSpeaking",
-		"body": [       
-            "${1:client}.on('guildMemberSpeaking', (member, speaking) => {",
-            "\t${2:console.log(member, speaking);}",
-            "});"
-		],
-        "description": "Create a default Discord bot guildMemberSpeaking."
-    },
-
     "Default Discord bot guildMemberUpdate": {
 		"prefix": "djs.guildMemberUpdate",
 		"body": [       
-            "${1:client}.on('guildMemberUpdate', (oldMember, newMember) => {",
+            "${1:client}.on(Discord.Events.GuildMemberUpdate, (oldMember, newMember) => {",
             "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
@@ -447,7 +414,7 @@
     "Default Discord bot guildMembersChunk": {
 		"prefix": "djs.guildMembersChunk",
 		"body": [       
-            "${1:client}.on('guildMembersChunk', (members, guild) => {",
+            "${1:client}.on(Discord.Events.GuildMembersChunk, (members, guild) => {",
             "\t${2:console.log(members, guild);}",
             "});"
 		],
@@ -457,7 +424,7 @@
     "Default Discord bot guildUnavailable": {
 		"prefix": "djs.guildUnavailable",
 		"body": [       
-            "${1:client}.on('guildUnavailable', (guild) => {",
+            "${1:client}.on(Discord.Events.GuildUnavailable, (guild) => {",
             "\t${2:console.log(guild);}",
             "});"
 		],
@@ -467,7 +434,7 @@
     "Default Discord bot guildUpdate": {
 		"prefix": "djs.guildUpdate",
 		"body": [       
-            "${1:client}.on('guildUpdate', (oldGuild, newGuild) => {",
+            "${1:client}.on(Discord.Events.GuildUpdate, (oldGuild, newGuild) => {",
             "\t${2:console.log(oldGuild, newGuild);}",
             "});"
 		],
@@ -477,7 +444,7 @@
     "Default Discord bot messageDelete": {
 		"prefix": "djs.messageDelete",
 		"body": [       
-            "${1:client}.on('messageDelete', (message) => {",
+            "${1:client}.on(Discord.Events.MessageDelete, (message) => {",
             "\t${2:console.log(message);}",
             "});"
 		],
@@ -487,7 +454,7 @@
     "Default Discord bot messageDeleteBulk": {
 		"prefix": "djs.messageDeleteBulk",
 		"body": [       
-            "${1:client}.on('messageDeleteBulk', (messages) => {",
+            "${1:client}.on(Discord.Events.MessageDeleteBulk, (messages) => {",
             "\t${2:console.log(messages);}",
             "});"
 		],
@@ -497,7 +464,7 @@
     "Default Discord bot messageReactionAdd": {
 		"prefix": "djs.messageReactionAdd",
 		"body": [       
-            "${1:client}.on('messageReactionAdd', (messageReaction, user) => {",
+            "${1:client}.on(Discord.Events.MessageReactionAdd, (messageReaction, user) => {",
             "\t${2:console.log(messageReaction, user);}",
             "});"
 		],
@@ -507,7 +474,7 @@
     "Default Discord bot messageReactionRemove": {
 		"prefix": "djs.messageReactionRemove",
 		"body": [       
-            "${1:client}.on('messageReactionRemove', (messageReaction, user) => {",
+            "${1:client}.on(Discord.Events.MessageReactionRemove, (messageReaction, user) => {",
             "\t${2:console.log(messageReaction, user);}",
             "});"
 		],
@@ -517,7 +484,7 @@
     "Default Discord bot messageUpdate": {
 		"prefix": "djs.messageUpdate",
 		"body": [       
-            "${1:client}.on('messageUpdate', (oldMessage, newMessage) => {",
+            "${1:client}.on(Discord.Events.MessageUpdate, (oldMessage, newMessage) => {",
             "\t${2:console.log(oldMessage, newMessage);}",
             "});"
 		],
@@ -527,7 +494,7 @@
     "Default Discord bot presenceUpdate": {
 		"prefix": "djs.presenceUpdate",
 		"body": [       
-            "${1:client}.on('presenceUpdate', (oldMember, newMember) => {",
+            "${1:client}.on(Discord.Events.PresenceUpdate, (oldMember, newMember) => {",
             "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
@@ -547,8 +514,8 @@
     "Default Discord bot ready": {
 		"prefix": "djs.ready",
 		"body": [       
-            "${1:client}.on('ready', () => {",
-            "\t${2:console.log(null);}",
+            "${1:client}.on(Discord.Events.ClientReady, (client) => {",
+            "\t${2:console.log(client.user.username);}",
             "});"
 		],
         "description": "Create a default Discord bot ready."
@@ -557,18 +524,18 @@
     "Default Discord bot reconnecting": {
 		"prefix": "djs.reconnecting",
 		"body": [       
-            "${1:client}.on('reconnecting', () => {",
-            "\t${2:console.log(null);}",
+            "${1:client}.on(Discord.Events.ShardReconnecting, (id) => {",
+            "\t${2:console.log(id);}",
             "});"
 		],
-        "description": "Create a default Discord bot reconnecting."
+        "description": "Create a default Discord bot\'s shard reconnecting."
     },
 
     "Default Discord bot resume": {
 		"prefix": "djs.resume",
 		"body": [       
-            "${1:client}.on('resume', (replayed) => {",
-            "\t${2:console.log(replayed);}",
+            "${1:client}.on(Discord.Events.shardResume, (id, replayedEvents) => {",
+            "\t${2:console.log(id, replayedEvents);}",
             "});"
 		],
         "description": "Create a default Discord bot resume."
@@ -577,7 +544,7 @@
     "Default Discord bot roleCreate": {
 		"prefix": "djs.roleCreate",
 		"body": [       
-            "${1:client}.on('roleCreate', (role) => {",
+            "${1:client}.on(Discord.Events.RoleCreate, (role) => {",
             "\t${2:console.log(role);}",
             "});"
 		],
@@ -587,7 +554,7 @@
     "Default Discord bot roleDelete": {
 		"prefix": "djs.roleDelete",
 		"body": [       
-            "${1:client}.on('roleDelete', (role) => {",
+            "${1:client}.on(Discord.Events.RoleDelete, (role) => {",
             "\t${2:console.log(role);}",
             "});"
 		],
@@ -597,7 +564,7 @@
     "Default Discord bot roleUpdate": {
 		"prefix": "djs.roleUpdate",
 		"body": [       
-            "${1:client}.on('roleUpdate', (oldRole, newRole) => {",
+            "${1:client}.on(Discord.Events.RoleUpdate, (oldRole, newRole) => {",
             "\t${2:console.log(oldRole, newRole);}",
             "});"
 		],
@@ -607,37 +574,17 @@
     "Default Discord bot typingStart": {
 		"prefix": "djs.typingStart",
 		"body": [       
-            "${1:client}.on('typingStart', (channel, user) => {",
+            "${1:client}.on(Discord.Events.TypingStart, (channel, user) => {",
             "\t${2:console.log(channel, user);}",
             "});"
 		],
         "description": "Create a default Discord bot typingStart."
     },
 
-    "Default Discord bot typingStop": {
-		"prefix": "djs.typingStop",
-		"body": [       
-            "${1:client}.on('typingStop', (channel, user) => {",
-            "\t${2:console.log(channel, user);}",
-            "});"
-		],
-        "description": "Create a default Discord bot typingStop."
-    },
-
-    "Default Discord bot userNoteUpdate": {
-		"prefix": "djs.userNoteUpdate",
-		"body": [       
-            "${1:client}.on('userNoteUpdate', (user, oldNote, newNote) => {",
-            "\t${2:console.log(user, oldNote, newNote);}",
-            "});"
-		],
-        "description": "Create a default Discord bot userNoteUpdate."
-    },
-
     "Default Discord bot userUpdate": {
 		"prefix": "djs.userUpdate",
 		"body": [       
-            "${1:client}.on('userUpdate', (oldUser, newUser) => {",
+            "${1:client}.on(Discord.Events.UserUpdate, (oldUser, newUser) => {",
             "\t${2:console.log(oldUser, newUser);}",
             "});"
 		],
@@ -647,7 +594,7 @@
     "Default Discord bot voiceStateUpdate": {
 		"prefix": "djs.voiceStateUpdate",
 		"body": [       
-            "${1:client}.on('voiceStateUpdate', (oldMember, newMember) => {",
+            "${1:client}.on(Discord.Events.VoiceStateUpdate, (oldMember, newMember) => {",
             "\t${2:console.log(oldMember, newMember);}",
             "});"
 		],
@@ -657,7 +604,7 @@
     "Default Discord bot warn": {
 		"prefix": "djs.warn",
 		"body": [       
-            "${1:client}.on('warn', (info) => {",
+            "${1:client}.on(Discord.Events.Warn, (info) => {",
             "\t${2:console.log(info);}",
             "});"
 		],
@@ -665,9 +612,9 @@
     },
 
     "Default Discord bot webhookUpdate": {
-		"prefix": "djs.webhookUpdate",
+		"prefix": "djs.webhooksUpdate",
 		"body": [       
-            "${1:client}.on('webhookUpdate', (channel) => {",
+            "${1:client}.on(Discord.Events.WebhooksUpdate, (channel) => {",
             "\t${2:console.log(channel);}",
             "});"
 		],
