@@ -269,7 +269,7 @@
             "});"
         ],
         "description",: "Create a default Discord bot applicationCommandPermissionsUpdate"
-    }
+    },
 
     "Default Discord bot debug": {
 		"prefix": "djs.debug",
@@ -621,15 +621,13 @@
         "description": "Create a default Discord bot webhookUpdate."
     },
 
-
-
-
-
-
-
-
-
-
-
-
+    "Default Discord bot AutoModerationActionExecution": {
+        "prefix": "djs.autoModerationActionExecution",
+        "body": [
+            "${1:client}.on(Discord.Events.AutoModerationActionExecution, (data) => {",
+            "\t${2:console.log(data);}",
+            "});"
+        ],
+        "description": "Create a default Discord bot AutoModerationActionExecution."
+    },
 }
