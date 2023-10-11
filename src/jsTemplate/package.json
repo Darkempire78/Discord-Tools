@@ -1,20 +1,30 @@
 {
-  "name": "discord-js-handler-template",
-  "version": "1.0.0",
-  "description": "Discord.js Command and Event Handler Template with example Command usages!",
+  "name": "discord-js-bot",
+  "version": "1.0.1",
+  "description": "v14-handler",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node .",
+    "dev": "nodemon .",
+    "pm2:start": "pm2 start index.js --name djs_handler",
+    "pm2:stop": "pm2 stop djs_handler",
+    "pm2:restart": "pm2 restart djs_handler",
+    "pm2:list": "pm2 list"
   },
-  "author": "Tomato#6966 (author of this template)",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chethanyadav456/discord-js-bot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "raazdev",
+  "license": "MIT",
   "dependencies": {
-    "ascii-table": "0.0.9",
-    "discord.js": "^12.5.1"
-  },
-  "devDependencies": {
-    "ascii-table": "0.0.9",
-    "colors": "^1.4.0"
+    "cololog": "^1.0.4",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.2",
+    "mongoose": "^6.2.10"
   }
 }
